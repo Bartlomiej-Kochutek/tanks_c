@@ -27,199 +27,171 @@ namespace tanks.controller
         public CTank()
         {
             model = new MTank();
-            model.setController(this);
+            model.SetController(this);
 
             view = new VTank();
-            view.setController(this);
+            view.Controller = (this);
 
             hitPoints = new CHitPoints();
-            hitPoints.setParentTank(this);
+            hitPoints.ParentTank = (this);
 
             mBase = new CBase();
-            mBase.setParentTank(this);
+            mBase.ParentTank = (this);
 
             missiles = new LinkedList<CMissile>();
         }
 
 
-        public void prepare()
+        public void Prepare()
         {
-            model.prepare();
-            view.prepare();
+            model.Prepare();
+            view.Prepare();
 
-            mBase.prepare();
-            mBase.draw();
+            mBase.Prepare();
+            mBase.Draw();
         }
 
-        public void redrawWithMissiles()
+        public void RedrawWithMissiles()
         {
-            if (model.isDefeated())
+            if (model.IsDefeated())
                 return;
 
-            view.redraw(parentGameWindow.getChildBoard().getElements());
-            view.redrawMissiles(parentGameWindow.getChildBoard().getElements());
+            view.Redraw(parentGameWindow.ChildBoard.Elements);
+            view.RedrawMissiles(parentGameWindow.ChildBoard.Elements);
         }
 
 
-        public void shoot(int iDeltaT)
+        public void Shoot(int iDeltaT)
         {
-            model.shoot(iDeltaT);
+            model.Shoot(iDeltaT);
         }
 
-        public void moveMissiles(float iDeltaT)
+        public void MoveMissiles(float iDeltaT)
         {
-            model.moveMissiles(iDeltaT);
+            model.MoveMissiles(iDeltaT);
         }
 
-        public void checkMissilesCollision()
+        public void CheckMissilesCollision()
         {
-            model.checkMissilesCollision();
+            model.CheckMissilesCollision();
         }
 
-        public void move(int iDeltaT)
+        public void Move(int iDeltaT)
         {
-            model.move(iDeltaT);
-        }
-
-
-
-
-        public VTank getView()
-        {
-            return view;
-        }
-        public void setView(VTank iView)
-        {
-            view = iView;
-        }
-
-        public controller.CGameWindow getParentGameWindow()
-        {
-            return parentGameWindow;
-        }
-        public void setParentGameWindow(CGameWindow iParent)
-        {
-            parentGameWindow = iParent;
-        }
-
-        public int getPosX()
-        {
-            return model.getPosX();
-        }
-        public void setPosX(int iPosX)
-        {
-            model.setPosX(iPosX);
-        }
-
-        public int getPosY()
-        {
-            return model.getPosY();
-        }
-        public void setPosY(int iPosY)
-        {
-            model.setPosY(iPosY);
-        }
-
-        public int getSize()
-        {
-            return model.getSize();
-        }
-        public void setSize(int iSize)
-        {
-            model.setSize(iSize);
-        }
-
-        public EDirection getDirection()
-        {
-            return model.getDirection();
-        }
-        public void setDirection(EDirection iDirection)
-        {
-            model.setDirection(iDirection);
-        }
-
-        public int getSpeed()
-        {
-            return model.getSpeed();
-        }
-        public void setSpeed(int iSpeed)
-        {
-            model.setSpeed(iSpeed);
+            model.Move(iDeltaT);
         }
 
 
-        public bool isMoveDown()
-        {
-            return model.isMoveDown();
-        }
-        public void setMoveDown(bool iMoveDown)
-        {
-            model.setMoveDown(iMoveDown);
-        }
-
-        public bool isMoveLeft()
-        {
-            return model.isMoveLeft();
-        }
-        public void setMoveLeft(bool iMoveLeft)
-        {
-            model.setMoveLeft(iMoveLeft);
-        }
-
-        public bool isMoveRight()
-        {
-            return model.isMoveRight();
-        }
-        public void setMoveRight(bool iMoveRight)
-        {
-            model.setMoveRight(iMoveRight);
-        }
-
-        public bool isMoveUp()
-        {
-            return model.isMoveUp();
-        }
-        public void setMoveUp(bool iMoveUp)
-        {
-            model.setMoveUp(iMoveUp);
-        }
 
 
-        public bool isShooting()
+        public VTank View { get => view; set => view = value; }
+
+        public CGameWindow ParentGameWindow { get => parentGameWindow; set => parentGameWindow = value; }
+
+        public LinkedList<CMissile> Missiles { get => missiles; set => missiles = value; }
+
+        public CHitPoints HitPoints { get => hitPoints; set => hitPoints = value; }
+
+        public int GetPosX()
         {
-            return model.isShooting();
+            return model.GetPosX();
         }
-        public void setShooting(bool iShooting)
+        public void SetPosX(int iPosX)
         {
-            model.setShooting(iShooting);
+            model.SetPosX(iPosX);
+        }
+
+        public int GetPosY()
+        {
+            return model.GetPosY();
+        }
+        public void SetPosY(int iPosY)
+        {
+            model.SetPosY(iPosY);
+        }
+
+        public int GetSize()
+        {
+            return model.GetSize();
+        }
+        public void SetSize(int iSize)
+        {
+            model.SetSize(iSize);
+        }
+
+        public EDirection GetDirection()
+        {
+            return model.Direction;
+        }
+        public void SetDirection(EDirection iDirection)
+        {
+            model.Direction = iDirection;
+        }
+
+        public int GetSpeed()
+        {
+            return model.GetSpeed();
+        }
+        public void SetSpeed(int iSpeed)
+        {
+            model.SetSpeed(iSpeed);
         }
 
 
-        public LinkedList<CMissile> getMissiles()
+        public bool IsMoveDown()
         {
-            return missiles;
+            return model.IsMoveDown();
         }
-        public void setMissiles(LinkedList<CMissile> iMissiles)
+        public void SetMoveDown(bool iMoveDown)
         {
-            missiles = iMissiles;
-        }
-
-        public CHitPoints getHitPoints()
-        {
-            return hitPoints;
-        }
-        public void setHitPoints(CHitPoints iHitPoints)
-        {
-            hitPoints = iHitPoints;
+            model.SetMoveDown(iMoveDown);
         }
 
-        public bool isDefeated()
+        public bool IsMoveLeft()
         {
-            return model.isDefeated();
+            return model.IsMoveLeft();
         }
-        public void setDefeated(bool iDefeated)
+        public void SetMoveLeft(bool iMoveLeft)
         {
-            model.setDefeated(iDefeated);
+            model.SetMoveLeft(iMoveLeft);
+        }
+
+        public bool IsMoveRight()
+        {
+            return model.IsMoveRight();
+        }
+        public void SetMoveRight(bool iMoveRight)
+        {
+            model.SetMoveRight(iMoveRight);
+        }
+
+        public bool IsMoveUp()
+        {
+            return model.IsMoveUp();
+        }
+        public void SetMoveUp(bool iMoveUp)
+        {
+            model.SetMoveUp(iMoveUp);
+        }
+
+
+        public bool IsShooting()
+        {
+            return model.IsShooting();
+        }
+        public void SetShooting(bool iShooting)
+        {
+            model.SetShooting(iShooting);
+        }
+
+
+        public bool IsDefeated()
+        {
+            return model.IsDefeated();
+        }
+        public void SetDefeated(bool iDefeated)
+        {
+            model.SetDefeated(iDefeated);
         }
     }
 }

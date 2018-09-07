@@ -24,11 +24,11 @@ namespace tanks.view
         }
         private void ThisKeyDown(object iSender, System.Windows.Forms.KeyEventArgs iKeyEventArgs)
         {
-            controller.onKeyPressed(iKeyEventArgs.KeyCode);
+            controller.OnKeyPressed(iKeyEventArgs.KeyCode);
         }
         private void ThisKeyUp(object iSender, System.Windows.Forms.KeyEventArgs iKeyEventArgs)
         {
-            controller.onKeyReleased(iKeyEventArgs.KeyCode);
+            controller.OnKeyReleased(iKeyEventArgs.KeyCode);
         }
         private void HandleApplicationIdle(object sender, EventArgs e)
         {

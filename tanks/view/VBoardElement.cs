@@ -28,22 +28,8 @@ namespace tanks.view
 
 
 
-        public Color getColor()
-        {
-            return color;
-        }
-        public void setColor(Color iColor)
-        {
-            color = iColor;
-        }
+        public Color Color { get => color; set => color = value; }
 
-        public CBoardElement getController()
-        {
-            return controller;
-        }
-        public void setController(CBoardElement iController)
-        {
-            controller = iController;
-        }
+        public CBoardElement Controller { get => controller; set => controller = value; }
     }
 }

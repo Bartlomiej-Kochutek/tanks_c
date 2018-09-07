@@ -38,13 +38,13 @@ namespace tanks.controller
         public CGameWindow()
         {
             model = new MGameWindow();
-            model.setController(this);
+            model.Controller = (this);
 
             view = new VGameWindow();
-            view.setController(this);
+            view.SetController(this);
 
             childBoard = new CGameBoard();
-            childBoard.setParentGameWindow(this);
+            childBoard.ParentGameWindow = (this);
 
             childTanks = new LinkedList<CTank>();
             childTanks.AddLast(new CTank());
@@ -54,17 +54,17 @@ namespace tanks.controller
         }
 
 
-        public void start()
+        public void Start()
         {
             childBoard.Prepare();
 
             foreach (CTank cTank in childTanks)
             {
-                cTank.setParentGameWindow(this);
-                cTank.prepare();
+                cTank.ParentGameWindow = (this);
+                cTank.Prepare();
             }
 
-            view.prepareDisplay();
+            view.PrepareDisplay();
 
             gameStarted = true;
         }
@@ -80,24 +80,24 @@ namespace tanks.controller
 
         private void UpdateWithDeltaT()
         {
-            int deltaT = model.milisecsDelta();
+            int deltaT = model.MilisecsDelta();
 
             foreach (CTank cTank in childTanks)
             {
-                cTank.move(deltaT);
-                cTank.shoot(deltaT);
-                cTank.moveMissiles(deltaT);
-                cTank.checkMissilesCollision();
+                cTank.Move(deltaT);
+                cTank.Shoot(deltaT);
+                cTank.MoveMissiles(deltaT);
+                cTank.CheckMissilesCollision();
             }
         }
 
         private void OnRedraw()
         {
-            childBoard.getModel().resetElements();
+            childBoard.Model.ResetElements();
 
             foreach (CTank cTank in childTanks)
             {
-                cTank.redrawWithMissiles();
+                cTank.RedrawWithMissiles();
             }
 
             LinkedListNode<CTank> iterator = childTanks.First;
@@ -105,53 +105,11 @@ namespace tanks.controller
             iterator = iterator.Next;
             CTank secondTank = iterator.Value;
 
-            childBoard.redraw(firstTank, EPartOfScreen.LEFT);
-            childBoard.redraw(secondTank, EPartOfScreen.RIGHT);
+            childBoard.Redraw(firstTank, EPartOfScreen.LEFT);
+            childBoard.Redraw(secondTank, EPartOfScreen.RIGHT);
         }
 
-        public void onKeyPressed(Keys iKeyCode)
-        {
-            LinkedListNode<CTank> iterator = childTanks.First;
-            CTank firstTank = iterator.Value;
-            iterator = iterator.Next;
-            CTank secondTank = iterator.Value;
-
-            switch (iKeyCode)
-            {
-                case SECOND_TANK_MOVE_DOWN:
-                    secondTank.setMoveDown(true);
-                    break;
-                case SECOND_TANK_MOVE_LEFT:
-                    secondTank.setMoveLeft(true);
-                    break;
-                case SECOND_TANK_MOVE_RIGHT:
-                    secondTank.setMoveRight(true);
-                    break;
-                case SECOND_TANK_MOVE_UP:
-                    secondTank.setMoveUp(true);
-                    break;
-                case SECOND_TANK_SHOOT:
-                    secondTank.setShooting(true);
-                    break;
-
-                case FIRST_TANK_MOVE_DOWN:
-                    firstTank.setMoveDown(true);
-                    break;
-                case FIRST_TANK_MOVE_LEFT:
-                    firstTank.setMoveLeft(true);
-                    break;
-                case FIRST_TANK_MOVE_RIGHT:
-                    firstTank.setMoveRight(true);
-                    break;
-                case FIRST_TANK_MOVE_UP:
-                    firstTank.setMoveUp(true);
-                    break;
-                case FIRST_TANK_SHOOT:
-                    firstTank.setShooting(true);
-                    break;
-            }
-        }
-        public void onKeyReleased(Keys iKeyCode)
+        public void OnKeyPressed(Keys iKeyCode)
         {
             LinkedListNode<CTank> iterator = childTanks.First;
             CTank firstTank = iterator.Value;
@@ -161,35 +119,77 @@ namespace tanks.controller
             switch (iKeyCode)
             {
                 case SECOND_TANK_MOVE_DOWN:
-                    secondTank.setMoveDown(false);
+                    secondTank.SetMoveDown(true);
                     break;
                 case SECOND_TANK_MOVE_LEFT:
-                    secondTank.setMoveLeft(false);
+                    secondTank.SetMoveLeft(true);
                     break;
                 case SECOND_TANK_MOVE_RIGHT:
-                    secondTank.setMoveRight(false);
+                    secondTank.SetMoveRight(true);
                     break;
                 case SECOND_TANK_MOVE_UP:
-                    secondTank.setMoveUp(false);
+                    secondTank.SetMoveUp(true);
                     break;
                 case SECOND_TANK_SHOOT:
-                    secondTank.setShooting(false);
+                    secondTank.SetShooting(true);
                     break;
 
                 case FIRST_TANK_MOVE_DOWN:
-                    firstTank.setMoveDown(false);
+                    firstTank.SetMoveDown(true);
                     break;
                 case FIRST_TANK_MOVE_LEFT:
-                    firstTank.setMoveLeft(false);
+                    firstTank.SetMoveLeft(true);
                     break;
                 case FIRST_TANK_MOVE_RIGHT:
-                    firstTank.setMoveRight(false);
+                    firstTank.SetMoveRight(true);
                     break;
                 case FIRST_TANK_MOVE_UP:
-                    firstTank.setMoveUp(false);
+                    firstTank.SetMoveUp(true);
                     break;
                 case FIRST_TANK_SHOOT:
-                    firstTank.setShooting(false);
+                    firstTank.SetShooting(true);
+                    break;
+            }
+        }
+        public void OnKeyReleased(Keys iKeyCode)
+        {
+            LinkedListNode<CTank> iterator = childTanks.First;
+            CTank firstTank = iterator.Value;
+            iterator = iterator.Next;
+            CTank secondTank = iterator.Value;
+
+            switch (iKeyCode)
+            {
+                case SECOND_TANK_MOVE_DOWN:
+                    secondTank.SetMoveDown(false);
+                    break;
+                case SECOND_TANK_MOVE_LEFT:
+                    secondTank.SetMoveLeft(false);
+                    break;
+                case SECOND_TANK_MOVE_RIGHT:
+                    secondTank.SetMoveRight(false);
+                    break;
+                case SECOND_TANK_MOVE_UP:
+                    secondTank.SetMoveUp(false);
+                    break;
+                case SECOND_TANK_SHOOT:
+                    secondTank.SetShooting(false);
+                    break;
+
+                case FIRST_TANK_MOVE_DOWN:
+                    firstTank.SetMoveDown(false);
+                    break;
+                case FIRST_TANK_MOVE_LEFT:
+                    firstTank.SetMoveLeft(false);
+                    break;
+                case FIRST_TANK_MOVE_RIGHT:
+                    firstTank.SetMoveRight(false);
+                    break;
+                case FIRST_TANK_MOVE_UP:
+                    firstTank.SetMoveUp(false);
+                    break;
+                case FIRST_TANK_SHOOT:
+                    firstTank.SetShooting(false);
                     break;
             }
         }
@@ -197,60 +197,30 @@ namespace tanks.controller
 
 
 
-        public MGameWindow getModel()
+        public MGameWindow Model { get => model; set => model = value; }
+
+        public VGameWindow View { get => view; set => view = value; }
+
+        public CGameBoard ChildBoard { get => childBoard; set => childBoard = value; }
+
+        public LinkedList<CTank> ChildTanks { get => childTanks; set => childTanks = value; }
+
+        public int GetElementSize()
         {
-            return model;
+            return model.ElementSize;
         }
-        public void setModel(MGameWindow iModel)
+        public void SetElementSize(int iElementSize)
         {
-            model = iModel;
+            model.ElementSize = iElementSize;
         }
 
-        public VGameWindow getView()
+        public bool IsAtLeastOneTankDeafeated()
         {
-            return view;
+            return model.AtLeastOneTankDeafeated;
         }
-        public void setView(VGameWindow iView)
+        public void SetAtLeastOneTankDeafeated(bool iAtLeastOneTankDeafeated)
         {
-            view = iView;
-        }
-
-        public CGameBoard getChildBoard()
-        {
-            return childBoard;
-        }
-        public void setChildBoard(CGameBoard iChildBoard)
-        {
-            childBoard = iChildBoard;
-        }
-
-
-        public LinkedList<CTank> getChildTanks()
-        {
-            return childTanks;
-        }
-        public void setChildTanks(LinkedList<CTank> iChildTanks)
-        {
-            childTanks = iChildTanks;
-        }
-
-
-        public int getElementSize()
-        {
-            return model.getElementSize();
-        }
-        public void setElementSize(int iElementSize)
-        {
-            model.setElementSize(iElementSize);
-        }
-
-        public bool isAtLeastOneTankDeafeated()
-        {
-            return model.isAtLeastOneTankDeafeated();
-        }
-        public void setAtLeastOneTankDeafeated(bool iAtLeastOneTankDeafeated)
-        {
-            model.setAtLeastOneTankDeafeated(iAtLeastOneTankDeafeated);
+            model.AtLeastOneTankDeafeated = iAtLeastOneTankDeafeated;
         }
     }
 }

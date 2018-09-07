@@ -23,17 +23,17 @@ namespace tanks.model
         }
 
 
-        public void resetElements()
+        public void ResetElements()
         {
-            CBoardElement[][] boardElements = controller.getElements();
+            CBoardElement[][] boardElements = controller.Elements;
             int boardSize = boardElements.Length;
             for (int i = 0; i < boardSize; i++)
             {
                 for (int j = 0; j < boardSize; j++)
                 {
-                    boardElements[i][j].setTank(false);
-                    boardElements[i][j].setCanon(false);
-                    boardElements[i][j].setMissile(false);
+                    boardElements[i][j].SetTank(false);
+                    boardElements[i][j].SetCanon(false);
+                    boardElements[i][j].SetMissile(false);
                 }
             }
         }
@@ -41,23 +41,8 @@ namespace tanks.model
 
 
 
-        public CGameBoard getController()
-        {
-            return controller;
-        }
-        public void setController(CGameBoard iController)
-        {
-            controller = iController;
-        }
+        public CGameBoard Controller { get => controller; set => controller = value; }
 
-
-        public int getSize()
-        {
-            return size;
-        }
-        public void setSize(int iSize)
-        {
-            size = iSize;
-        }
+        public int Size { get => size; set => size = value; }
     }
 }

@@ -10,20 +10,9 @@ namespace tanks
 
 
 
-        public void display()
+        public void Display()
         {
             System.Windows.Forms.Application.Run(this);
-            
-            /*
-            shell.setLayout(new FillLayout(1));
-            shell.pack();
-            shell.open();
-            while (!shell.isDisposed())
-            {
-                if (!display.readAndDispatch())
-                    display.sleep();
-            }
-            display.dispose();*/
         }
 
 
@@ -31,19 +20,7 @@ namespace tanks
 
 
 
-        public CMainMenu getController()
-        {
-            return controller;
-        }
-        public void setController(CMainMenu iController)
-        {
-            controller = iController;
-        }
-
-
-
-
-
+        public CMainMenu Controller { get => controller; set => controller = value; }
 
         private System.ComponentModel.IContainer components = null;
 
@@ -77,7 +54,7 @@ namespace tanks
             this.buttonPlay.TabIndex = 0;
             this.buttonPlay.Text = "GRAJ";
             this.buttonPlay.UseVisualStyleBackColor = true;
-            this.buttonPlay.Click += new System.EventHandler(this.buttonPlay_Click);
+            this.buttonPlay.Click += new System.EventHandler(this.ButtonPlayClick);
             // 
             // buttonExit
             // 

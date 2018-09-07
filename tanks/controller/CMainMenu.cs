@@ -23,43 +23,29 @@ namespace tanks.controller
             childGameWindow = new CGameWindow();
 
             view = new VMainMenu();
-            view.setController(this);
+            view.Controller = (this);
         }
 
 
-        public void execute()
+        public void Execute()
         {
-            view.display();
+            view.Display();
         }
 
-        public void onPlayButtonPushed()
+        public void OnPlayButtonPushed()
         {
-            childGameWindow.start();
+            childGameWindow.Start();
         }
 
-        public void onExitButtonPushed()
+        public void OnExitButtonPushed()
         {
         }
 
 
 
 
-        public CGameWindow GetChildGameWindow()
-        {
-            return childGameWindow;
-        }
-        public void SetChildGameWindow(CGameWindow iChildGameWindow)
-        {
-            childGameWindow = iChildGameWindow;
-        }
+        public CGameWindow ChildGameWindow { get => childGameWindow; set => childGameWindow = value; }
 
-        public VMainMenu getView()
-        {
-            return view;
-        }
-        public void setView(VMainMenu iView)
-        {
-            view = iView;
-        }
+        public VMainMenu View { get => view; set => view = value; }
     }
 }

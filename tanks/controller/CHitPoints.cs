@@ -21,18 +21,18 @@ namespace tanks.controller
         public CHitPoints()
         {
             model = new MHitPoints();
-            model.setController(this);
+            model.Controller = (this);
         }
 
 
-        public void takeDamagedFromMissile(int iHitPointsDamage)
+        public void TakeDamagedFromMissile(int iHitPointsDamage)
         {
-            model.takeDamagedFromMissile(iHitPointsDamage);
+            model.TakeDamagedFromMissile(iHitPointsDamage);
         }
 
-        public double getAmountAsPercentage()
+        public double GetAmountAsPercentage()
         {
-            return model.getAmountAsPercentage();
+            return model.GetAmountAsPercentage();
         }
 
 
@@ -40,37 +40,30 @@ namespace tanks.controller
 
 
 
-        public CTank getParentTank()
-        {
-            return parentTank;
-        }
-        public void setParentTank(CTank iParentTank)
-        {
-            parentTank = iParentTank;
-        }
+        public CTank ParentTank { get => parentTank; set => parentTank = value; }
 
-        public MHitPoints getModel()
+        public MHitPoints GetModel()
         {
             return model;
         }
-        public void setModel(MHitPoints iModel)
+        public void SetModel(MHitPoints iModel)
         {
             model = iModel;
-            model.setController(this);
+            model.Controller = (this);
         }
 
-        public int getBarHeight()
+        public int GetBarHeight()
         {
-            return model.getBarHeight();
+            return model.BarHeight;
         }
 
-        public int getAmount()
+        public int GetAmount()
         {
-            return model.getAmount();
+            return model.Amount;
         }
-        public void setAmount(int iAmount)
+        public void SetAmount(int iAmount)
         {
-            model.setAmount(iAmount);
+            model.Amount = iAmount;
         }
     }
 }

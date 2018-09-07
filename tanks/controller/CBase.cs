@@ -22,48 +22,41 @@ namespace tanks.controller
         public CBase()
         {
             model = new MBase();
-            model.setController(this);
+            model.Controller = (this);
 
             view = new VBase();
-            view.setController(this);
+            view.Controller = (this);
         }
 
 
-        public void draw()
+        public void Draw()
         {
-            view.draw(parentTank.getParentGameWindow().getChildBoard().getElements());
+            view.Draw(parentTank.ParentGameWindow.ChildBoard.Elements);
         }
 
-        public void prepare()
+        public void Prepare()
         {
-            model.prepare();
+            model.Prepare();
         }
 
 
 
 
-        public CTank getParentTank()
+        public CTank ParentTank { get => parentTank; set => parentTank = value; }
+
+        public int GetPosX()
         {
-            return parentTank;
-        }
-        public void setParentTank(CTank iParentTank)
-        {
-            parentTank = iParentTank;
+            return model.PosX;
         }
 
-        public int getPosX()
+        public int GetPosY()
         {
-            return model.getPosX();
+            return model.PosY;
         }
 
-        public int getPosY()
+        public int GetSize()
         {
-            return model.getPosY();
-        }
-
-        public int getSize()
-        {
-            return model.getSize();
+            return model.GetSize();
         }
     }
 }

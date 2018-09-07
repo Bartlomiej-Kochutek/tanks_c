@@ -28,15 +28,15 @@ namespace tanks.model
         }
 
 
-        public void prepare()
+        public void Prepare()
         {
             halfOfSize = size / 2;
 
-            CTank parentTank = controller.getParentTank();
+            CTank parentTank = controller.ParentTank;
 
-            int halfOfSizeDifference = halfOfSize - parentTank.getSize() / 2;
-            posX = parentTank.getPosX() - halfOfSizeDifference;
-            posY = parentTank.getPosY() - halfOfSizeDifference;
+            int halfOfSizeDifference = halfOfSize - parentTank.GetSize() / 2;
+            posX = parentTank.GetPosX() - halfOfSizeDifference;
+            posY = parentTank.GetPosY() - halfOfSizeDifference;
         }
 
 
@@ -44,44 +44,24 @@ namespace tanks.model
 
 
 
-        public CBase getController()
-        {
-            return controller;
-        }
-        public void setController(CBase iController)
-        {
-            controller = iController;
-        }
+        public CBase Controller { get => controller; set => controller = value; }
 
-        public int getPosX()
-        {
-            return posX;
-        }
-        public void setPosX(int iPosX)
-        {
-            posX = iPosX;
-        }
+        public int PosX { get => posX; set => posX = value; }
 
-        public int getPosY()
-        {
-            return posY;
-        }
-        public void setPosY(int iPosY)
-        {
-            posY = iPosY;
-        }
+        public int PosY { get => posY; set => posY = value; }
+        public int PosY1 { get => posY; set => posY = value; }
 
-        public int getSize()
+        public int GetSize()
         {
             return size;
         }
-        public void setSize(int iSize)
+        public void SetSize(int iSize)
         {
             size = iSize;
             halfOfSize = size / 2;
         }
 
-        public int getHalfOfSize()
+        public int GetHalfOfSize()
         {
             return halfOfSize;
         }

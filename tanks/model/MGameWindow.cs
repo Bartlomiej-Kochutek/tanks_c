@@ -30,7 +30,7 @@ namespace tanks.model
         }
 
 
-        public int milisecsDelta()
+        public int MilisecsDelta()
         {
             long currentMeasuredMilisecs = DateTimeOffset.Now.ToUnixTimeMilliseconds();
             int delta = (int)(currentMeasuredMilisecs - lastMeasuredMilisecs);
@@ -43,31 +43,10 @@ namespace tanks.model
 
 
 
-        public CGameWindow getController()
-        {
-            return controller;
-        }
-        public void setController(CGameWindow iController)
-        {
-            controller = iController;
-        }
+        public CGameWindow Controller { get => controller; set => controller = value; }
 
-        public int getElementSize()
-        {
-            return elementSize;
-        }
-        public void setElementSize(int iElementSize)
-        {
-            elementSize = iElementSize;
-        }
+        public int ElementSize { get => elementSize; set => elementSize = value; }
 
-        public bool isAtLeastOneTankDeafeated()
-        {
-            return atLeastOneTankDeafeated;
-        }
-        public void setAtLeastOneTankDeafeated(bool iAtLeastOneTankDeafeated)
-        {
-            atLeastOneTankDeafeated = iAtLeastOneTankDeafeated;
-        }
+        public bool AtLeastOneTankDeafeated { get => atLeastOneTankDeafeated; set => atLeastOneTankDeafeated = value; }
     }
 }

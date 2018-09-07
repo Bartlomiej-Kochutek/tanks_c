@@ -27,76 +27,68 @@ namespace tanks.controller
             parentTank = iParentTank;
 
             model = new MMissile();
-            model.setController(this);
+            model.Controller = (this);
 
-            model.setPosX(iPosX);
-            model.setPosY(iPosY);
-            model.setDirection(iDirection);
+            model.SetPosX(iPosX);
+            model.SetPosY(iPosY);
+            model.Direction = iDirection;
         }
 
 
-        public void move(float iDeltaPos)
+        public void Move(float iDeltaPos)
         {
             float deltaPos = iDeltaPos;
             const float MAX_DELTA_POS = 1;
             if (deltaPos > MAX_DELTA_POS)
                 deltaPos = MAX_DELTA_POS;
 
-            model.move(deltaPos);
+            model.Move(deltaPos);
         }
 
-        public bool collision()
+        public bool Collision()
         {
-            return model.collision();
-        }
-
-
-
-
-        public CTank getParentTank()
-        {
-            return parentTank;
-        }
-        public void setParentTank(CTank iParentTank)
-        {
-            parentTank = iParentTank;
+            return model.Collision();
         }
 
 
-        public int getPosX()
+
+
+        public CTank ParentTank { get => parentTank; set => parentTank = value; }
+
+        public int GetPosX()
         {
-            return model.getPosX();
+            return model.GetPosX();
         }
-        public void setPosX(int iPosX)
+        public void SetPosX(int iPosX)
         {
-            model.setPosX(iPosX);
+            model.SetPosX(iPosX);
         }
 
-        public int getPosY()
+        public int GetPosY()
         {
-            return model.getPosY();
+            return model.GetPosY();
         }
-        public void setPosY(int iPosY)
+        public void SetPosY(int iPosY)
         {
-            model.setPosY(iPosY);
-        }
-
-        public EDirection getDirection()
-        {
-            return model.getDirection();
-        }
-        public void setDirection(EDirection iDirection)
-        {
-            model.setDirection(iDirection);
+            model.SetPosY(iPosY);
         }
 
-        public int getDamage()
+        public EDirection GetDirection()
         {
-            return model.getDamage();
+            return model.Direction;
         }
-        public void setDamage(int iDamage)
+        public void SetDirection(EDirection iDirection)
         {
-            model.setDamage(iDamage);
+            model.Direction = iDirection;
+        }
+
+        public int GetDamage()
+        {
+            return model.GetDamage();
+        }
+        public void SetDamage(int iDamage)
+        {
+            model.SetDamage(iDamage);
         }
     }
 }

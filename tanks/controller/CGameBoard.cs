@@ -25,18 +25,18 @@ namespace tanks.controller
         public CGameBoard()
         {
             model = new MGameBoard();
-            model.setController(this);
+            model.Controller = (this);
 
             view = new VGameBoard();
-            view.setController(this);
+            view.Controller = (this);
         }
 
 
         public void Prepare()
         {
-            view.prepare();
+            view.Prepare();
 
-            int thisSize = model.getSize();
+            int thisSize = model.Size;
 
             Random random = new Random();
 
@@ -54,7 +54,7 @@ namespace tanks.controller
             }
         }
 
-        public void redraw(
+        public void Redraw(
             CTank iTank,
             EPartOfScreen iPartOfScreen)
         {
@@ -75,50 +75,21 @@ namespace tanks.controller
 
 
 
-        public controller.CGameWindow getParentGameWindow()
-        {
-            return parentGameWindow;
-        }
-        public void setParentGameWindow(CGameWindow iParent)
-        {
-            parentGameWindow = iParent;
-        }
+        public CGameWindow ParentGameWindow { get => parentGameWindow; set => parentGameWindow = value; }
 
-        public MGameBoard getModel()
-        {
-            return model;
-        }
-        public void setModel(MGameBoard iModel)
-        {
-            model = iModel;
-        }
+        public MGameBoard Model { get => model; set => model = value; }
 
-        public void setView(VGameBoard iView)
-        {
-            view = iView;
-        }
-        public VGameBoard getView()
-        {
-            return view;
-        }
+        public VGameBoard View { get => view; set => view = value; }
 
-        public CBoardElement[][] getElements()
-        {
-            return elements;
-        }
-        public void setElements(CBoardElement[][] iElements)
-        {
-            elements = iElements;
-        }
+        public CBoardElement[][] Elements { get => elements; set => elements = value; }
 
-
-        public int getSize()
+        public int GetSize()
         {
-            return model.getSize();
+            return model.Size;
         }
-        public void setSize(int iSize)
+        public void SetSize(int iSize)
         {
-            model.setSize(iSize);
+            model.Size = iSize;
         }
     }
 }

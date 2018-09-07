@@ -29,7 +29,7 @@ namespace tanks.model
         }
 
 
-        public void move(float iDeltaPos)
+        public void Move(float iDeltaPos)
         {
             switch (direction)
             {
@@ -48,28 +48,28 @@ namespace tanks.model
             }
         }
 
-        public bool collision()
+        public bool Collision()
         {
-            CTank parentTank = controller.getParentTank();
+            CTank parentTank = controller.ParentTank;
 
-            int boardSize = parentTank.getParentGameWindow().getChildBoard().getSize();
+            int boardSize = parentTank.ParentGameWindow.ChildBoard.GetSize();
 
             if (CGameBoard.IndicesOutsideWindow((int)posX, (int)posY, boardSize))
                 return true;
 
-            CBoardElement[][] boardElements = parentTank.getParentGameWindow().getChildBoard().getElements();
+            CBoardElement[][] boardElements = parentTank.ParentGameWindow.ChildBoard.Elements;
 
             int intPosX = (int)posX;
             int intPosY = (int)posY;
 
-            if (collisionWithBoardElements(
+            if (CollisionWithBoardElements(
                   boardElements,
                   intPosX,
                   intPosY,
                   boardSize))
                 return true;
 
-            if (collisionWithOtherTanks(
+            if (CollisionWithOtherTanks(
                   intPosX,
                   intPosY))
                 return true;
@@ -77,59 +77,59 @@ namespace tanks.model
             return false;
         }
 
-        private bool collisionWithBoardElements(
+        private bool CollisionWithBoardElements(
             CBoardElement[][] oBoardElements,
             int iPosXInt,
             int iPosYInt,
             int iBoardSize)
         { //keep functions sequence order
-            if (oBoardElements[iPosXInt][iPosYInt].isBaseWall())
+            if (oBoardElements[iPosXInt][iPosYInt].IsBaseWall())
                 return true;
 
-            if (oBoardElements[iPosXInt][iPosYInt].isDestroyed())
+            if (oBoardElements[iPosXInt][iPosYInt].IsDestroyed())
                 return false;
 
-            oBoardElements[iPosXInt][iPosYInt].setDestroyed(true);
+            oBoardElements[iPosXInt][iPosYInt].SetDestroyed(true);
             if (direction == EDirection.UP || direction == EDirection.DOWN)
             {
                 int neighbourIndex = iPosXInt - 1;
                 if (neighbourIndex >= 0)
-                    oBoardElements[neighbourIndex][iPosYInt].setDestroyed(true);
+                    oBoardElements[neighbourIndex][iPosYInt].SetDestroyed(true);
 
                 neighbourIndex = iPosXInt + 1;
                 if (neighbourIndex < iBoardSize)
-                    oBoardElements[neighbourIndex][iPosYInt].setDestroyed(true);
+                    oBoardElements[neighbourIndex][iPosYInt].SetDestroyed(true);
             }
             else
             {
                 int neighbourIndex = iPosYInt - 1;
                 if (neighbourIndex >= 0)
-                    oBoardElements[iPosXInt][neighbourIndex].setDestroyed(true);
+                    oBoardElements[iPosXInt][neighbourIndex].SetDestroyed(true);
 
                 neighbourIndex = iPosYInt + 1;
                 if (neighbourIndex < iBoardSize)
-                    oBoardElements[iPosXInt][neighbourIndex].setDestroyed(true);
+                    oBoardElements[iPosXInt][neighbourIndex].SetDestroyed(true);
             }
             return true;
         }
 
-        private bool collisionWithOtherTanks(
+        private bool CollisionWithOtherTanks(
             int iPosXInt,
             int iPosYInt)
         {
-            CTank parentTank = controller.getParentTank();
+            CTank parentTank = controller.ParentTank;
 
-            LinkedList<CTank> tanks = parentTank.getParentGameWindow().getChildTanks();
+            LinkedList<CTank> tanks = parentTank.ParentGameWindow.ChildTanks;
             foreach (CTank tank in tanks)
             {
                 if (tank == parentTank)
                     continue;
 
-                if (tank.getPosX() > iPosXInt || tank.getPosX() + tank.getSize() <= iPosXInt ||
-                    tank.getPosY() > iPosYInt || tank.getPosY() + tank.getSize() <= iPosYInt)
+                if (tank.GetPosX() > iPosXInt || tank.GetPosX() + tank.GetSize() <= iPosXInt ||
+                    tank.GetPosY() > iPosYInt || tank.GetPosY() + tank.GetSize() <= iPosYInt)
                     continue;
 
-                tank.getHitPoints().takeDamagedFromMissile(damage);
+                tank.HitPoints.TakeDamagedFromMissile(damage);
 
                 return true;
             }
@@ -139,47 +139,33 @@ namespace tanks.model
 
 
 
-        public CMissile getController()
-        {
-            return controller;
-        }
-        public void setController(CMissile iController)
-        {
-            controller = iController;
-        }
+        public CMissile Controller { get => controller; set => controller = value; }
 
-        public int getPosX()
+        public int GetPosX()
         {
             return (int)posX;
         }
-        public void setPosX(int iPosX)
+        public void SetPosX(int iPosX)
         {
             posX = iPosX;
         }
 
-        public int getPosY()
+        public int GetPosY()
         {
             return (int)posY;
         }
-        public void setPosY(int iPosY)
+        public void SetPosY(int iPosY)
         {
             posY = iPosY;
         }
 
-        public EDirection getDirection()
-        {
-            return direction;
-        }
-        public void setDirection(EDirection iDirection)
-        {
-            direction = iDirection;
-        }
+        public EDirection Direction { get => direction; set => direction = value; }
 
-        public int getDamage()
+        public int GetDamage()
         {
             return damage;
         }
-        public void setDamage(int iDamage)
+        public void SetDamage(int iDamage)
         {
             damage = iDamage;
             if (damage <= 0)

@@ -24,73 +24,58 @@ namespace tanks.controller
             model.Controller = this;
 
             view = new VBoardElement(iColor);
-            view.setController(this);
+            view.Controller = (this);
         }
 
 
 
 
 
-        public MBoardElement getModel()
-        {
-            return model;
-        }
-        public void setModel(MBoardElement iModel)
-        {
-            model = iModel;
-        }
+        public MBoardElement Model { get => model; set => model = value; }
 
-        public VBoardElement getView()
-        {
-            return view;
-        }
-        public void setView(VBoardElement iView)
-        {
-            view = iView;
-        }
+        public VBoardElement View { get => view; set => view = value; }
 
-
-        public bool isDestroyed()
+        public bool IsDestroyed()
         {
             return model.IsDestroyed;
         }
-        public void setDestroyed(bool iIsDestroyed)
+        public void SetDestroyed(bool iIsDestroyed)
         {
             model.IsDestroyed = iIsDestroyed;
         }
 
-        public bool isTank()
+        public bool IsTank()
         {
             return model.IsTank;
         }
-        public void setTank(bool iIsTank)
+        public void SetTank(bool iIsTank)
         {
             model.IsTank = iIsTank;
         }
 
-        public bool isCanon()
+        public bool IsCanon()
         {
             return model.IsCanon;
         }
-        public void setCanon(bool iIsCanon)
+        public void SetCanon(bool iIsCanon)
         {
             model.IsCanon = iIsCanon;
         }
 
-        public bool isMissile()
+        public bool IsMissile()
         {
             return model.IsMissile;
         }
-        public void setMissile(bool iIsMissile)
+        public void SetMissile(bool iIsMissile)
         {
             model.IsMissile = iIsMissile;
         }
 
-        public bool isBaseWall()
+        public bool IsBaseWall()
         {
             return model.IsBaseWall;
         }
-        public void setBaseWall(bool iIsBaseWall)
+        public void SetBaseWall(bool iIsBaseWall)
         {
             model.IsBaseWall = iIsBaseWall;
         }

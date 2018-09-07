@@ -17,9 +17,9 @@ namespace tanks
             InitializeComponent();
         }
 
-        private void buttonPlay_Click(object sender, EventArgs e)
+        private void ButtonPlayClick(object sender, EventArgs e)
         {
-            controller.onPlayButtonPushed();
+            controller.OnPlayButtonPushed();
         }
     }
 }

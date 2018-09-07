@@ -28,18 +28,18 @@ namespace tanks.model
         }
 
 
-        public void takeDamagedFromMissile(int iHitPointsDamage)
+        public void TakeDamagedFromMissile(int iHitPointsDamage)
         {
             amount -= iHitPointsDamage;
 
             if (amount > 0)
                 return;
 
-            controller.getParentTank().getParentGameWindow().setAtLeastOneTankDeafeated(true);
-            controller.getParentTank().setDefeated(true);
+            controller.ParentTank.ParentGameWindow.SetAtLeastOneTankDeafeated(true);
+            controller.ParentTank.SetDefeated(true);
         }
 
-        public double getAmountAsPercentage()
+        public double GetAmountAsPercentage()
         {
             return (double)amount / (double)MAX_HIT_POINTS;
         }
@@ -47,32 +47,12 @@ namespace tanks.model
 
 
 
-        public CHitPoints getController()
-        {
-            return controller;
-        }
-        public void setController(CHitPoints iController)
-        {
-            controller = iController;
-        }
+        public CHitPoints Controller { get => controller; set => controller = value; }
 
-        public static int getMaxHitPoints()
-        {
-            return MAX_HIT_POINTS;
-        }
+        public static int MaxHitPoints => MAX_HIT_POINTS;
 
-        public int getBarHeight()
-        {
-            return barHeight;
-        }
+        public int BarHeight => barHeight;
 
-        public int getAmount()
-        {
-            return amount;
-        }
-        public void setAmount(int iAmount)
-        {
-            amount = iAmount;
-        }
+        public int Amount { get => amount; set => amount = value; }
     }
 }

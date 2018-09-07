@@ -20,11 +20,11 @@ namespace tanks.view
         }
 
 
-        public void draw(CBoardElement[][] oElements)
+        public void Draw(CBoardElement[][] oElements)
         {
-            int thisPosX = controller.getPosX();
-            int thisPosY = controller.getPosY();
-            int thisSize = controller.getSize();
+            int thisPosX = controller.GetPosX();
+            int thisPosY = controller.GetPosY();
+            int thisSize = controller.GetSize();
 
             for (int xIndex = thisPosX; xIndex <= thisPosX + thisSize; xIndex++)
             {
@@ -35,11 +35,11 @@ namespace tanks.view
 
                 int yIndex = thisPosY;
                 if (!CGameBoard.IndicesOutsideWindow(xIndex, yIndex, oElements.Length))
-                    oElements[xIndex][yIndex].setBaseWall(true);
+                    oElements[xIndex][yIndex].SetBaseWall(true);
 
                 yIndex = thisPosY + thisSize;
                 if (!CGameBoard.IndicesOutsideWindow(xIndex, yIndex, oElements.Length))
-                    oElements[xIndex][yIndex].setBaseWall(true);
+                    oElements[xIndex][yIndex].SetBaseWall(true);
             }
             for (int yIndex = thisPosY; yIndex <= thisPosY + thisSize; yIndex++)
             {
@@ -50,24 +50,17 @@ namespace tanks.view
 
                 int xIndex = thisPosX;
                 if (!CGameBoard.IndicesOutsideWindow(xIndex, yIndex, oElements.Length))
-                    oElements[xIndex][yIndex].setBaseWall(true);
+                    oElements[xIndex][yIndex].SetBaseWall(true);
 
-                xIndex = controller.getPosX() + thisSize;
+                xIndex = controller.GetPosX() + thisSize;
                 if (!CGameBoard.IndicesOutsideWindow(xIndex, yIndex, oElements.Length))
-                    oElements[xIndex][yIndex].setBaseWall(true);
+                    oElements[xIndex][yIndex].SetBaseWall(true);
             }
         }
 
 
 
 
-        public CBase getController()
-        {
-            return controller;
-        }
-        public void setController(CBase iController)
-        {
-            controller = iController;
-        }
+        public CBase Controller { get => controller; set => controller = value; }
     }
 }

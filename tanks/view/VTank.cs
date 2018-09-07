@@ -25,7 +25,7 @@ namespace tanks.view
         }
 
 
-        public void prepare()
+        public void Prepare()
         {
             tankColor = Color.FromArgb(50, 50, 50);
 
@@ -34,26 +34,26 @@ namespace tanks.view
             missileColor = Color.FromArgb(255, 0, 144);
         }
 
-        public void redraw(CBoardElement[][] oElements)
+        public void Redraw(CBoardElement[][] oElements)
         {
             int boardSize = oElements.Length;
 
-            int xIndex = controller.getPosX();
+            int xIndex = controller.GetPosX();
             if (xIndex < 0)
                 xIndex = 0;
 
-            int yIndex = controller.getPosY();
+            int yIndex = controller.GetPosY();
             if (yIndex < 0)
                 yIndex = 0;
             int beginY = yIndex;
 
-            int tankPosX = controller.getPosX();
-            int tankEndX = tankPosX + controller.getSize();
+            int tankPosX = controller.GetPosX();
+            int tankEndX = tankPosX + controller.GetSize();
             if (tankEndX > boardSize)
                 tankEndX = boardSize;
 
-            int tankPosY = controller.getPosY();
-            int tankEndY = tankPosY + controller.getSize();
+            int tankPosY = controller.GetPosY();
+            int tankEndY = tankPosY + controller.GetSize();
             if (tankEndY > boardSize)
                 tankEndY = boardSize;
 
@@ -62,31 +62,31 @@ namespace tanks.view
                 yIndex = beginY;
                 while (yIndex < tankEndY)
                 {
-                    oElements[xIndex][yIndex].setDestroyed(true);
-                    oElements[xIndex][yIndex].setTank(true);
+                    oElements[xIndex][yIndex].SetDestroyed(true);
+                    oElements[xIndex][yIndex].SetTank(true);
 
-                    if (canonOnPosition(
+                    if (CanonOnPosition(
                           xIndex,
                           yIndex,
                           tankPosX,
                           tankPosY))
                     {
-                        oElements[xIndex][yIndex].setCanon(true);
+                        oElements[xIndex][yIndex].SetCanon(true);
                     }
                     yIndex++;
                 }
                 xIndex++;
             }
         }
-        private bool canonOnPosition(
+        private bool CanonOnPosition(
             int iXIndex,
             int iYIndex,
             int iTankPosX,
             int iTankPosY)
         {
-            int halfTankSize = controller.getSize() / 2;
+            int halfTankSize = controller.GetSize() / 2;
 
-            switch (controller.getDirection())
+            switch (controller.GetDirection())
             {
                 case EDirection.DOWN:
                     if (iXIndex == iTankPosX + halfTankSize &&
@@ -112,51 +112,23 @@ namespace tanks.view
             return false;
         }
 
-        public void redrawMissiles(CBoardElement[][] iElements)
+        public void RedrawMissiles(CBoardElement[][] iElements)
         {
-            foreach (CMissile cMissile in controller.getMissiles())
+            foreach (CMissile cMissile in controller.Missiles)
             {
-                iElements[cMissile.getPosX()][cMissile.getPosY()].setMissile(true);
+                iElements[cMissile.GetPosX()][cMissile.GetPosY()].SetMissile(true);
             }
         }
 
 
 
 
-        public CTank getController()
-        {
-            return controller;
-        }
-        public void setController(CTank iController)
-        {
-            controller = iController;
-        }
+        public CTank Controller { get => controller; set => controller = value; }
 
-        public Color getTankColor()
-        {
-            return tankColor;
-        }
-        public void setTankColor(Color iTankColor)
-        {
-            tankColor = iTankColor;
-        }
+        public Color TankColor { get => tankColor; set => tankColor = value; }
 
-        public Color getCanonColor()
-        {
-            return canonColor;
-        }
-        public void setCanonColor(Color iCanonColor)
-        {
-            canonColor = iCanonColor;
-        }
+        public Color CanonColor { get => canonColor; set => canonColor = value; }
 
-        public Color getMissileColor()
-        {
-            return missileColor;
-        }
-        public void setMissileColor(Color iMissileColor)
-        {
-            missileColor = iMissileColor;
-        }
+        public Color MissileColor { get => missileColor; set => missileColor = value; }
     }
 }

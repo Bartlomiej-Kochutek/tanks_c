@@ -6,18 +6,14 @@ namespace tanks.view
     {
         CGameWindow controller;
 
-        private const int WINDOW_WIDTH = 1300;
-        private const int WINDOW_HIGHT = 760;
+        private const int WINDOW_WIDTH = 1600;
+        private const int WINDOW_HIGHT = 900;
 
 
         
+        
 
-
-        public void draw()
-        {
-        }
-
-        public void prepareDisplay()
+        public void PrepareDisplay()
         {
             Show();
             SetBounds(
@@ -25,25 +21,12 @@ namespace tanks.view
                 10,
                 WINDOW_WIDTH,
                 WINDOW_HIGHT);
-
-    //shell.addPaintListener(listener->controller.onRedraw());
-    //shell.addKeyListener(new KeyAdapter()
-//      {public void keyPressed(KeyEvent iEvent)
-//      {
-//          controller.onKeyPressed(iEvent.keyCode);
-//      }
-//      @Override
-//public void keyReleased(KeyEvent iEvent)
-//      {
-//          controller.onKeyReleased(iEvent.keyCode);
-//      }
-//  });
         }
 
 
 
 
-        public void setController(CGameWindow iController)
+        public void SetController(CGameWindow iController)
         {
             controller = iController;
         }
