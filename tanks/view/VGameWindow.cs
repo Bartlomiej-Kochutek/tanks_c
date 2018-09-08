@@ -36,7 +36,7 @@ namespace tanks.view
             {
                 Update();
 
-                controller.DoNextGameLoopIteration();
+                controller.DoNextGameLoopIterationAsync();
             }
         }
         private bool IsApplicationIdle()

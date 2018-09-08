@@ -24,9 +24,11 @@ namespace tanks.controller
 
 
 
-        public CTank()
+        public CTank(
+            int iPosX,
+            int iPosY)
         {
-            model = new MTank();
+            model = new MTank(iPosX, iPosY);
             model.SetController(this);
 
             view = new VTank();

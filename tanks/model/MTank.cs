@@ -15,9 +15,7 @@ namespace tanks.model
 
         private const int DELTA_T_SCALE = 100;
         private const int SHOOTING_INTERVAL = 100;
-
-        private const int DEFAULT_POS_X = 0;
-        private const int DEFAULT_POS_Y = 0;
+        
         private float posX;
         private float posY;
 
@@ -43,12 +41,14 @@ namespace tanks.model
 
 
 
-        public MTank()
+        public MTank(
+            int iPosX,
+            int iPosY)
         {
             size = DEFAULT_SIZE;
 
-            posX = DEFAULT_POS_X;
-            posY = DEFAULT_POS_Y;
+            posX = iPosX;
+            posY = iPosY;
             speed = DEFAULT_SPEED;
 
             direction = EDirection.UP;
@@ -284,8 +284,8 @@ namespace tanks.model
         public void SetPosX(int iPosX)
         {
             posX = iPosX;
-            if (posX < 0)
-                posX = DEFAULT_POS_X;
+
+            CorrectPosX();
         }
 
 
@@ -296,8 +296,8 @@ namespace tanks.model
         public void SetPosY(int iPosY)
         {
             posY = iPosY;
-            if (posY < 0)
-                posY = DEFAULT_POS_Y;
+
+            CorrectPosY();
         }
 
         public int GetSize()

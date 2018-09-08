@@ -19,7 +19,7 @@ namespace tanks.model
 
         public MGameBoard()
         {
-            size = 70;
+            size = 300;
         }
 
 

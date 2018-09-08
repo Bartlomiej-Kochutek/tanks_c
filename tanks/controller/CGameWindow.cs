@@ -47,8 +47,8 @@ namespace tanks.controller
             childBoard.ParentGameWindow = (this);
 
             childTanks = new LinkedList<CTank>();
-            childTanks.AddLast(new CTank());
-            childTanks.AddLast(new CTank());
+            childTanks.AddLast(new CTank(10, 20));
+            childTanks.AddLast(new CTank(40, 25));
 
             gameStarted = false;
         }
@@ -69,13 +69,22 @@ namespace tanks.controller
             gameStarted = true;
         }
 
-        public void DoNextGameLoopIteration()
+        public /*async Task*/void DoNextGameLoopIterationAsync()
         {
             if (!gameStarted)
                 return;
 
             UpdateWithDeltaT();
             OnRedraw();
+
+            /*Thread.Sleep(10);
+            try
+            {
+                await Task.Delay(10);
+            }
+            catch (TaskCanceledException)
+            {
+            }*/
         }
 
         private void UpdateWithDeltaT()
