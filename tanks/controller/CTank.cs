@@ -14,7 +14,7 @@ namespace tanks.controller
     {
         private CGameWindow parentGameWindow;
 
-        private MTank model;
+        protected MTank model;
         private VTank view;
 
         private LinkedList<CMissile> missiles;
@@ -28,8 +28,7 @@ namespace tanks.controller
             int iPosX,
             int iPosY)
         {
-            model = new MTank(iPosX, iPosY);
-            model.SetController(this);
+            SetModel(new MTank(iPosX, iPosY));
 
             view = new VTank();
             view.Controller = (this);
@@ -85,6 +84,12 @@ namespace tanks.controller
 
 
 
+
+        public void SetModel(MTank iTank)
+        {
+            model = iTank;
+            model.SetController(this);
+        }
 
         public VTank View { get => view; set => view = value; }
 

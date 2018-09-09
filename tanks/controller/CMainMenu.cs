@@ -32,9 +32,14 @@ namespace tanks.controller
             view.Display();
         }
 
-        public void OnPlayButtonPushed()
+        public void OnPlayWithOtherPlayerButtonPushed()
         {
-            childGameWindow.Start();
+            childGameWindow.Start(ETankOwner.Player);
+        }
+
+        public void OnPlayWithComputerButtonPushed()
+        {
+            childGameWindow.Start(ETankOwner.Computer);
         }
 
         public void OnExitButtonPushed()

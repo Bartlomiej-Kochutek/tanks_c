@@ -9,19 +9,19 @@ using tanks.controller;
 
 namespace tanks.model
 {
-    class MTank
+    public class MTank
     {
-        private CTank controller;
+        protected CTank controller;
 
-        private const int DELTA_T_SCALE = 100;
+        private const int DELTA_T_SCALE = 300;
         private const int SHOOTING_INTERVAL = 100;
         
-        private float posX;
-        private float posY;
+        protected float posX;
+        protected float posY;
 
         private int maxPos;
 
-        private const int DEFAULT_SPEED = 1;
+        private const int DEFAULT_SPEED = 4;
         private int speed;
 
         private const int DEFAULT_SIZE = 5;
@@ -29,12 +29,12 @@ namespace tanks.model
 
         private EDirection direction;
 
-        private bool mMoveDown;
-        private bool mMoveLeft;
-        private bool mMoveRight;
-        private bool mMoveUp;
+        protected bool mMoveDown;
+        protected bool mMoveLeft;
+        protected bool mMoveRight;
+        protected bool mMoveUp;
 
-        private bool shooting;
+        protected bool shooting;
         private int lastShootDelta;
 
         private bool defeated;
@@ -72,7 +72,7 @@ namespace tanks.model
         }
 
 
-        public void Shoot(int iDeltaT)
+        public virtual void Shoot(int iDeltaT)
         {
             if (!shooting)
                 return;
@@ -121,9 +121,10 @@ namespace tanks.model
             }
         }
 
-        public void Move(int iDeltaT)
+        public virtual void Move(int iDeltaT)
         {
             float deltaPos = (float)iDeltaT / DELTA_T_SCALE;
+            //System.Diagnostics.Debug.WriteLine(deltaPos);
 
             if (mMoveDown)
                 MoveDown(deltaPos);
@@ -329,7 +330,7 @@ namespace tanks.model
         {
             return mMoveDown;
         }
-        public void SetMoveDown(bool iMoveDown)
+        public virtual void SetMoveDown(bool iMoveDown)
         {
             mMoveDown = iMoveDown;
             if (mMoveDown == true)
@@ -340,7 +341,7 @@ namespace tanks.model
         {
             return mMoveLeft;
         }
-        public void SetMoveLeft(bool iMoveLeft)
+        public virtual void SetMoveLeft(bool iMoveLeft)
         {
             mMoveLeft = iMoveLeft;
             if (mMoveLeft == true)
@@ -351,7 +352,7 @@ namespace tanks.model
         {
             return mMoveRight;
         }
-        public void SetMoveRight(bool iMoveRight)
+        public virtual void SetMoveRight(bool iMoveRight)
         {
             mMoveRight = iMoveRight;
             if (mMoveRight == true)
@@ -362,7 +363,7 @@ namespace tanks.model
         {
             return mMoveUp;
         }
-        public void SetMoveUp(bool iMoveUp)
+        public virtual void SetMoveUp(bool iMoveUp)
         {
             mMoveUp = iMoveUp;
             if (mMoveUp == true)

@@ -33,6 +33,8 @@ namespace tanks.controller
 
         private bool gameStarted;
 
+        private ETankOwner firstTankOwner;
+
 
 
         public CGameWindow()
@@ -47,29 +49,27 @@ namespace tanks.controller
             childBoard.ParentGameWindow = (this);
 
             childTanks = new LinkedList<CTank>();
-            childTanks.AddLast(new CTank(10, 20));
-            childTanks.AddLast(new CTank(40, 25));
 
             gameStarted = false;
         }
 
 
-        public void Start()
+        public void Start(ETankOwner iFirstTankOwner)
         {
+            firstTankOwner = iFirstTankOwner;
+
+            CreateTanks();
+
             childBoard.Prepare();
 
-            foreach (CTank cTank in childTanks)
-            {
-                cTank.ParentGameWindow = (this);
-                cTank.Prepare();
-            }
+            PrepareTanks();
 
             view.PrepareDisplay();
 
             gameStarted = true;
         }
 
-        public /*async Task*/void DoNextGameLoopIterationAsync()
+        public /*async Task*/void DoNextGameLoopIteration()
         {
             if (!gameStarted)
                 return;
@@ -109,21 +109,16 @@ namespace tanks.controller
                 cTank.RedrawWithMissiles();
             }
 
-            LinkedListNode<CTank> iterator = childTanks.First;
-            CTank firstTank = iterator.Value;
-            iterator = iterator.Next;
-            CTank secondTank = iterator.Value;
+            
 
-            childBoard.Redraw(firstTank, EPartOfScreen.LEFT);
-            childBoard.Redraw(secondTank, EPartOfScreen.RIGHT);
+            childBoard.Redraw(GetFirstTank(), EPartOfScreen.LEFT);
+            childBoard.Redraw(GetSecondTank(), EPartOfScreen.RIGHT);
         }
 
         public void OnKeyPressed(Keys iKeyCode)
         {
-            LinkedListNode<CTank> iterator = childTanks.First;
-            CTank firstTank = iterator.Value;
-            iterator = iterator.Next;
-            CTank secondTank = iterator.Value;
+            CTank firstTank = GetFirstTank();
+            CTank secondTank = GetSecondTank();
 
             switch (iKeyCode)
             {
@@ -162,10 +157,8 @@ namespace tanks.controller
         }
         public void OnKeyReleased(Keys iKeyCode)
         {
-            LinkedListNode<CTank> iterator = childTanks.First;
-            CTank firstTank = iterator.Value;
-            iterator = iterator.Next;
-            CTank secondTank = iterator.Value;
+            CTank firstTank = GetFirstTank();
+            CTank secondTank = GetSecondTank();
 
             switch (iKeyCode)
             {
@@ -201,6 +194,35 @@ namespace tanks.controller
                     firstTank.SetShooting(false);
                     break;
             }
+        }
+
+
+        private void CreateTanks()
+        {
+            childTanks.AddLast(new CTank(60, 25));
+
+            childTanks.AddLast(new CTankProxy(25, 23, childTanks.First(), firstTankOwner));
+        }
+
+        private void PrepareTanks()
+        {
+            foreach (CTank cTank in childTanks)
+            {
+                cTank.ParentGameWindow = (this);
+                cTank.Prepare();
+            }
+        }
+
+        private CTank GetFirstTank()
+        {
+            LinkedListNode<CTank> iterator = childTanks.First;
+            iterator = iterator.Next;
+            return iterator.Value;
+        }
+        private CTank GetSecondTank()
+        {
+            LinkedListNode<CTank> iterator = childTanks.First;
+            return iterator.Value;
         }
 
 
