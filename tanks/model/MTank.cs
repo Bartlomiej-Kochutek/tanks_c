@@ -242,7 +242,7 @@ namespace tanks.model
                 case EDirection.LEFT:
                     return (int)posX;
                 case EDirection.RIGHT:
-                    return (int)posX + size;
+                    return (int)posX + size - 1;
                 case EDirection.UP:
                     return (int)posX + size / 2;
                 default:
@@ -254,7 +254,7 @@ namespace tanks.model
             switch (direction)
             {
                 case EDirection.DOWN:
-                    return (int)posY + size;
+                    return (int)posY + size - 1;
                 case EDirection.LEFT:
                     return (int)posY + size / 2;
                 case EDirection.RIGHT:

@@ -27,7 +27,7 @@ namespace tanks.controller
             parentTank = iParentTank;
 
             model = new MMissile();
-            model.Controller = (this);
+            model.Controller = this;
 
             model.SetPosX(iPosX);
             model.SetPosY(iPosY);

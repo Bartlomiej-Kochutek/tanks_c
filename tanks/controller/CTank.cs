@@ -31,13 +31,13 @@ namespace tanks.controller
             SetModel(new MTank(iPosX, iPosY));
 
             view = new VTank();
-            view.Controller = (this);
+            view.Controller = this;
 
             hitPoints = new CHitPoints();
-            hitPoints.ParentTank = (this);
+            hitPoints.ParentTank = this;
 
             mBase = new CBase();
-            mBase.ParentTank = (this);
+            mBase.ParentTank = this;
 
             missiles = new LinkedList<CMissile>();
         }

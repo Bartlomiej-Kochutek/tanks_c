@@ -21,7 +21,7 @@ namespace tanks.controller
         public CHitPoints()
         {
             model = new MHitPoints();
-            model.Controller = (this);
+            model.Controller = this;
         }
 
 
@@ -49,7 +49,7 @@ namespace tanks.controller
         public void SetModel(MHitPoints iModel)
         {
             model = iModel;
-            model.Controller = (this);
+            model.Controller = this;
         }
 
         public int GetBarHeight()

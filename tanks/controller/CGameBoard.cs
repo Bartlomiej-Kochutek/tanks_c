@@ -25,10 +25,10 @@ namespace tanks.controller
         public CGameBoard()
         {
             model = new MGameBoard();
-            model.Controller = (this);
+            model.Controller = this;
 
             view = new VGameBoard();
-            view.Controller = (this);
+            view.Controller = this;
         }
 
 

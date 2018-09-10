@@ -12,7 +12,7 @@ namespace tanks.model
         ETankOwner owner;
         DateTime absoluteTimeAfterWhichComputerTakesControl;
 
-        const int TAKE_CONTROL_TIMEOUT = 8;
+        const int TAKE_CONTROL_TIMEOUT = 20;
 
 
         public MProxyTank(

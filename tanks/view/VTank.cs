@@ -116,6 +116,7 @@ namespace tanks.view
         {
             foreach (CMissile cMissile in controller.Missiles)
             {
+                //if (CGameBoard.IndicesOutsideWindow)
                 iElements[cMissile.GetPosX()][cMissile.GetPosY()].SetMissile(true);
             }
         }

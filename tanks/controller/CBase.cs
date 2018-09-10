@@ -22,10 +22,10 @@ namespace tanks.controller
         public CBase()
         {
             model = new MBase();
-            model.Controller = (this);
+            model.Controller = this;
 
             view = new VBase();
-            view.Controller = (this);
+            view.Controller = this;
         }
 
 

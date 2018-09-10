@@ -23,7 +23,7 @@ namespace tanks.controller
             childGameWindow = new CGameWindow();
 
             view = new VMainMenu();
-            view.Controller = (this);
+            view.Controller = this;
         }
 
 

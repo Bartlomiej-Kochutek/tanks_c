@@ -24,7 +24,7 @@ namespace tanks.controller
             model.Controller = this;
 
             view = new VBoardElement(iColor);
-            view.Controller = (this);
+            view.Controller = this;
         }
 
 

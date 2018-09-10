@@ -33,20 +33,18 @@ namespace tanks.controller
 
         private bool gameStarted;
 
-        private ETankOwner firstTankOwner;
-
 
 
         public CGameWindow()
         {
             model = new MGameWindow();
-            model.Controller = (this);
+            model.Controller = this;
 
             view = new VGameWindow();
             view.SetController(this);
 
             childBoard = new CGameBoard();
-            childBoard.ParentGameWindow = (this);
+            childBoard.ParentGameWindow = this;
 
             childTanks = new LinkedList<CTank>();
 
@@ -56,9 +54,7 @@ namespace tanks.controller
 
         public void Start(ETankOwner iFirstTankOwner)
         {
-            firstTankOwner = iFirstTankOwner;
-
-            CreateTanks();
+            CreateTanks(iFirstTankOwner);
 
             childBoard.Prepare();
 
@@ -108,8 +104,6 @@ namespace tanks.controller
             {
                 cTank.RedrawWithMissiles();
             }
-
-            
 
             childBoard.Redraw(GetFirstTank(), EPartOfScreen.LEFT);
             childBoard.Redraw(GetSecondTank(), EPartOfScreen.RIGHT);
@@ -197,18 +191,18 @@ namespace tanks.controller
         }
 
 
-        private void CreateTanks()
+        private void CreateTanks(ETankOwner iFirstTankOwner)
         {
             childTanks.AddLast(new CTank(60, 25));
 
-            childTanks.AddLast(new CTankProxy(25, 23, childTanks.First(), firstTankOwner));
+            childTanks.AddLast(new CTankProxy(25, 23, childTanks.First(), iFirstTankOwner));
         }
 
         private void PrepareTanks()
         {
             foreach (CTank cTank in childTanks)
             {
-                cTank.ParentGameWindow = (this);
+                cTank.ParentGameWindow = this;
                 cTank.Prepare();
             }
         }
