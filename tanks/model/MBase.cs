@@ -9,34 +9,34 @@ using tanks.controller;
 
 namespace tanks.model
 {
-    class MBase
+    class MFortress
     {
-        private CBase controller;
+        private CFortress mController;
 
-        private int posX;
-        private int posY;
+        private int mPosX;
+        private int mPosY;
 
         private const int DEFAULT_SIZE = 16;
-        private int size;
-        private int halfOfSize;
+        private int mSize;
+        private int mHalfOfSize;
 
 
 
-        public MBase()
+        public MFortress()
         {
-            size = DEFAULT_SIZE;
+            mSize = DEFAULT_SIZE;
         }
 
 
         public void Prepare()
         {
-            halfOfSize = size / 2;
+            mHalfOfSize = mSize / 2;
 
-            CTank parentTank = controller.ParentTank;
+            CTank parentTank = mController.ParentTank;
 
-            int halfOfSizeDifference = halfOfSize - parentTank.GetSize() / 2;
-            posX = parentTank.GetPosX() - halfOfSizeDifference;
-            posY = parentTank.GetPosY() - halfOfSizeDifference;
+            int halfOfSizeDifference = mHalfOfSize - parentTank.GetSize() / 2;
+            mPosX = parentTank.GetPosX() - halfOfSizeDifference;
+            mPosY = parentTank.GetPosY() - halfOfSizeDifference;
         }
 
 
@@ -44,26 +44,26 @@ namespace tanks.model
 
 
 
-        public CBase Controller { get => controller; set => controller = value; }
+        public CFortress Controller { get => mController; set => mController = value; }
 
-        public int PosX { get => posX; set => posX = value; }
+        public int PosX { get => mPosX; set => mPosX = value; }
 
-        public int PosY { get => posY; set => posY = value; }
-        public int PosY1 { get => posY; set => posY = value; }
+        public int PosY { get => mPosY; set => mPosY = value; }
+        public int PosY1 { get => mPosY; set => mPosY = value; }
 
         public int GetSize()
         {
-            return size;
+            return mSize;
         }
         public void SetSize(int iSize)
         {
-            size = iSize;
-            halfOfSize = size / 2;
+            mSize = iSize;
+            mHalfOfSize = mSize / 2;
         }
 
         public int GetHalfOfSize()
         {
-            return halfOfSize;
+            return mHalfOfSize;
         }
     }
 }

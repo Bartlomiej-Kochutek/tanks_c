@@ -11,21 +11,21 @@ namespace tanks.model
 {
     public class MGameBoard
     {
-        private CGameBoard controller;
+        private CGameBoard mController;
 
-        private int size;
+        private int mSize;
 
 
 
         public MGameBoard()
         {
-            size = 300;
+            mSize = 300;
         }
 
 
         public void ResetElements()
         {
-            CBoardElement[][] boardElements = controller.Elements;
+            CBoardElement[][] boardElements = mController.Elements;
             int boardSize = boardElements.Length;
             for (int i = 0; i < boardSize; i++)
             {
@@ -41,8 +41,8 @@ namespace tanks.model
 
 
 
-        public CGameBoard Controller { get => controller; set => controller = value; }
+        public CGameBoard Controller { get => mController; set => mController = value; }
 
-        public int Size { get => size; set => size = value; }
+        public int Size { get => mSize; set => mSize = value; }
     }
 }

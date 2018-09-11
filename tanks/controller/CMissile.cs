@@ -12,9 +12,9 @@ namespace tanks.controller
 {
     public class CMissile
     {
-        private CTank parentTank;
+        private CTank mParentTank;
 
-        private MMissile model;
+        private MMissile mModel;
 
 
 
@@ -24,14 +24,14 @@ namespace tanks.controller
             int iPosY,
             EDirection iDirection)
         {
-            parentTank = iParentTank;
+            mParentTank = iParentTank;
 
-            model = new MMissile();
-            model.Controller = this;
+            mModel = new MMissile();
+            mModel.Controller = this;
 
-            model.SetPosX(iPosX);
-            model.SetPosY(iPosY);
-            model.Direction = iDirection;
+            mModel.SetPosX(iPosX);
+            mModel.SetPosY(iPosY);
+            mModel.Direction = iDirection;
         }
 
 
@@ -42,53 +42,53 @@ namespace tanks.controller
             if (deltaPos > MAX_DELTA_POS)
                 deltaPos = MAX_DELTA_POS;
 
-            model.Move(deltaPos);
+            mModel.Move(deltaPos);
         }
 
         public bool Collision()
         {
-            return model.Collision();
+            return mModel.Collision();
         }
 
 
 
 
-        public CTank ParentTank { get => parentTank; set => parentTank = value; }
+        public CTank ParentTank { get => mParentTank; set => mParentTank = value; }
 
         public int GetPosX()
         {
-            return model.GetPosX();
+            return mModel.GetPosX();
         }
         public void SetPosX(int iPosX)
         {
-            model.SetPosX(iPosX);
+            mModel.SetPosX(iPosX);
         }
 
         public int GetPosY()
         {
-            return model.GetPosY();
+            return mModel.GetPosY();
         }
         public void SetPosY(int iPosY)
         {
-            model.SetPosY(iPosY);
+            mModel.SetPosY(iPosY);
         }
 
         public EDirection GetDirection()
         {
-            return model.Direction;
+            return mModel.Direction;
         }
         public void SetDirection(EDirection iDirection)
         {
-            model.Direction = iDirection;
+            mModel.Direction = iDirection;
         }
 
         public int GetDamage()
         {
-            return model.GetDamage();
+            return mModel.GetDamage();
         }
         public void SetDamage(int iDamage)
         {
-            model.SetDamage(iDamage);
+            mModel.SetDamage(iDamage);
         }
     }
 }

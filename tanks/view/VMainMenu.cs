@@ -19,12 +19,12 @@ namespace tanks
 
         private void ButtonPlayWithOtherPlayerClick(object sender, EventArgs e)
         {
-            controller.OnPlayWithOtherPlayerButtonPushed();
+            mController.OnPlayWithOtherPlayerButtonPushed();
         }
 
         private void ButtonPlayWithComputerClick(object sender, EventArgs e)
         {
-            controller.OnPlayWithComputerButtonPushed();
+            mController.OnPlayWithComputerButtonPushed();
         }
     }
 }

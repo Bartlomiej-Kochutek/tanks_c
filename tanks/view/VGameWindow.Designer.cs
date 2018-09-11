@@ -4,7 +4,7 @@ namespace tanks.view
 {
     public partial class VGameWindow
     {
-        CGameWindow controller;
+        CGameWindow mController;
 
         private const int WINDOW_WIDTH = 1600;
         private const int WINDOW_HIGHT = 900;
@@ -28,7 +28,7 @@ namespace tanks.view
 
         public void SetController(CGameWindow iController)
         {
-            controller = iController;
+            mController = iController;
         }
 
         /// <summary>

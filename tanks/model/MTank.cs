@@ -11,33 +11,33 @@ namespace tanks.model
 {
     public class MTank
     {
-        protected CTank controller;
+        protected CTank mController;
 
         private const int DELTA_T_SCALE = 300;
         private const int SHOOTING_INTERVAL = 100;
         
-        protected float posX;
-        protected float posY;
+        protected float mPosX;
+        protected float mPosY;
 
-        private int maxPos;
+        private int mMaxPos;
 
         private const int DEFAULT_SPEED = 4;
-        private int speed;
+        private int mSpeed;
 
         private const int DEFAULT_SIZE = 5;
-        private int size;
+        private int mSize;
 
-        private EDirection direction;
+        private EDirection mDirection;
 
         protected bool mMoveDown;
         protected bool mMoveLeft;
         protected bool mMoveRight;
         protected bool mMoveUp;
 
-        protected bool shooting;
-        private int lastShootDelta;
+        protected bool mIsShooting;
+        private int mLastShootDelta;
 
-        private bool defeated;
+        private bool mDefeated;
 
 
 
@@ -45,49 +45,49 @@ namespace tanks.model
             int iPosX,
             int iPosY)
         {
-            size = DEFAULT_SIZE;
+            mSize = DEFAULT_SIZE;
 
-            posX = iPosX;
-            posY = iPosY;
-            speed = DEFAULT_SPEED;
+            mPosX = iPosX;
+            mPosY = iPosY;
+            mSpeed = DEFAULT_SPEED;
 
-            direction = EDirection.UP;
+            mDirection = EDirection.UP;
 
             mMoveDown = false;
             mMoveLeft = false;
             mMoveRight = false;
             mMoveUp = false;
 
-            shooting = false;
+            mIsShooting = false;
 
-            lastShootDelta = 0;
+            mLastShootDelta = 0;
 
-            defeated = false;
+            mDefeated = false;
         }
 
 
         public void Prepare()
         {
-            maxPos = controller.ParentGameWindow.ChildBoard.GetSize() - size;
+            mMaxPos = mController.ParentGameWindow.ChildBoard.GetSize() - mSize;
         }
 
 
         public virtual void Shoot(int iDeltaT)
         {
-            if (!shooting)
+            if (!mIsShooting)
                 return;
 
-            lastShootDelta += iDeltaT;
-            if (lastShootDelta < SHOOTING_INTERVAL)
+            mLastShootDelta += iDeltaT;
+            if (mLastShootDelta < SHOOTING_INTERVAL)
                 return;
 
-            lastShootDelta %= SHOOTING_INTERVAL;
+            mLastShootDelta %= SHOOTING_INTERVAL;
 
-            controller.Missiles.AddLast(new CMissile(
-                controller,
+            mController.Missiles.AddLast(new CMissile(
+                mController,
                 CanonPositionX(),
                 CanonPositionY(),
-                direction));
+                mDirection));
         }
 
         public void MoveMissiles(float iDeltaT)
@@ -95,7 +95,7 @@ namespace tanks.model
             float deltaPos = iDeltaT / DELTA_T_SCALE;
             const float FASTER_THAN_TANK = (float)1.5;
 
-            foreach (CMissile cMissile in controller.Missiles)
+            foreach (CMissile cMissile in mController.Missiles)
             {
                 cMissile.Move(FASTER_THAN_TANK * deltaPos);
             }
@@ -103,19 +103,19 @@ namespace tanks.model
 
         public void CheckMissilesCollision()
         {
-            if (controller.ParentGameWindow.IsAtLeastOneTankDeafeated())
+            if (mController.ParentGameWindow.IsAtLeastOneTankDeafeated())
             {
-                controller.Missiles.Clear();
+                mController.Missiles.Clear();
                 return;
             }
 
-            LinkedListNode<CMissile> iterator = controller.Missiles.First;
+            LinkedListNode<CMissile> iterator = mController.Missiles.First;
             while (iterator != null)
             {
                 bool collisionOccured = iterator.Value.Collision();
                 if (collisionOccured)
                 {
-                    controller.Missiles.Remove(iterator.Value);
+                    mController.Missiles.Remove(iterator.Value);
                 }
                 iterator = iterator.Next;
             }
@@ -141,75 +141,75 @@ namespace tanks.model
 
         private void MoveDown(float iDeltaPos)
         {
-            direction = EDirection.DOWN;
+            mDirection = EDirection.DOWN;
 
-            if (VerticalCollisionWithBaseWall(controller.GetSize()))
+            if (VerticalCollisionWithFortressWall(mController.GetSize()))
                 return;
 
-            posY += iDeltaPos;
+            mPosY += iDeltaPos;
             CorrectPosY();
         }
         private void MoveLeft(float iDeltaPos)
         {
-            direction = EDirection.LEFT;
+            mDirection = EDirection.LEFT;
 
-            if (HorizontalCollisionWithBaseWall(-1))
+            if (HorizontalCollisionWithFortressWall(-1))
                 return;
 
-            posX -= iDeltaPos;
+            mPosX -= iDeltaPos;
             CorrectPosX();
         }
         private void MoveRight(float iDeltaPos)
         {
-            direction = EDirection.RIGHT;
+            mDirection = EDirection.RIGHT;
 
-            if (HorizontalCollisionWithBaseWall(controller.GetSize()))
+            if (HorizontalCollisionWithFortressWall(mController.GetSize()))
                 return;
 
-            posX += iDeltaPos;
+            mPosX += iDeltaPos;
             CorrectPosX();
         }
         private void MoveUp(float iDeltaPos)
         {
-            direction = EDirection.UP;
+            mDirection = EDirection.UP;
 
-            if (VerticalCollisionWithBaseWall(-1))
+            if (VerticalCollisionWithFortressWall(-1))
                 return;
 
-            posY -= iDeltaPos;
+            mPosY -= iDeltaPos;
             CorrectPosY();
         }
 
-        private bool VerticalCollisionWithBaseWall(int iYDisplacement)
+        private bool VerticalCollisionWithFortressWall(int iYDisplacement)
         {
-            CBoardElement[][] boardElements = controller.ParentGameWindow.ChildBoard.Elements;
+            CBoardElement[][] boardElements = mController.ParentGameWindow.ChildBoard.Elements;
 
-            for (int xDisplacement = 0; xDisplacement < controller.GetSize(); xDisplacement++)
+            for (int xDisplacement = 0; xDisplacement < mController.GetSize(); xDisplacement++)
             {
-                int xIndex = (int)posX + xDisplacement;
-                int yIndex = (int)posY + iYDisplacement;
+                int xIndex = (int)mPosX + xDisplacement;
+                int yIndex = (int)mPosY + iYDisplacement;
 
                 if (CGameBoard.IndicesOutsideWindow(xIndex, yIndex, boardElements.Length))
                     continue;
 
-                if (boardElements[xIndex][yIndex].IsBaseWall())
+                if (boardElements[xIndex][yIndex].IsFortressWall())
                     return true;
             }
             return false;
         }
-        private bool HorizontalCollisionWithBaseWall(int iXDisplacement)
+        private bool HorizontalCollisionWithFortressWall(int iXDisplacement)
         {
-            CBoardElement[][] boardElements = controller.ParentGameWindow.ChildBoard.Elements;
+            CBoardElement[][] boardElements = mController.ParentGameWindow.ChildBoard.Elements;
 
-            for (int yDisplacement = 0; yDisplacement < controller.GetSize(); yDisplacement++)
+            for (int yDisplacement = 0; yDisplacement < mController.GetSize(); yDisplacement++)
             {
-                int xIndex = (int)posX + iXDisplacement;
-                int yIndex = (int)posY + yDisplacement;
+                int xIndex = (int)mPosX + iXDisplacement;
+                int yIndex = (int)mPosY + yDisplacement;
 
                 if (CGameBoard.IndicesOutsideWindow(xIndex, yIndex, boardElements.Length))
                     continue;
 
-                if (boardElements[xIndex][yIndex].IsBaseWall())
+                if (boardElements[xIndex][yIndex].IsFortressWall())
                     return true;
             }
             return false;
@@ -217,50 +217,50 @@ namespace tanks.model
 
         private void CorrectPosY()
         {
-            if (posY < 0)
-                posY = 0;
+            if (mPosY < 0)
+                mPosY = 0;
 
-            if (posY > maxPos)
-                posY = maxPos;
+            if (mPosY > mMaxPos)
+                mPosY = mMaxPos;
         }
         private void CorrectPosX()
         {
-            if (posX < 0)
-                posX = 0;
+            if (mPosX < 0)
+                mPosX = 0;
 
-            if (posX > maxPos)
-                posX = maxPos;
+            if (mPosX > mMaxPos)
+                mPosX = mMaxPos;
         }
 
 
         private int CanonPositionX()
         {
-            switch (direction)
+            switch (mDirection)
             {
                 case EDirection.DOWN:
-                    return (int)posX + size / 2;
+                    return (int)mPosX + mSize / 2;
                 case EDirection.LEFT:
-                    return (int)posX;
+                    return (int)mPosX;
                 case EDirection.RIGHT:
-                    return (int)posX + size - 1;
+                    return (int)mPosX + mSize - 1;
                 case EDirection.UP:
-                    return (int)posX + size / 2;
+                    return (int)mPosX + mSize / 2;
                 default:
                     return 0;
             }
         }
         private int CanonPositionY()
         {
-            switch (direction)
+            switch (mDirection)
             {
                 case EDirection.DOWN:
-                    return (int)posY + size - 1;
+                    return (int)mPosY + mSize - 1;
                 case EDirection.LEFT:
-                    return (int)posY + size / 2;
+                    return (int)mPosY + mSize / 2;
                 case EDirection.RIGHT:
-                    return (int)posY + size / 2;
+                    return (int)mPosY + mSize / 2;
                 case EDirection.UP:
-                    return (int)posY;
+                    return (int)mPosY;
                 default:
                     return 0;
             }
@@ -271,20 +271,20 @@ namespace tanks.model
 
         public void SetController(CTank iController)
         {
-            controller = iController;
+            mController = iController;
         }
         public CTank GetController()
         {
-            return controller;
+            return mController;
         }
 
         public int GetPosX()
         {
-            return (int)posX;
+            return (int)mPosX;
         }
         public void SetPosX(int iPosX)
         {
-            posX = iPosX;
+            mPosX = iPosX;
 
             CorrectPosX();
         }
@@ -292,37 +292,37 @@ namespace tanks.model
 
         public int GetPosY()
         {
-            return (int)posY;
+            return (int)mPosY;
         }
         public void SetPosY(int iPosY)
         {
-            posY = iPosY;
+            mPosY = iPosY;
 
             CorrectPosY();
         }
 
         public int GetSize()
         {
-            return size;
+            return mSize;
         }
         public void SetSize(int iSize)
         {
-            size = iSize;
-            if (size <= 0)
-                size = DEFAULT_SIZE;
+            mSize = iSize;
+            if (mSize <= 0)
+                mSize = DEFAULT_SIZE;
         }
 
-        public EDirection Direction { get => direction; set => direction = value; }
+        public EDirection Direction { get => mDirection; set => mDirection = value; }
 
         public int GetSpeed()
         {
-            return speed;
+            return mSpeed;
         }
         public void SetSpeed(int iSpeed)
         {
-            speed = iSpeed;
-            if (speed <= 0)
-                speed = DEFAULT_SPEED;
+            mSpeed = iSpeed;
+            if (mSpeed <= 0)
+                mSpeed = DEFAULT_SPEED;
         }
 
 
@@ -373,20 +373,20 @@ namespace tanks.model
 
         public bool IsShooting()
         {
-            return shooting;
+            return mIsShooting;
         }
         public void SetShooting(bool iShooting)
         {
-            shooting = iShooting;
+            mIsShooting = iShooting;
         }
 
         public bool IsDefeated()
         {
-            return defeated;
+            return mDefeated;
         }
         public void SetDefeated(bool iDefeated)
         {
-            defeated = iDefeated;
+            mDefeated = iDefeated;
         }
     }
 }

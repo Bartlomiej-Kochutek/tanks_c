@@ -12,34 +12,34 @@ namespace tanks.controller
 {
     public class CMainMenu
     {
-        private VMainMenu view;
+        private VMainMenu mView;
 
-        private CGameWindow childGameWindow;
+        private CGameWindow mChildGameWindow;
 
 
 
         public CMainMenu()
         {
-            childGameWindow = new CGameWindow();
+            mChildGameWindow = new CGameWindow();
 
-            view = new VMainMenu();
-            view.Controller = this;
+            mView = new VMainMenu();
+            mView.Controller = this;
         }
 
 
         public void Execute()
         {
-            view.Display();
+            mView.Display();
         }
 
         public void OnPlayWithOtherPlayerButtonPushed()
         {
-            childGameWindow.Start(ETankOwner.Player);
+            mChildGameWindow.Start(ETankOwner.Player);
         }
 
         public void OnPlayWithComputerButtonPushed()
         {
-            childGameWindow.Start(ETankOwner.Computer);
+            mChildGameWindow.Start(ETankOwner.Computer);
         }
 
         public void OnExitButtonPushed()
@@ -49,8 +49,8 @@ namespace tanks.controller
 
 
 
-        public CGameWindow ChildGameWindow { get => childGameWindow; set => childGameWindow = value; }
+        public CGameWindow ChildGameWindow { get => mChildGameWindow; set => mChildGameWindow = value; }
 
-        public VMainMenu View { get => view; set => view = value; }
+        public VMainMenu View { get => mView; set => mView = value; }
     }
 }

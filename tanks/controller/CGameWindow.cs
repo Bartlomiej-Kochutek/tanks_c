@@ -13,11 +13,13 @@ namespace tanks.controller
 {
     public class CGameWindow
     {
-        private MGameWindow model;
-        private VGameWindow view;
+        private MGameWindow mModel;
+        private VGameWindow mView;
 
-        private CGameBoard childBoard;
-        private LinkedList<ICTank> childTanks;
+        private CGameBoard mChildBoard;
+        private LinkedList<ICTank> mChildTanks;
+
+        private bool mGameStarted;
 
         private const Keys FIRST_TANK_MOVE_DOWN = Keys.S;
         private const Keys FIRST_TANK_MOVE_LEFT = Keys.A;
@@ -31,24 +33,22 @@ namespace tanks.controller
         private const Keys SECOND_TANK_MOVE_UP = Keys.Up;
         private const Keys SECOND_TANK_SHOOT = Keys.Oemcomma;
 
-        private bool gameStarted;
-
 
 
         public CGameWindow()
         {
-            model = new MGameWindow();
-            model.Controller = this;
+            mModel = new MGameWindow();
+            mModel.Controller = this;
 
-            view = new VGameWindow();
-            view.SetController(this);
+            mView = new VGameWindow();
+            mView.SetController(this);
 
-            childBoard = new CGameBoard();
-            childBoard.ParentGameWindow = this;
+            mChildBoard = new CGameBoard();
+            mChildBoard.ParentGameWindow = this;
 
-            childTanks = new LinkedList<ICTank>();
+            mChildTanks = new LinkedList<ICTank>();
 
-            gameStarted = false;
+            mGameStarted = false;
         }
 
 
@@ -56,18 +56,18 @@ namespace tanks.controller
         {
             CreateTanks(iFirstTankOwner);
 
-            childBoard.Prepare();
+            mChildBoard.Prepare();
 
             PrepareTanks();
 
-            view.PrepareDisplay();
+            mView.PrepareDisplay();
 
-            gameStarted = true;
+            mGameStarted = true;
         }
 
         public /*async Task*/void DoNextGameLoopIteration()
         {
-            if (!gameStarted)
+            if (!mGameStarted)
                 return;
 
             UpdateWithDeltaT();
@@ -85,9 +85,9 @@ namespace tanks.controller
 
         private void UpdateWithDeltaT()
         {
-            int deltaT = model.MilisecsDelta();
+            int deltaT = mModel.MilisecsDelta();
 
-            foreach (ICTank cTank in childTanks)
+            foreach (ICTank cTank in mChildTanks)
             {
                 cTank.Move(deltaT);
                 cTank.UseWeapon(deltaT);
@@ -98,15 +98,15 @@ namespace tanks.controller
 
         private void OnRedraw()
         {
-            childBoard.Model.ResetElements();
+            mChildBoard.Model.ResetElements();
 
-            foreach (ICTank cTank in childTanks)
+            foreach (ICTank cTank in mChildTanks)
             {
                 cTank.RedrawWithMissiles();
             }
 
-            childBoard.Redraw(GetFirstTank(), EPartOfScreen.LEFT);
-            childBoard.Redraw(GetSecondTank(), EPartOfScreen.RIGHT);
+            mChildBoard.Redraw(GetFirstTank(), EPartOfScreen.LEFT);
+            mChildBoard.Redraw(GetSecondTank(), EPartOfScreen.RIGHT);
         }
 
         public void OnKeyPressed(Keys iKeyCode)
@@ -198,14 +198,14 @@ namespace tanks.controller
 
         private void CreateTanks(ETankOwner iFirstTankOwner)
         {
-            childTanks.AddLast(new CTank(60, 25));
+            mChildTanks.AddLast(new CTank(60, 25));
 
-            childTanks.AddLast(new CTankProxy(25, 23, childTanks.First(), iFirstTankOwner));
+            mChildTanks.AddLast(new CTankProxy(25, 23, mChildTanks.First(), iFirstTankOwner));
         }
 
         private void PrepareTanks()
         {
-            foreach (CTank cTank in childTanks)
+            foreach (CTank cTank in mChildTanks)
             {
                 cTank.ParentGameWindow = this;
                 cTank.Prepare();
@@ -214,43 +214,43 @@ namespace tanks.controller
 
         private ICTank GetFirstTank()
         {
-            LinkedListNode<ICTank> iterator = childTanks.First;
+            LinkedListNode<ICTank> iterator = mChildTanks.First;
             iterator = iterator.Next;
             return iterator.Value;
         }
         private ICTank GetSecondTank()
         {
-            LinkedListNode<ICTank> iterator = childTanks.First;
+            LinkedListNode<ICTank> iterator = mChildTanks.First;
             return iterator.Value;
         }
 
 
 
 
-        public MGameWindow Model { get => model; set => model = value; }
+        public MGameWindow Model { get => mModel; set => mModel = value; }
 
-        public VGameWindow View { get => view; set => view = value; }
+        public VGameWindow View { get => mView; set => mView = value; }
 
-        public CGameBoard ChildBoard { get => childBoard; set => childBoard = value; }
+        public CGameBoard ChildBoard { get => mChildBoard; set => mChildBoard = value; }
 
-        public LinkedList<ICTank> ChildTanks { get => childTanks; set => childTanks = value; }
+        public LinkedList<ICTank> ChildTanks { get => mChildTanks; set => mChildTanks = value; }
 
         public int GetElementSize()
         {
-            return model.ElementSize;
+            return mModel.ElementSize;
         }
         public void SetElementSize(int iElementSize)
         {
-            model.ElementSize = iElementSize;
+            mModel.ElementSize = iElementSize;
         }
 
         public bool IsAtLeastOneTankDeafeated()
         {
-            return model.AtLeastOneTankDeafeated;
+            return mModel.AtLeastOneTankDeafeated;
         }
         public void SetAtLeastOneTankDeafeated(bool iAtLeastOneTankDeafeated)
         {
-            model.AtLeastOneTankDeafeated = iAtLeastOneTankDeafeated;
+            mModel.AtLeastOneTankDeafeated = iAtLeastOneTankDeafeated;
         }
     }
 }

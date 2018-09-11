@@ -13,71 +13,71 @@ namespace tanks.controller
 {
     public class CBoardElement
     {
-        private MBoardElement model;
-        private VBoardElement view;
+        private MBoardElement mModel;
+        private VBoardElement mView;
 
 
 
         public CBoardElement(Color iColor)
         {
-            model = new MBoardElement();
-            model.Controller = this;
+            mModel = new MBoardElement();
+            mModel.Controller = this;
 
-            view = new VBoardElement(iColor);
-            view.Controller = this;
+            mView = new VBoardElement(iColor);
+            mView.Controller = this;
         }
 
 
 
 
 
-        public MBoardElement Model { get => model; set => model = value; }
+        public MBoardElement Model { get => mModel; set => mModel = value; }
 
-        public VBoardElement View { get => view; set => view = value; }
+        public VBoardElement View { get => mView; set => mView = value; }
 
         public bool IsDestroyed()
         {
-            return model.IsDestroyed;
+            return mModel.IsDestroyed;
         }
         public void SetDestroyed(bool iIsDestroyed)
         {
-            model.IsDestroyed = iIsDestroyed;
+            mModel.IsDestroyed = iIsDestroyed;
         }
 
         public bool IsTank()
         {
-            return model.IsTank;
+            return mModel.IsTank;
         }
         public void SetTank(bool iIsTank)
         {
-            model.IsTank = iIsTank;
+            mModel.IsTank = iIsTank;
         }
 
         public bool IsCanon()
         {
-            return model.IsCanon;
+            return mModel.IsCanon;
         }
         public void SetCanon(bool iIsCanon)
         {
-            model.IsCanon = iIsCanon;
+            mModel.IsCanon = iIsCanon;
         }
 
         public bool IsMissile()
         {
-            return model.IsMissile;
+            return mModel.IsMissile;
         }
         public void SetMissile(bool iIsMissile)
         {
-            model.IsMissile = iIsMissile;
+            mModel.IsMissile = iIsMissile;
         }
 
-        public bool IsBaseWall()
+        public bool IsFortressWall()
         {
-            return model.IsBaseWall;
+            return mModel.IsFortressWall;
         }
-        public void SetBaseWall(bool iIsBaseWall)
+        public void SetFortressWall(bool iIsFortressWall)
         {
-            model.IsBaseWall = iIsBaseWall;
+            mModel.IsFortressWall = iIsFortressWall;
         }
     }
 }

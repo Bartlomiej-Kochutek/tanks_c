@@ -12,13 +12,13 @@ namespace tanks.view
 {
     public class VGameBoard
     {
-        private CGameBoard controller;
+        private CGameBoard mController;
 
-        private Color destroyedMapColor;
-        private Color frameColor;
-        private Color hitPointsPositiveColor;
-        private Color hitPointsNegativeColor;
-        private Color baseWallColor;
+        private Color mDestroyedMapColor;
+        private Color mFrameColor;
+        private Color mHitPointsPositiveColor;
+        private Color mHitPointsNegativeColor;
+        private Color mFortressWallColor;
 
 
 
@@ -29,29 +29,29 @@ namespace tanks.view
 
         public void Prepare()
         {
-            destroyedMapColor = Color.FromArgb(255, 255, 255);
+            mDestroyedMapColor = Color.FromArgb(255, 255, 255);
 
-            frameColor = Color.FromArgb(0, 0, 0);
+            mFrameColor = Color.FromArgb(0, 0, 0);
 
-            hitPointsPositiveColor = Color.FromArgb(0, 255, 0);
+            mHitPointsPositiveColor = Color.FromArgb(0, 255, 0);
 
-            hitPointsNegativeColor = Color.FromArgb(255, 0, 0);
+            mHitPointsNegativeColor = Color.FromArgb(255, 0, 0);
 
-            baseWallColor = Color.FromArgb(255, 255, 0);
+            mFortressWallColor = Color.FromArgb(255, 255, 0);
         }
 
         public void Redraw(
             ICTank iTank,
             EPartOfScreen iPartOfScreen)
         {
-            Graphics formGraphics = controller.ParentGameWindow.View.CreateGraphics();
+            Graphics formGraphics = mController.ParentGameWindow.View.CreateGraphics();
             
-            Rectangle windowBounds = controller.ParentGameWindow.View.Bounds;
+            Rectangle windowBounds = mController.ParentGameWindow.View.Bounds;
 
             int halfTankSize = iTank.GetSize() / 2;
 
             int tankPosX = iTank.GetPosX();
-            int amountOfWindowElementsX = (windowBounds.Width / controller.ParentGameWindow.GetElementSize()) / 2;
+            int amountOfWindowElementsX = (windowBounds.Width / mController.ParentGameWindow.GetElementSize()) / 2;
             int elementsFirstXIndex = tankPosX - (amountOfWindowElementsX / 2 - halfTankSize);
 
             int firstWindowElementX = 0;
@@ -59,13 +59,13 @@ namespace tanks.view
                 firstWindowElementX = amountOfWindowElementsX + 1;
 
             int tankPosY = iTank.GetPosY();
-            int amountOfWindowElementsY = windowBounds.Height / controller.ParentGameWindow.GetElementSize();
+            int amountOfWindowElementsY = windowBounds.Height / mController.ParentGameWindow.GetElementSize();
             int elementsFirstYIndex = tankPosY - (amountOfWindowElementsY / 2 - halfTankSize);
 
-            CBoardElement[][] boardElements = controller.Elements;
+            CBoardElement[][] boardElements = mController.Elements;
 
             int boardSize = boardElements.Length;
-            int boardElementSize = controller.ParentGameWindow.GetElementSize();
+            int boardElementSize = mController.ParentGameWindow.GetElementSize();
 
             RedrawFrameAndBasicMapElements(
                 formGraphics,
@@ -132,7 +132,7 @@ namespace tanks.view
             int xIndex = iElemenstFirstXIndex;
             for (int currentWindowPartX = 0; currentWindowPartX < iAmountOfWindowElementsX; currentWindowPartX++)
             {
-                CBoardElement[][] boardElements = controller.Elements;
+                CBoardElement[][] boardElements = mController.Elements;
 
                 int yIndex = iElemenstFirstYIndex - 1;
                 for (int currentWindowPartY = iTank.HitPoints.GetBarHeight();
@@ -140,7 +140,7 @@ namespace tanks.view
                 {
                     yIndex++;
                     if (CGameBoard.IndicesOutsideWindow(xIndex, yIndex, iBoardSize))
-                        solidBrush = new SolidBrush(frameColor);
+                        solidBrush = new SolidBrush(mFrameColor);
                     else
                     {
                         if (boardElements[xIndex][yIndex].IsTank() ||
@@ -150,10 +150,10 @@ namespace tanks.view
                         solidBrush = new SolidBrush(boardElements[xIndex][yIndex].View.Color);
 
                         if (boardElements[xIndex][yIndex].IsDestroyed())
-                            solidBrush = new SolidBrush(destroyedMapColor);
+                            solidBrush = new SolidBrush(mDestroyedMapColor);
 
-                        if (boardElements[xIndex][yIndex].IsBaseWall())
-                            solidBrush = new SolidBrush(baseWallColor);
+                        if (boardElements[xIndex][yIndex].IsFortressWall())
+                            solidBrush = new SolidBrush(mFortressWallColor);
                     }
                     iFormGraphics.FillRectangle(
                         solidBrush,
@@ -178,7 +178,7 @@ namespace tanks.view
             int iAmountOfWindowElementsX,
             int iAmountOfWindowElementsY)
         {
-            CBoardElement[][] boardElements = controller.Elements;
+            CBoardElement[][] boardElements = mController.Elements;
             SolidBrush solidBrush;
 
             int xIndex = iElemenstFirstXIndex;
@@ -227,7 +227,7 @@ namespace tanks.view
             Color missileColor = iTank.View.MissileColor;
             SolidBrush solidBrush = new SolidBrush(missileColor);
 
-            CBoardElement[][] boardElements = controller.Elements;
+            CBoardElement[][] boardElements = mController.Elements;
 
             int xIndex = iElemenstFirstXIndex;
             for (int currentWindowPartX = 0; currentWindowPartX < iAmountOfWindowElementsX; currentWindowPartX++)
@@ -273,9 +273,9 @@ namespace tanks.view
                       currentWindowPartY++)
                 {
                     if (markHitPointsAsPositive)
-                        solidBrush = new SolidBrush(hitPointsPositiveColor);
+                        solidBrush = new SolidBrush(mHitPointsPositiveColor);
                     else
-                        solidBrush = new SolidBrush(hitPointsNegativeColor);
+                        solidBrush = new SolidBrush(mHitPointsNegativeColor);
                     
                     iFormGraphics.FillRectangle(
                         solidBrush,
@@ -295,7 +295,7 @@ namespace tanks.view
             int iAmountOfWindowElementsX,
             int iAmountOfWindowElementsY)
         {
-            SolidBrush solidBrush = new SolidBrush(frameColor);
+            SolidBrush solidBrush = new SolidBrush(mFrameColor);
 
             for (int currentWindowPartY = 0; currentWindowPartY <= iAmountOfWindowElementsY; currentWindowPartY++)
             {
@@ -313,6 +313,6 @@ namespace tanks.view
 
 
 
-        public CGameBoard Controller { get => controller; set => controller = value; }
+        public CGameBoard Controller { get => mController; set => mController = value; }
     }
 }

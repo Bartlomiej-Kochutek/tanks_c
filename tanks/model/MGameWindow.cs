@@ -11,31 +11,31 @@ namespace tanks.model
 {
     public class MGameWindow
     {
-        private CGameWindow controller;
+        private CGameWindow mController;
 
-        private long lastMeasuredMilisecs;
+        private long mLastMeasuredMilisecs;
 
-        private bool atLeastOneTankDeafeated;
+        private bool mAtLeastOneTankDeafeated;
 
-        private int elementSize;
+        private int mElementSize;
 
 
 
         public MGameWindow()
         {
-            lastMeasuredMilisecs = DateTimeOffset.Now.ToUnixTimeMilliseconds();
-            atLeastOneTankDeafeated = false;
+            mLastMeasuredMilisecs = DateTimeOffset.Now.ToUnixTimeMilliseconds();
+            mAtLeastOneTankDeafeated = false;
 
-            elementSize = 12;
+            mElementSize = 12;
         }
 
 
         public int MilisecsDelta()
         {
             long currentMeasuredMilisecs = DateTimeOffset.Now.ToUnixTimeMilliseconds();
-            int delta = (int)(currentMeasuredMilisecs - lastMeasuredMilisecs);
+            int delta = (int)(currentMeasuredMilisecs - mLastMeasuredMilisecs);
 
-            lastMeasuredMilisecs = currentMeasuredMilisecs;
+            mLastMeasuredMilisecs = currentMeasuredMilisecs;
 
             return delta;
         }
@@ -43,10 +43,10 @@ namespace tanks.model
 
 
 
-        public CGameWindow Controller { get => controller; set => controller = value; }
+        public CGameWindow Controller { get => mController; set => mController = value; }
 
-        public int ElementSize { get => elementSize; set => elementSize = value; }
+        public int ElementSize { get => mElementSize; set => mElementSize = value; }
 
-        public bool AtLeastOneTankDeafeated { get => atLeastOneTankDeafeated; set => atLeastOneTankDeafeated = value; }
+        public bool AtLeastOneTankDeafeated { get => mAtLeastOneTankDeafeated; set => mAtLeastOneTankDeafeated = value; }
     }
 }

@@ -45,7 +45,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="controller\CBase.cs" />
+    <Compile Include="controller\CFortress.cs" />
     <Compile Include="controller\CBaseTankDecorator.cs" />
     <Compile Include="controller\CBoardElement.cs" />
     <Compile Include="controller\CGameWindow.cs" />

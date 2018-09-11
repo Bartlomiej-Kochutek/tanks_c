@@ -11,38 +11,38 @@ namespace tanks.model
 {
     public class MBoardElement
     {
-        private CBoardElement controller;
+        private CBoardElement mController;
 
-        private bool isDestroyed;
-        private bool isTank;
-        private bool isCanon;
-        private bool isMissile;
-        private bool isBaseWall;
+        private bool mIsDestroyed;
+        private bool mIsTank;
+        private bool mIsCanon;
+        private bool mIsMissile;
+        private bool mIsFortressWall;
 
 
 
         public MBoardElement()
         {
-            isDestroyed = false;
-            isTank = false;
-            isCanon = false;
-            isMissile = false;
-            isBaseWall = false;
+            mIsDestroyed = false;
+            mIsTank = false;
+            mIsCanon = false;
+            mIsMissile = false;
+            mIsFortressWall = false;
         }
         
 
 
 
-        internal CBoardElement Controller { get => controller; set => controller = value; }
+        internal CBoardElement Controller { get => mController; set => mController = value; }
 
-        public bool IsDestroyed { get => this.isDestroyed; set => this.isDestroyed = value; }
+        public bool IsDestroyed { get => this.mIsDestroyed; set => this.mIsDestroyed = value; }
 
-        public bool IsTank { get => this.isTank; set => this.isTank = value; }
+        public bool IsTank { get => this.mIsTank; set => this.mIsTank = value; }
 
-        public bool IsCanon { get => this.isCanon; set => this.isCanon = value; }
+        public bool IsCanon { get => this.mIsCanon; set => this.mIsCanon = value; }
 
-        public bool IsMissile { get => this.isMissile; set => this.isMissile = value; }
+        public bool IsMissile { get => this.mIsMissile; set => this.mIsMissile = value; }
 
-        public bool IsBaseWall { get => this.isBaseWall; set => this.isBaseWall = value; }
+        public bool IsFortressWall { get => this.mIsFortressWall; set => this.mIsFortressWall = value; }
     }
 }

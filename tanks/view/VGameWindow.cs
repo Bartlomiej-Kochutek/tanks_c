@@ -24,11 +24,11 @@ namespace tanks.view
         }
         private void ThisKeyDown(object iSender, System.Windows.Forms.KeyEventArgs iKeyEventArgs)
         {
-            controller.OnKeyPressed(iKeyEventArgs.KeyCode);
+            mController.OnKeyPressed(iKeyEventArgs.KeyCode);
         }
         private void ThisKeyUp(object iSender, System.Windows.Forms.KeyEventArgs iKeyEventArgs)
         {
-            controller.OnKeyReleased(iKeyEventArgs.KeyCode);
+            mController.OnKeyReleased(iKeyEventArgs.KeyCode);
         }
         private void HandleApplicationIdle(object sender, EventArgs e)
         {
@@ -36,7 +36,7 @@ namespace tanks.view
             {
                 Update();
 
-                controller.DoNextGameLoopIteration();
+                mController.DoNextGameLoopIteration();
             }
         }
         private bool IsApplicationIdle()

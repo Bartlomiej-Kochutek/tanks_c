@@ -9,22 +9,22 @@ using tanks.controller;
 
 namespace tanks.view
 {
-    class VBase
+    class VFortress
     {
-        private CBase controller;
+        private CFortress mController;
 
 
 
-        public VBase()
+        public VFortress()
         {
         }
 
 
         public void Draw(CBoardElement[][] oElements)
         {
-            int thisPosX = controller.GetPosX();
-            int thisPosY = controller.GetPosY();
-            int thisSize = controller.GetSize();
+            int thisPosX = mController.GetPosX();
+            int thisPosY = mController.GetPosY();
+            int thisSize = mController.GetSize();
 
             for (int xIndex = thisPosX; xIndex <= thisPosX + thisSize; xIndex++)
             {
@@ -35,11 +35,11 @@ namespace tanks.view
 
                 int yIndex = thisPosY;
                 if (!CGameBoard.IndicesOutsideWindow(xIndex, yIndex, oElements.Length))
-                    oElements[xIndex][yIndex].SetBaseWall(true);
+                    oElements[xIndex][yIndex].SetFortressWall(true);
 
                 yIndex = thisPosY + thisSize;
                 if (!CGameBoard.IndicesOutsideWindow(xIndex, yIndex, oElements.Length))
-                    oElements[xIndex][yIndex].SetBaseWall(true);
+                    oElements[xIndex][yIndex].SetFortressWall(true);
             }
             for (int yIndex = thisPosY; yIndex <= thisPosY + thisSize; yIndex++)
             {
@@ -50,17 +50,17 @@ namespace tanks.view
 
                 int xIndex = thisPosX;
                 if (!CGameBoard.IndicesOutsideWindow(xIndex, yIndex, oElements.Length))
-                    oElements[xIndex][yIndex].SetBaseWall(true);
+                    oElements[xIndex][yIndex].SetFortressWall(true);
 
-                xIndex = controller.GetPosX() + thisSize;
+                xIndex = mController.GetPosX() + thisSize;
                 if (!CGameBoard.IndicesOutsideWindow(xIndex, yIndex, oElements.Length))
-                    oElements[xIndex][yIndex].SetBaseWall(true);
+                    oElements[xIndex][yIndex].SetFortressWall(true);
             }
         }
 
 
 
 
-        public CBase Controller { get => controller; set => controller = value; }
+        public CFortress Controller { get => mController; set => mController = value; }
     }
 }

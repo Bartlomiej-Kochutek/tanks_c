@@ -12,15 +12,15 @@ namespace tanks.view
 {
     public class VBoardElement
     {
-        private CBoardElement controller;
+        private CBoardElement mController;
 
-        private Color color;
+        private Color mColor;
 
 
 
         public VBoardElement(Color iColor)
         {
-            color = iColor;
+            mColor = iColor;
         }
 
 
@@ -28,8 +28,8 @@ namespace tanks.view
 
 
 
-        public Color Color { get => color; set => color = value; }
+        public Color Color { get => mColor; set => mColor = value; }
 
-        public CBoardElement Controller { get => controller; set => controller = value; }
+        public CBoardElement Controller { get => mController; set => mController = value; }
     }
 }

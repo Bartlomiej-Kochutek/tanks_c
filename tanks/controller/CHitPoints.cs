@@ -12,27 +12,27 @@ namespace tanks.controller
 {
     public class CHitPoints
     {
-        private CTank parentTank;
+        private CTank mParentTank;
 
-        private MHitPoints model;
+        private MHitPoints mModel;
 
 
 
         public CHitPoints()
         {
-            model = new MHitPoints();
-            model.Controller = this;
+            mModel = new MHitPoints();
+            mModel.Controller = this;
         }
 
 
         public void TakeDamagedFromMissile(int iHitPointsDamage)
         {
-            model.TakeDamagedFromMissile(iHitPointsDamage);
+            mModel.TakeDamagedFromMissile(iHitPointsDamage);
         }
 
         public double GetAmountAsPercentage()
         {
-            return model.GetAmountAsPercentage();
+            return mModel.GetAmountAsPercentage();
         }
 
 
@@ -40,30 +40,30 @@ namespace tanks.controller
 
 
 
-        public CTank ParentTank { get => parentTank; set => parentTank = value; }
+        public CTank ParentTank { get => mParentTank; set => mParentTank = value; }
 
         public MHitPoints GetModel()
         {
-            return model;
+            return mModel;
         }
         public void SetModel(MHitPoints iModel)
         {
-            model = iModel;
-            model.Controller = this;
+            mModel = iModel;
+            mModel.Controller = this;
         }
 
         public int GetBarHeight()
         {
-            return model.BarHeight;
+            return mModel.BarHeight;
         }
 
         public int GetAmount()
         {
-            return model.Amount;
+            return mModel.Amount;
         }
         public void SetAmount(int iAmount)
         {
-            model.Amount = iAmount;
+            mModel.Amount = iAmount;
         }
     }
 }

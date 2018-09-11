@@ -15,7 +15,8 @@ namespace tanks.controller
             int iPosX,
             int iPosY,
             ICTank iPlayerTank,
-            ETankOwner iTankOwner) :
+            ETankOwner iTankOwner)
+            :
             base(iPosX, iPosY)
         {
             SetModel(new MProxyTank(iPosX, iPosY, iTankOwner));

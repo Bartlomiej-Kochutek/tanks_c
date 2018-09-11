@@ -11,21 +11,21 @@ namespace tanks.model
 {
     class MMissile
     {
-        private CMissile controller;
+        private CMissile mController;
 
-        private float posX;
-        private float posY;
+        private float mPosX;
+        private float mPosY;
 
         private EDirection direction;
 
         private const int DEFAULT_DAMAGE = 40;
-        private int damage;
+        private int mDamage;
 
 
 
         public MMissile()
         {
-            damage = DEFAULT_DAMAGE;
+            mDamage = DEFAULT_DAMAGE;
         }
 
 
@@ -34,33 +34,33 @@ namespace tanks.model
             switch (direction)
             {
                 case EDirection.DOWN:
-                    posY += iDeltaPos;
+                    mPosY += iDeltaPos;
                     break;
                 case EDirection.LEFT:
-                    posX -= iDeltaPos;
+                    mPosX -= iDeltaPos;
                     break;
                 case EDirection.RIGHT:
-                    posX += iDeltaPos;
+                    mPosX += iDeltaPos;
                     break;
                 case EDirection.UP:
-                    posY -= iDeltaPos;
+                    mPosY -= iDeltaPos;
                     break;
             }
         }
 
         public bool Collision()
         {
-            CTank parentTank = controller.ParentTank;
+            CTank parentTank = mController.ParentTank;
 
             int boardSize = parentTank.ParentGameWindow.ChildBoard.GetSize();
 
-            if (CGameBoard.IndicesOutsideWindow((int)posX, (int)posY, boardSize))
+            if (CGameBoard.IndicesOutsideWindow((int)mPosX, (int)mPosY, boardSize))
                 return true;
 
             CBoardElement[][] boardElements = parentTank.ParentGameWindow.ChildBoard.Elements;
 
-            int intPosX = (int)posX;
-            int intPosY = (int)posY;
+            int intPosX = (int)mPosX;
+            int intPosY = (int)mPosY;
 
             if (CollisionWithBoardElements(
                   boardElements,
@@ -83,7 +83,7 @@ namespace tanks.model
             int iPosYInt,
             int iBoardSize)
         { //keep functions sequence order
-            if (oBoardElements[iPosXInt][iPosYInt].IsBaseWall())
+            if (oBoardElements[iPosXInt][iPosYInt].IsFortressWall())
                 return true;
 
             if (oBoardElements[iPosXInt][iPosYInt].IsDestroyed())
@@ -117,7 +117,7 @@ namespace tanks.model
             int iPosXInt,
             int iPosYInt)
         {
-            CTank parentTank = controller.ParentTank;
+            CTank parentTank = mController.ParentTank;
 
             LinkedList<ICTank> tanks = parentTank.ParentGameWindow.ChildTanks;
             foreach (ICTank tank in tanks)
@@ -129,7 +129,7 @@ namespace tanks.model
                     tank.GetPosY() > iPosYInt || tank.GetPosY() + tank.GetSize() <= iPosYInt)
                     continue;
 
-                tank.HitPoints.TakeDamagedFromMissile(damage);
+                tank.HitPoints.TakeDamagedFromMissile(mDamage);
 
                 return true;
             }
@@ -139,37 +139,37 @@ namespace tanks.model
 
 
 
-        public CMissile Controller { get => controller; set => controller = value; }
+        public CMissile Controller { get => mController; set => mController = value; }
 
         public int GetPosX()
         {
-            return (int)posX;
+            return (int)mPosX;
         }
         public void SetPosX(int iPosX)
         {
-            posX = iPosX;
+            mPosX = iPosX;
         }
 
         public int GetPosY()
         {
-            return (int)posY;
+            return (int)mPosY;
         }
         public void SetPosY(int iPosY)
         {
-            posY = iPosY;
+            mPosY = iPosY;
         }
 
         public EDirection Direction { get => direction; set => direction = value; }
 
         public int GetDamage()
         {
-            return damage;
+            return mDamage;
         }
         public void SetDamage(int iDamage)
         {
-            damage = iDamage;
-            if (damage <= 0)
-                damage = DEFAULT_DAMAGE;
+            mDamage = iDamage;
+            if (mDamage <= 0)
+                mDamage = DEFAULT_DAMAGE;
         }
     }
 }

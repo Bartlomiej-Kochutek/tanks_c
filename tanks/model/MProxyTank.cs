@@ -9,8 +9,8 @@ namespace tanks.model
 {
     public class MProxyTank : MTank
     {
-        ETankOwner owner;
-        DateTime absoluteTimeAfterWhichComputerTakesControl;
+        ETankOwner mOwner;
+        DateTime mAbsoluteTimeAfterWhichComputerTakesControl;
 
         const int TAKE_CONTROL_TIMEOUT = 20;
 
@@ -21,9 +21,9 @@ namespace tanks.model
             ETankOwner iTankOwner) :
             base(iPosX, iPosY)
         {
-            owner = ETankOwner.Player;
+            mOwner = ETankOwner.Player;
 
-            absoluteTimeAfterWhichComputerTakesControl = DateTime.Now;
+            mAbsoluteTimeAfterWhichComputerTakesControl = DateTime.Now;
 
             TimeSpan relativeTimeAfterWhichComputerTakesControl;
 
@@ -32,14 +32,14 @@ namespace tanks.model
             else
                 relativeTimeAfterWhichComputerTakesControl = new TimeSpan(0, 0, 1);
 
-            absoluteTimeAfterWhichComputerTakesControl += relativeTimeAfterWhichComputerTakesControl;
+            mAbsoluteTimeAfterWhichComputerTakesControl += relativeTimeAfterWhichComputerTakesControl;
         }
 
 
         public override void Shoot(int iDeltaT)
         {
-            if (owner == ETankOwner.Computer)
-                shooting = true;
+            if (mOwner == ETankOwner.Computer)
+                mIsShooting = true;
 
             base.Shoot(iDeltaT);
         }
@@ -48,7 +48,7 @@ namespace tanks.model
         {
             CheckWheterTakeControlByComputer();
 
-            if (owner == ETankOwner.Computer)
+            if (mOwner == ETankOwner.Computer)
                 SetDirectionToPlayerPosition();
 
             base.Move(iDeltaT);
@@ -82,42 +82,42 @@ namespace tanks.model
 
         private void ResetOwnership()
         {
-            owner = ETankOwner.Player;
+            mOwner = ETankOwner.Player;
 
-            shooting = false;
+            mIsShooting = false;
 
-            absoluteTimeAfterWhichComputerTakesControl = DateTime.Now + new TimeSpan(0, 0, TAKE_CONTROL_TIMEOUT);
+            mAbsoluteTimeAfterWhichComputerTakesControl = DateTime.Now + new TimeSpan(0, 0, TAKE_CONTROL_TIMEOUT);
         }
 
 
         private void CheckWheterTakeControlByComputer()
         {
-            if (owner == ETankOwner.Computer)
+            if (mOwner == ETankOwner.Computer)
                 return;
 
-            if (absoluteTimeAfterWhichComputerTakesControl < DateTime.Now)
-                owner = ETankOwner.Computer;
+            if (mAbsoluteTimeAfterWhichComputerTakesControl < DateTime.Now)
+                mOwner = ETankOwner.Computer;
         }
 
         private void SetDirectionToPlayerPosition()
         {
-            ICTank playerTank = controller.ParentGameWindow.GetPlayerTank();
+            ICTank playerTank = mController.ParentGameWindow.GetPlayerTank();
 
             int playerTankSize = playerTank.GetSize();
-            if (posX > playerTank.GetPosX() + playerTankSize)
+            if (mPosX > playerTank.GetPosX() + playerTankSize)
             {
                 base.SetMoveLeft(true);
             }
-            else if(posX < playerTank.GetPosX() - playerTankSize)
+            else if(mPosX < playerTank.GetPosX() - playerTankSize)
             {
                 base.SetMoveRight(true);
             }
 
-            if (posY > playerTank.GetPosY() + playerTankSize)
+            if (mPosY > playerTank.GetPosY() + playerTankSize)
             {
                 base.SetMoveUp(true);
             }
-            else if (posY < playerTank.GetPosY() - playerTankSize)
+            else if (mPosY < playerTank.GetPosY() - playerTankSize)
             {
                 base.SetMoveDown(true);
             }
