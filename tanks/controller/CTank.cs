@@ -10,7 +10,7 @@ using tanks.view;
 
 namespace tanks.controller
 {
-    public class CTank
+    public class CTank : ICTank
     {
         private CGameWindow parentGameWindow;
 
@@ -43,6 +43,12 @@ namespace tanks.controller
         }
 
 
+        public void UseWeapon(int iDeltaT)
+        {
+            model.Shoot(iDeltaT);
+        }
+
+
         public void Prepare()
         {
             model.Prepare();
@@ -59,12 +65,6 @@ namespace tanks.controller
 
             view.Redraw(parentGameWindow.ChildBoard.Elements);
             view.RedrawMissiles(parentGameWindow.ChildBoard.Elements);
-        }
-
-
-        public void Shoot(int iDeltaT)
-        {
-            model.Shoot(iDeltaT);
         }
 
         public void MoveMissiles(float iDeltaT)

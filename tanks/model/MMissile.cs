@@ -119,8 +119,8 @@ namespace tanks.model
         {
             CTank parentTank = controller.ParentTank;
 
-            LinkedList<CTank> tanks = parentTank.ParentGameWindow.ChildTanks;
-            foreach (CTank tank in tanks)
+            LinkedList<ICTank> tanks = parentTank.ParentGameWindow.ChildTanks;
+            foreach (ICTank tank in tanks)
             {
                 if (tank == parentTank)
                     continue;

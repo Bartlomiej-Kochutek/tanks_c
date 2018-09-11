@@ -17,7 +17,7 @@ namespace tanks.controller
         private VGameWindow view;
 
         private CGameBoard childBoard;
-        private LinkedList<CTank> childTanks;
+        private LinkedList<ICTank> childTanks;
 
         private const Keys FIRST_TANK_MOVE_DOWN = Keys.S;
         private const Keys FIRST_TANK_MOVE_LEFT = Keys.A;
@@ -46,7 +46,7 @@ namespace tanks.controller
             childBoard = new CGameBoard();
             childBoard.ParentGameWindow = this;
 
-            childTanks = new LinkedList<CTank>();
+            childTanks = new LinkedList<ICTank>();
 
             gameStarted = false;
         }
@@ -87,10 +87,10 @@ namespace tanks.controller
         {
             int deltaT = model.MilisecsDelta();
 
-            foreach (CTank cTank in childTanks)
+            foreach (ICTank cTank in childTanks)
             {
                 cTank.Move(deltaT);
-                cTank.Shoot(deltaT);
+                cTank.UseWeapon(deltaT);
                 cTank.MoveMissiles(deltaT);
                 cTank.CheckMissilesCollision();
             }
@@ -100,7 +100,7 @@ namespace tanks.controller
         {
             childBoard.Model.ResetElements();
 
-            foreach (CTank cTank in childTanks)
+            foreach (ICTank cTank in childTanks)
             {
                 cTank.RedrawWithMissiles();
             }
@@ -111,8 +111,8 @@ namespace tanks.controller
 
         public void OnKeyPressed(Keys iKeyCode)
         {
-            CTank firstTank = GetFirstTank();
-            CTank secondTank = GetSecondTank();
+            ICTank firstTank = GetFirstTank();
+            ICTank secondTank = GetSecondTank();
 
             switch (iKeyCode)
             {
@@ -151,8 +151,8 @@ namespace tanks.controller
         }
         public void OnKeyReleased(Keys iKeyCode)
         {
-            CTank firstTank = GetFirstTank();
-            CTank secondTank = GetSecondTank();
+            ICTank firstTank = GetFirstTank();
+            ICTank secondTank = GetSecondTank();
 
             switch (iKeyCode)
             {
@@ -190,6 +190,11 @@ namespace tanks.controller
             }
         }
 
+        public ICTank GetPlayerTank()
+        {
+            return GetSecondTank();
+        }
+
 
         private void CreateTanks(ETankOwner iFirstTankOwner)
         {
@@ -207,15 +212,15 @@ namespace tanks.controller
             }
         }
 
-        private CTank GetFirstTank()
+        private ICTank GetFirstTank()
         {
-            LinkedListNode<CTank> iterator = childTanks.First;
+            LinkedListNode<ICTank> iterator = childTanks.First;
             iterator = iterator.Next;
             return iterator.Value;
         }
-        private CTank GetSecondTank()
+        private ICTank GetSecondTank()
         {
-            LinkedListNode<CTank> iterator = childTanks.First;
+            LinkedListNode<ICTank> iterator = childTanks.First;
             return iterator.Value;
         }
 
@@ -228,7 +233,7 @@ namespace tanks.controller
 
         public CGameBoard ChildBoard { get => childBoard; set => childBoard = value; }
 
-        public LinkedList<CTank> ChildTanks { get => childTanks; set => childTanks = value; }
+        public LinkedList<ICTank> ChildTanks { get => childTanks; set => childTanks = value; }
 
         public int GetElementSize()
         {

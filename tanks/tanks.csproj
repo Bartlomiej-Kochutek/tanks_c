@@ -57,6 +57,7 @@
     <Compile Include="controller\EDirection.cs" />
     <Compile Include="controller\EPartOfScreen.cs" />
     <Compile Include="controller\ETankOwner.cs" />
+    <Compile Include="controller\ICTank.cs" />
     <Compile Include="model\MBase.cs" />
     <Compile Include="model\MBoardElement.cs" />
     <Compile Include="model\MGameBoard.cs" />

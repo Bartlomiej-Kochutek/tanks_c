@@ -41,7 +41,7 @@ namespace tanks.view
         }
 
         public void Redraw(
-            CTank iTank,
+            ICTank iTank,
             EPartOfScreen iPartOfScreen)
         {
             Graphics formGraphics = controller.ParentGameWindow.View.CreateGraphics();
@@ -118,7 +118,7 @@ namespace tanks.view
         }
         private void RedrawFrameAndBasicMapElements(
             Graphics iFormGraphics,
-            CTank iTank,
+            ICTank iTank,
             int iBoardElementSize,
             int iBoardSize,
             int iElemenstFirstXIndex,
@@ -169,7 +169,7 @@ namespace tanks.view
         }
         private void RedrawTank(
             Graphics iFormGraphics,
-            CTank iTank,
+            ICTank iTank,
             int iBoardElementSize,
             int iBoardSize,
             int iElemenstFirstXIndex,
@@ -215,7 +215,7 @@ namespace tanks.view
         }
         private void RedrawMissiles(
             Graphics iFormGraphics,
-            CTank iTank,
+            ICTank iTank,
             int iBoardElementSize,
             int iBoardSize,
             int iElemenstFirstXIndex,
@@ -257,7 +257,7 @@ namespace tanks.view
         }
         private void RedrawHitPointsBar(
             Graphics iFormGraphics,
-            CTank iTank,
+            ICTank iTank,
             int iBoardElementSize,
             int iFirstWindowElementX,
             int iAmountOfWindowElementsX)

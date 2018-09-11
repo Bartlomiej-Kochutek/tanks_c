@@ -101,7 +101,7 @@ namespace tanks.model
 
         private void SetDirectionToPlayerPosition()
         {
-            CTank playerTank = ((CTankProxy)controller).PlayerTank;
+            ICTank playerTank = controller.ParentGameWindow.GetPlayerTank();
 
             int playerTankSize = playerTank.GetSize();
             if (posX > playerTank.GetPosX() + playerTankSize)

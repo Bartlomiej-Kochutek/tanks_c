@@ -55,7 +55,7 @@ namespace tanks.controller
         }
 
         public void Redraw(
-            CTank iTank,
+            ICTank iTank,
             EPartOfScreen iPartOfScreen)
         {
             view.Redraw(

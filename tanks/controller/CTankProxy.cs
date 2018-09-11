@@ -9,25 +9,19 @@ namespace tanks.controller
 {
     public class CTankProxy : CTank
     {
-        CTank playerTank;
 
 
         public CTankProxy(
             int iPosX,
             int iPosY,
-            CTank iPlayerTank,
+            ICTank iPlayerTank,
             ETankOwner iTankOwner) :
             base(iPosX, iPosY)
         {
             SetModel(new MProxyTank(iPosX, iPosY, iTankOwner));
-
-            playerTank = iPlayerTank;
         }
 
 
-
-
-
-        public CTank PlayerTank { get => playerTank; set => playerTank = value; }
+        
     }
 }
