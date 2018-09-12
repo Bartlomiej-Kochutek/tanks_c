@@ -1,12 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
 using System.Runtime.InteropServices;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace tanks.view
@@ -22,15 +16,26 @@ namespace tanks.view
 
             Application.Idle += HandleApplicationIdle;
         }
-        private void ThisKeyDown(object iSender, System.Windows.Forms.KeyEventArgs iKeyEventArgs)
+
+
+
+        private void ThisKeyDown(
+            object iSender,
+            System.Windows.Forms.KeyEventArgs iKeyEventArgs)
         {
             mController.OnKeyPressed(iKeyEventArgs.KeyCode);
         }
-        private void ThisKeyUp(object iSender, System.Windows.Forms.KeyEventArgs iKeyEventArgs)
+
+        private void ThisKeyUp(
+            object iSender,
+            System.Windows.Forms.KeyEventArgs iKeyEventArgs)
         {
             mController.OnKeyReleased(iKeyEventArgs.KeyCode);
         }
-        private void HandleApplicationIdle(object sender, EventArgs e)
+
+        private void HandleApplicationIdle(
+            object iSender,
+            EventArgs iEventArgs)
         {
             while (IsApplicationIdle())
             {
@@ -39,11 +44,13 @@ namespace tanks.view
                 mController.DoNextGameLoopIteration();
             }
         }
+
         private bool IsApplicationIdle()
         {
             NativeMessage result;
             return PeekMessage(out result, IntPtr.Zero, 0, 0, 0) == 0;
         }
+
 
         [StructLayout(LayoutKind.Sequential)]
         private struct NativeMessage
@@ -57,6 +64,11 @@ namespace tanks.view
         }
 
         [DllImport("user32.dll")]
-        private static extern int PeekMessage(out NativeMessage message, IntPtr window, uint filterMin, uint filterMax, uint remove);
+        private static extern int PeekMessage(
+            out NativeMessage message,
+            IntPtr window,
+            uint filterMin, 
+            uint filterMax,
+            uint remove);
     }
 }

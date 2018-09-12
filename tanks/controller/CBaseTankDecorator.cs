@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using tanks.view;
 
 namespace tanks.controller
@@ -41,9 +37,9 @@ namespace tanks.controller
                                                  oTanks);
         }
 
-        public virtual void RedrawWithWeaponUsageEffect(CBoardElement[][] iBoardElements)
+        public virtual void RedrawWithWeaponUsageEffect(CBoardElement[][] oBoardElements)
         {
-            mDecoratedTank.RedrawWithWeaponUsageEffect(iBoardElements);
+            mDecoratedTank.RedrawWithWeaponUsageEffect(oBoardElements);
         }
 
         public virtual int GetPosX()

@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using tanks.model;
+﻿using tanks.model;
 
 namespace tanks.controller
 {
@@ -21,8 +16,7 @@ namespace tanks.controller
         {
             SetModel(new MProxyTank(iPosX, iPosY, iTankOwner));
         }
-
-
+        
         
     }
 }

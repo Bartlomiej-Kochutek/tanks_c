@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 using tanks.controller;
 
@@ -34,6 +30,7 @@ namespace tanks.model
         }
 
 
+
         public int MilisecsDeltaT()
         {
             long currentMeasuredMilisecs = DateTimeOffset.Now.ToUnixTimeMilliseconds();
@@ -47,8 +44,7 @@ namespace tanks.model
 
             return deltaTsMean;
         }
-
-
+        
 
 
         public CGameWindow Controller { get => mController; set => mController = value; }

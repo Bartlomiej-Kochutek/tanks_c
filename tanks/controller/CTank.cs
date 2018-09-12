@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 using tanks.model;
 using tanks.view;
@@ -43,6 +39,7 @@ namespace tanks.controller
         }
 
 
+
         public void Prepare()
         {
             mModel.Prepare();
@@ -74,10 +71,10 @@ namespace tanks.controller
         }
 
 
-        public void RedrawWithWeaponUsageEffect(CBoardElement[][] iBoardElements)
+        public void RedrawWithWeaponUsageEffect(CBoardElement[][] oBoardElements)
         {
-            mView.Redraw(iBoardElements);
-            mView.RedrawMissiles(iBoardElements);
+            mView.Redraw(oBoardElements);
+            mView.RedrawMissiles(oBoardElements);
         }
 
 

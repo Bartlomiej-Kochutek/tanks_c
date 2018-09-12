@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using tanks.model;
 
 namespace tanks.controller
@@ -35,12 +31,14 @@ namespace tanks.controller
                                        oBoardElements,
                                        oTanks);
 
-            mModel.CheckLaserBeamCollision();
+            mModel.CheckLaserBeamCollision(iDeltaT,
+                                           oBoardElements,
+                                           oTanks);
         }
 
-        public override void RedrawWithWeaponUsageEffect(CBoardElement[][] iBoardElements)
+        public override void RedrawWithWeaponUsageEffect(CBoardElement[][] oBoardElements)
         {
-            base.RedrawWithWeaponUsageEffect(iBoardElements);
+            base.RedrawWithWeaponUsageEffect(oBoardElements);
         }
     }
 }

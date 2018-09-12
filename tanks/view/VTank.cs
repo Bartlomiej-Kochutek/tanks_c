@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Drawing;
+﻿using System.Drawing;
 
 using tanks.controller;
 
@@ -23,6 +18,7 @@ namespace tanks.view
         public VTank()
         {
         }
+
 
 
         public void Prepare()
@@ -112,19 +108,18 @@ namespace tanks.view
             return false;
         }
 
-        public void RedrawMissiles(CBoardElement[][] iElements)
+        public void RedrawMissiles(CBoardElement[][] oElements)
         {
             int boardSize = mController.ParentGameWindow.ChildBoard.GetSize();
 
             foreach (CMissile cMissile in mController.Missiles)
             {
                 if (!CGameBoard.IndicesOutsideWindow(cMissile.GetPosX(), cMissile.GetPosY(), boardSize))
-                    iElements[cMissile.GetPosX()][cMissile.GetPosY()].SetMissile(true);
+                    oElements[cMissile.GetPosX()][cMissile.GetPosY()].SetMissile(true);
             }
         }
 
-
-
+        
 
         public CTank Controller { get => mController; set => mController = value; }
 

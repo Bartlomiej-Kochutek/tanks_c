@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 using tanks.controller;
 
@@ -30,6 +26,7 @@ namespace tanks.model
         {
             mDamage = DEFAULT_DAMAGE;
         }
+
 
 
         public void Move(float iDeltaPos)
@@ -135,8 +132,7 @@ namespace tanks.model
             }
             return false;
         }
-
-
+        
 
 
         public CMissile Controller { get => mController; set => mController = value; }

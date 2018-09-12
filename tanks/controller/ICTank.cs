@@ -1,17 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using tanks.view;
 
 namespace tanks.controller
 {
     public interface ICTank
     {
-        CHitPoints HitPoints { get; set; }
-        VTank View { get; set; }
-
         void Move(int iDeltaT);
         void UseWeapon(int iDeltaT);
         void CalculateWeaponUsages(
@@ -19,7 +12,12 @@ namespace tanks.controller
             CBoardElement[][] oBoardElements,
             LinkedList<ICTank> oTanks);
 
-        void RedrawWithWeaponUsageEffect(CBoardElement[][] iBoardElements);
+        void RedrawWithWeaponUsageEffect(CBoardElement[][] oBoardElements);
+
+
+
+        CHitPoints HitPoints { get; set; }
+        VTank View { get; set; }
 
         int GetPosX();
         int GetPosY();

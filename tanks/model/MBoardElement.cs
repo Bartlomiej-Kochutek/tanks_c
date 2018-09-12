@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿
 using tanks.controller;
 
 
@@ -32,8 +27,7 @@ namespace tanks.model
         
 
 
-
-        internal CBoardElement Controller { get => mController; set => mController = value; }
+        public CBoardElement Controller { get => mController; set => mController = value; }
 
         public bool IsDestroyed { get => this.mIsDestroyed; set => this.mIsDestroyed = value; }
 

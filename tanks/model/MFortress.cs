@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿
 using tanks.controller;
 
 
@@ -28,6 +23,7 @@ namespace tanks.model
         }
 
 
+
         public void Prepare()
         {
             mHalfOfSize = mSize / 2;
@@ -41,15 +37,11 @@ namespace tanks.model
 
 
 
-
-
-
         public CFortress Controller { get => mController; set => mController = value; }
 
         public int PosX { get => mPosX; set => mPosX = value; }
 
         public int PosY { get => mPosY; set => mPosY = value; }
-        public int PosY1 { get => mPosY; set => mPosY = value; }
 
         public int GetSize()
         {

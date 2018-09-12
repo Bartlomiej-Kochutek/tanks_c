@@ -11,8 +11,6 @@ namespace tanks.view
 
 
         
-        
-
         public void PrepareDisplay()
         {
             Show();
@@ -22,14 +20,15 @@ namespace tanks.view
                 WINDOW_WIDTH,
                 WINDOW_HIGHT);
         }
-
-
+        
 
 
         public void SetController(CGameWindow iController)
         {
             mController = iController;
         }
+
+
 
         /// <summary>
         /// Required designer variable.

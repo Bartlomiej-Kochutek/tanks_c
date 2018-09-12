@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using tanks.controller;
 
 namespace tanks.model
 {
@@ -14,7 +11,6 @@ namespace tanks.model
 
         public MLaserGunTank()
         {
-
         }
 
 
@@ -24,9 +20,11 @@ namespace tanks.model
             mLastLaserShootingTime = iDeltaT;
         }
 
-        public void CheckLaserBeamCollision()
+        public void CheckLaserBeamCollision(
+            float iDeltaT,
+            CBoardElement[][] oBoardElements,
+            LinkedList<ICTank> oTanks)
         {
-
         }
     }
 }

@@ -17,10 +17,9 @@ namespace tanks
 
 
 
-
-
-
         public CMainMenu Controller { get => mController; set => mController = value; }
+
+
 
         private System.ComponentModel.IContainer components = null;
 

@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Drawing;
+﻿using System.Drawing;
 
 using tanks.model;
 using tanks.view;
@@ -26,9 +21,7 @@ namespace tanks.controller
             mView = new VBoardElement(iColor);
             mView.Controller = this;
         }
-
-
-
+        
 
 
         public MBoardElement Model { get => mModel; set => mModel = value; }

@@ -1,14 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-using tanks.model;
-using tanks.view;
-
-
-namespace tanks.controller
+﻿namespace tanks.controller
 {
     public class CMainMenu
     {
@@ -25,6 +15,7 @@ namespace tanks.controller
             mView = new VMainMenu();
             mView.Controller = this;
         }
+
 
 
         public void Execute()
@@ -45,8 +36,7 @@ namespace tanks.controller
         public void OnExitButtonPushed()
         {
         }
-
-
+        
 
 
         public CGameWindow ChildGameWindow { get => mChildGameWindow; set => mChildGameWindow = value; }

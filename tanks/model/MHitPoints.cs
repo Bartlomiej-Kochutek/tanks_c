@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿
 using tanks.controller;
 
 
@@ -28,6 +23,7 @@ namespace tanks.model
         }
 
 
+
         public void TakeDamagedFromMissile(int iHitPointsDamage)
         {
             mAmount -= iHitPointsDamage;
@@ -43,7 +39,6 @@ namespace tanks.model
         {
             return (double)mAmount / (double)MAX_HIT_POINTS;
         }
-
 
 
 

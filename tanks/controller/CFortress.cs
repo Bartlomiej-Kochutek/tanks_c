@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿
 using tanks.model;
 using tanks.view;
 
@@ -27,6 +22,7 @@ namespace tanks.controller
             mView = new VFortress();
             mView.Controller = this;
         }
+
 
 
         public void Draw()

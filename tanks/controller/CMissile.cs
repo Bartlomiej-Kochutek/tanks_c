@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 using tanks.model;
-using tanks.view;
 
 
 namespace tanks.controller
@@ -35,6 +30,7 @@ namespace tanks.controller
         }
 
 
+
         public void Move(float iDeltaPos)
         {
             mModel.Move(iDeltaPos);
@@ -47,8 +43,7 @@ namespace tanks.controller
             return mModel.Collision(oBoardElements,
                                     oTanks);
         }
-
-
+        
 
 
         public CTank ParentTank { get => mParentTank; set => mParentTank = value; }

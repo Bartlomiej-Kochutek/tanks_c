@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using tanks.controller;
 
 namespace tanks.model
@@ -13,6 +9,7 @@ namespace tanks.model
         DateTime mAbsoluteTimeAfterWhichComputerTakesControl;
 
         const int TAKE_CONTROL_TIMEOUT = 20;
+
 
 
         public MProxyTank(
@@ -34,6 +31,7 @@ namespace tanks.model
 
             mAbsoluteTimeAfterWhichComputerTakesControl += relativeTimeAfterWhichComputerTakesControl;
         }
+
 
 
         public override void ShootFromStandardGun(int iDeltaT)

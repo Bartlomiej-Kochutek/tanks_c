@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿
 using tanks.controller;
 
 
@@ -18,6 +13,7 @@ namespace tanks.view
         public VFortress()
         {
         }
+
 
 
         public void Draw(CBoardElement[][] oElements)
@@ -57,8 +53,7 @@ namespace tanks.view
                     oElements[xIndex][yIndex].SetFortressWall(true);
             }
         }
-
-
+        
 
 
         public CFortress Controller { get => mController; set => mController = value; }

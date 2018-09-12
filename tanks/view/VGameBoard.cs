@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Drawing;
+﻿using System.Drawing;
 
 using tanks.controller;
 
@@ -25,6 +20,7 @@ namespace tanks.view
         public VGameBoard()
         {
         }
+
 
 
         public void Prepare()
@@ -309,8 +305,7 @@ namespace tanks.view
             }
             solidBrush.Dispose();
         }
-
-
+        
 
 
         public CGameBoard Controller { get => mController; set => mController = value; }

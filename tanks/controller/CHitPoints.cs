@@ -1,11 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿
 using tanks.model;
-using tanks.view;
 
 
 namespace tanks.controller
@@ -25,6 +19,7 @@ namespace tanks.controller
         }
 
 
+
         public void TakeDamagedFromMissile(int iHitPointsDamage)
         {
             mModel.TakeDamagedFromMissile(iHitPointsDamage);
@@ -34,10 +29,7 @@ namespace tanks.controller
         {
             return mModel.GetAmountAsPercentage();
         }
-
-
-
-
+        
 
 
         public CTank ParentTank { get => mParentTank; set => mParentTank = value; }
