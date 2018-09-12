@@ -63,10 +63,14 @@ namespace tanks.controller
             mModel.ShootFromStandardGun(iDeltaT);
         }
 
-        public void CalculateWeaponUsages(float iDeltaT)
+        public void CalculateWeaponUsages(
+            float iDeltaT,
+            CBoardElement[][] oBoardElements,
+            LinkedList<ICTank> oTanks)
         {
             mModel.MoveMissiles(iDeltaT);
-            mModel.CheckMissilesCollision();
+            mModel.CheckMissilesCollision(oBoardElements,
+                                          oTanks);
         }
 
 

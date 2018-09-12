@@ -26,9 +26,14 @@ namespace tanks.controller
             mModel.ShootFromLaserGun(iDeltaT);
         }
 
-        public override void CalculateWeaponUsages(float iDeltaT)
+        public override void CalculateWeaponUsages(
+            float iDeltaT,
+            CBoardElement[][] oBoardElements,
+            LinkedList<ICTank> oTanks)
         {
-            base.CalculateWeaponUsages(iDeltaT);
+            base.CalculateWeaponUsages(iDeltaT,
+                                       oBoardElements,
+                                       oTanks);
 
             mModel.CheckLaserBeamCollision();
         }

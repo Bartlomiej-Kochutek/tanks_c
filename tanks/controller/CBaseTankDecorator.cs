@@ -31,9 +31,14 @@ namespace tanks.controller
         {
             mDecoratedTank.UseWeapon(iDeltaT);
         }
-        public virtual void CalculateWeaponUsages(float iDeltaT)
+        public virtual void CalculateWeaponUsages(
+            float iDeltaT,
+            CBoardElement[][] oBoardElements,
+            LinkedList<ICTank> oTanks)
         {
-            mDecoratedTank.CalculateWeaponUsages(iDeltaT);
+            mDecoratedTank.CalculateWeaponUsages(iDeltaT,
+                                                 oBoardElements,
+                                                 oTanks);
         }
 
         public virtual void RedrawWithWeaponUsageEffect(CBoardElement[][] iBoardElements)

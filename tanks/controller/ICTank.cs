@@ -14,7 +14,10 @@ namespace tanks.controller
 
         void Move(int iDeltaT);
         void UseWeapon(int iDeltaT);
-        void CalculateWeaponUsages(float iDeltaT);
+        void CalculateWeaponUsages(
+            float iDeltaT,
+            CBoardElement[][] oBoardElements,
+            LinkedList<ICTank> oTanks);
 
         void RedrawWithWeaponUsageEffect(CBoardElement[][] iBoardElements);
 

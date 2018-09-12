@@ -98,12 +98,15 @@ namespace tanks.model
             }
         }
 
-        public void CheckMissilesCollision()
+        public void CheckMissilesCollision(
+            CBoardElement[][] oBoardElements,
+            LinkedList<ICTank> oTanks)
         {
             LinkedListNode<CMissile> iterator = mController.Missiles.First;
             while (iterator != null)
             {
-                bool collisionOccured = iterator.Value.Collision();
+                bool collisionOccured = iterator.Value.Collision(oBoardElements,
+                                                                 oTanks);
                 if (collisionOccured)
                 {
                     mController.Missiles.Remove(iterator.Value);

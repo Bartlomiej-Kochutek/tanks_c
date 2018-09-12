@@ -97,7 +97,9 @@ namespace tanks.controller
                 if (cTank.IsUsingWeapon())
                     cTank.UseWeapon(deltaT);
 
-                cTank.CalculateWeaponUsages(deltaT);
+                cTank.CalculateWeaponUsages(deltaT,
+                                            mChildBoard.Elements,
+                                            mChildTanks);
             }
         }
 

@@ -40,9 +40,12 @@ namespace tanks.controller
             mModel.Move(iDeltaPos);
         }
 
-        public bool Collision()
+        public bool Collision(
+            CBoardElement[][] oBoardElements,
+            LinkedList<ICTank> oTanks)
         {
-            return mModel.Collision();
+            return mModel.Collision(oBoardElements,
+                                    oTanks);
         }
 
 

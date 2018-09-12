@@ -51,30 +51,29 @@ namespace tanks.model
             }
         }
 
-        public bool Collision()
+        public bool Collision(
+            CBoardElement[][] oBoardElements,
+            LinkedList<ICTank> oTanks)
         {
-            CTank parentTank = mController.ParentTank;
-
-            int boardSize = parentTank.ParentGameWindow.ChildBoard.GetSize();
+            int boardSize = mController.ParentTank.ParentGameWindow.ChildBoard.GetSize();
 
             if (CGameBoard.IndicesOutsideWindow((int)mPosX, (int)mPosY, boardSize))
                 return true;
-
-            CBoardElement[][] boardElements = parentTank.ParentGameWindow.ChildBoard.Elements;
 
             int intPosX = (int)mPosX;
             int intPosY = (int)mPosY;
 
             if (CollisionWithBoardElements(
-                  boardElements,
-                  intPosX,
-                  intPosY,
-                  boardSize))
+                    oBoardElements,
+                    intPosX,
+                    intPosY,
+                    boardSize))
                 return true;
 
             if (CollisionWithOtherTanks(
-                  intPosX,
-                  intPosY))
+                    oTanks,
+                    intPosX,
+                    intPosY))
                 return true;
 
             return false;
@@ -117,15 +116,13 @@ namespace tanks.model
         }
 
         private bool CollisionWithOtherTanks(
+            LinkedList<ICTank> oTanks,
             int iPosXInt,
             int iPosYInt)
-        {
-            CTank parentTank = mController.ParentTank;
-
-            LinkedList<ICTank> tanks = parentTank.ParentGameWindow.ChildTanks;
-            foreach (ICTank tank in tanks)
+        {            
+            foreach (ICTank tank in oTanks)
             {
-                if (tank == parentTank)
+                if (tank == mController.ParentTank)
                     continue;
 
                 if (tank.GetPosX() > iPosXInt || tank.GetPosX() + tank.GetSize() <= iPosXInt ||
