@@ -15,6 +15,8 @@ namespace tanks.model
 
         private long mLastMeasuredMilisecs;
 
+        private int mPreviouseDeltaT;
+
         private bool mAtLeastOneTankDeafeated;
 
         private int mElementSize;
@@ -24,20 +26,26 @@ namespace tanks.model
         public MGameWindow()
         {
             mLastMeasuredMilisecs = DateTimeOffset.Now.ToUnixTimeMilliseconds();
+            mPreviouseDeltaT = 0;
+
             mAtLeastOneTankDeafeated = false;
 
             mElementSize = 12;
         }
 
 
-        public int MilisecsDelta()
+        public int MilisecsDeltaT()
         {
             long currentMeasuredMilisecs = DateTimeOffset.Now.ToUnixTimeMilliseconds();
-            int delta = (int)(currentMeasuredMilisecs - mLastMeasuredMilisecs);
+            int currentDeltaT = (int)(currentMeasuredMilisecs - mLastMeasuredMilisecs);
 
             mLastMeasuredMilisecs = currentMeasuredMilisecs;
 
-            return delta;
+            int deltaTsMean = (currentDeltaT + mPreviouseDeltaT) / 2;
+
+            mPreviouseDeltaT = currentDeltaT;
+
+            return deltaTsMean;
         }
 
 

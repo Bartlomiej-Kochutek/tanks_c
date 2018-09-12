@@ -37,12 +37,7 @@ namespace tanks.controller
 
         public void Move(float iDeltaPos)
         {
-            float deltaPos = iDeltaPos;
-            const float MAX_DELTA_POS = 1;
-            if (deltaPos > MAX_DELTA_POS)
-                deltaPos = MAX_DELTA_POS;
-
-            mModel.Move(deltaPos);
+            mModel.Move(iDeltaPos);
         }
 
         public bool Collision()

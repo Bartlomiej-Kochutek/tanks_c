@@ -16,6 +16,9 @@ namespace tanks.model
         private float mPosX;
         private float mPosY;
 
+        private float mPreviousPosX;
+        private float mPreviousPosY;
+
         private EDirection direction;
 
         private const int DEFAULT_DAMAGE = 40;
@@ -147,7 +150,7 @@ namespace tanks.model
         }
         public void SetPosX(int iPosX)
         {
-            mPosX = iPosX;
+            mPosX = mPreviousPosX = iPosX;
         }
 
         public int GetPosY()
@@ -156,7 +159,7 @@ namespace tanks.model
         }
         public void SetPosY(int iPosY)
         {
-            mPosY = iPosY;
+            mPosY = mPreviousPosY = iPosY;
         }
 
         public EDirection Direction { get => direction; set => direction = value; }

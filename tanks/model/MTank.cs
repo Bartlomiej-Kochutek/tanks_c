@@ -13,7 +13,7 @@ namespace tanks.model
     {
         protected CTank mController;
 
-        private const int DELTA_T_SCALE = 300;
+        private const int DELTA_T_SCALE = 200;
         private const int SHOOTING_INTERVAL = 100;
         
         protected float mPosX;
@@ -90,7 +90,7 @@ namespace tanks.model
         public void MoveMissiles(float iDeltaT)
         {
             float deltaPos = iDeltaT / DELTA_T_SCALE;
-            const float FASTER_THAN_TANK = (float)2;
+            const float FASTER_THAN_TANK = (float)1.5;
 
             foreach (CMissile cMissile in mController.Missiles)
             {

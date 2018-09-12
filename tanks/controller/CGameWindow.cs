@@ -88,7 +88,7 @@ namespace tanks.controller
             if (mModel.AtLeastOneTankDeafeated)
                 return;
 
-            int deltaT = mModel.MilisecsDelta();
+            int deltaT = mModel.MilisecsDeltaT();
 
             foreach (ICTank cTank in mChildTanks)
             {
