@@ -59,7 +59,7 @@
     <Compile Include="controller\EPartOfScreen.cs" />
     <Compile Include="controller\ETankOwner.cs" />
     <Compile Include="controller\ICTank.cs" />
-    <Compile Include="model\MBase.cs" />
+    <Compile Include="model\MFortress.cs" />
     <Compile Include="model\MBoardElement.cs" />
     <Compile Include="model\MGameBoard.cs" />
     <Compile Include="model\MGameWindow.cs" />
@@ -82,7 +82,7 @@
     </Compile>
     <Compile Include="controller\_TanksApp.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="view\VBase.cs" />
+    <Compile Include="view\VFortress.cs" />
     <Compile Include="view\VBoardElement.cs" />
     <Compile Include="view\VGameBoard.cs" />
     <Compile Include="view\VTank.cs" />

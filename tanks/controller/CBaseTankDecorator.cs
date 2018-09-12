@@ -7,12 +7,13 @@ using tanks.view;
 
 namespace tanks.controller
 {
-    class CBaseTankDecorator : ICTank
+    abstract class CBaseTankDecorator : ICTank
     {
-        ICTank mDecoratedTank;
+        private ICTank mDecoratedTank;
 
 
-        CBaseTankDecorator(ICTank iDecoratedTank)
+
+        public CBaseTankDecorator(ICTank iDecoratedTank)
         {
             mDecoratedTank = iDecoratedTank;
         }
