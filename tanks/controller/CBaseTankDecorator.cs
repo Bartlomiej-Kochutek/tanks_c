@@ -9,7 +9,7 @@ namespace tanks.controller
 {
     abstract class CBaseTankDecorator : ICTank
     {
-        private ICTank mDecoratedTank;
+        protected ICTank mDecoratedTank;
 
 
 
@@ -31,18 +31,14 @@ namespace tanks.controller
         {
             mDecoratedTank.UseWeapon(iDeltaT);
         }
-        public virtual void MoveMissiles(float iDeltaT)
+        public virtual void CalculateWeaponUsages(float iDeltaT)
         {
-            mDecoratedTank.MoveMissiles(iDeltaT);
-        }
-        public virtual void CheckMissilesCollision()
-        {
-            mDecoratedTank.CheckMissilesCollision();
+            mDecoratedTank.CalculateWeaponUsages(iDeltaT);
         }
 
-        public virtual void RedrawWithMissiles()
+        public virtual void RedrawWithWeaponUsageEffect(CBoardElement[][] iBoardElements)
         {
-            mDecoratedTank.RedrawWithMissiles();
+            mDecoratedTank.RedrawWithWeaponUsageEffect(iBoardElements);
         }
 
         public virtual int GetPosX()
@@ -74,9 +70,19 @@ namespace tanks.controller
         {
             mDecoratedTank.SetMoveUp(iMoveUp);
         }
-        public virtual void SetShooting(bool iShooting)
+
+        public virtual bool IsUsingWeapon()
         {
-            mDecoratedTank.SetShooting(iShooting);
+            return mDecoratedTank.IsUsingWeapon();
+        }
+        public virtual void SetUsingWeapon(bool iShooting)
+        {
+            mDecoratedTank.SetUsingWeapon(iShooting);
+        }
+
+        public virtual bool IsDefeated()
+        {
+            return mDecoratedTank.IsDefeated();
         }
     }
 }

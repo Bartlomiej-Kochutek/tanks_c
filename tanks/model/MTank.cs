@@ -34,7 +34,7 @@ namespace tanks.model
         protected bool mMoveRight;
         protected bool mMoveUp;
 
-        protected bool mIsShooting;
+        protected bool mIsUsingWeapon;
         private int mLastShootDelta;
 
         private bool mDefeated;
@@ -58,7 +58,7 @@ namespace tanks.model
             mMoveRight = false;
             mMoveUp = false;
 
-            mIsShooting = false;
+            mIsUsingWeapon = false;
 
             mLastShootDelta = 0;
 
@@ -72,11 +72,8 @@ namespace tanks.model
         }
 
 
-        public virtual void Shoot(int iDeltaT)
+        public virtual void ShootFromStandardGun(int iDeltaT)
         {
-            if (!mIsShooting)
-                return;
-
             mLastShootDelta += iDeltaT;
             if (mLastShootDelta < SHOOTING_INTERVAL)
                 return;
@@ -93,7 +90,7 @@ namespace tanks.model
         public void MoveMissiles(float iDeltaT)
         {
             float deltaPos = iDeltaT / DELTA_T_SCALE;
-            const float FASTER_THAN_TANK = (float)1.5;
+            const float FASTER_THAN_TANK = (float)2;
 
             foreach (CMissile cMissile in mController.Missiles)
             {
@@ -103,12 +100,6 @@ namespace tanks.model
 
         public void CheckMissilesCollision()
         {
-            if (mController.ParentGameWindow.IsAtLeastOneTankDeafeated())
-            {
-                mController.Missiles.Clear();
-                return;
-            }
-
             LinkedListNode<CMissile> iterator = mController.Missiles.First;
             while (iterator != null)
             {
@@ -371,13 +362,13 @@ namespace tanks.model
         }
 
 
-        public bool IsShooting()
+        public bool IsUsingWeapon()
         {
-            return mIsShooting;
+            return mIsUsingWeapon;
         }
-        public void SetShooting(bool iShooting)
+        public void SetUsingWeapon(bool iUsingWeapon)
         {
-            mIsShooting = iShooting;
+            mIsUsingWeapon = iUsingWeapon;
         }
 
         public bool IsDefeated()

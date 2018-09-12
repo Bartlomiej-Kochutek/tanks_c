@@ -43,12 +43,6 @@ namespace tanks.controller
         }
 
 
-        public void UseWeapon(int iDeltaT)
-        {
-            mModel.Shoot(iDeltaT);
-        }
-
-
         public void Prepare()
         {
             mModel.Prepare();
@@ -58,30 +52,29 @@ namespace tanks.controller
             mFortress.Draw();
         }
 
-        public void RedrawWithMissiles()
-        {
-            if (mModel.IsDefeated())
-                return;
-
-            mView.Redraw(mParentGameWindow.ChildBoard.Elements);
-            mView.RedrawMissiles(mParentGameWindow.ChildBoard.Elements);
-        }
-
-        public void MoveMissiles(float iDeltaT)
-        {
-            mModel.MoveMissiles(iDeltaT);
-        }
-
-        public void CheckMissilesCollision()
-        {
-            mModel.CheckMissilesCollision();
-        }
 
         public void Move(int iDeltaT)
         {
             mModel.Move(iDeltaT);
         }
 
+        public void UseWeapon(int iDeltaT)
+        {
+            mModel.ShootFromStandardGun(iDeltaT);
+        }
+
+        public void CalculateWeaponUsages(float iDeltaT)
+        {
+            mModel.MoveMissiles(iDeltaT);
+            mModel.CheckMissilesCollision();
+        }
+
+
+        public void RedrawWithWeaponUsageEffect(CBoardElement[][] iBoardElements)
+        {
+            mView.Redraw(iBoardElements);
+            mView.RedrawMissiles(iBoardElements);
+        }
 
 
 
@@ -182,13 +175,13 @@ namespace tanks.controller
         }
 
 
-        public bool IsShooting()
+        public bool IsUsingWeapon()
         {
-            return mModel.IsShooting();
+            return mModel.IsUsingWeapon();
         }
-        public void SetShooting(bool iShooting)
+        public void SetUsingWeapon(bool iUsingWeapon)
         {
-            mModel.SetShooting(iShooting);
+            mModel.SetUsingWeapon(iUsingWeapon);
         }
 
 

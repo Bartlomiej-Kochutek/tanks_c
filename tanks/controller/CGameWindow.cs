@@ -85,24 +85,32 @@ namespace tanks.controller
 
         private void UpdateWithDeltaT()
         {
+            if (mModel.AtLeastOneTankDeafeated)
+                return;
+
             int deltaT = mModel.MilisecsDelta();
 
             foreach (ICTank cTank in mChildTanks)
             {
                 cTank.Move(deltaT);
-                cTank.UseWeapon(deltaT);
-                cTank.MoveMissiles(deltaT);
-                cTank.CheckMissilesCollision();
+
+                if (cTank.IsUsingWeapon())
+                    cTank.UseWeapon(deltaT);
+
+                cTank.CalculateWeaponUsages(deltaT);
             }
         }
 
         private void OnRedraw()
         {
             mChildBoard.Model.ResetElements();
-
+            
             foreach (ICTank cTank in mChildTanks)
             {
-                cTank.RedrawWithMissiles();
+                if (cTank.IsDefeated())
+                    continue;
+
+                cTank.RedrawWithWeaponUsageEffect(mChildBoard.Elements);
             }
 
             mChildBoard.Redraw(GetFirstTank(), EPartOfScreen.LEFT);
@@ -129,7 +137,7 @@ namespace tanks.controller
                     secondTank.SetMoveUp(true);
                     break;
                 case SECOND_TANK_SHOOT:
-                    secondTank.SetShooting(true);
+                    secondTank.SetUsingWeapon(true);
                     break;
 
                 case FIRST_TANK_MOVE_DOWN:
@@ -145,7 +153,7 @@ namespace tanks.controller
                     firstTank.SetMoveUp(true);
                     break;
                 case FIRST_TANK_SHOOT:
-                    firstTank.SetShooting(true);
+                    firstTank.SetUsingWeapon(true);
                     break;
             }
         }
@@ -169,7 +177,7 @@ namespace tanks.controller
                     secondTank.SetMoveUp(false);
                     break;
                 case SECOND_TANK_SHOOT:
-                    secondTank.SetShooting(false);
+                    secondTank.SetUsingWeapon(false);
                     break;
 
                 case FIRST_TANK_MOVE_DOWN:
@@ -185,7 +193,7 @@ namespace tanks.controller
                     firstTank.SetMoveUp(false);
                     break;
                 case FIRST_TANK_SHOOT:
-                    firstTank.SetShooting(false);
+                    firstTank.SetUsingWeapon(false);
                     break;
             }
         }

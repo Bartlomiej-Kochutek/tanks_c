@@ -36,12 +36,12 @@ namespace tanks.model
         }
 
 
-        public override void Shoot(int iDeltaT)
+        public override void ShootFromStandardGun(int iDeltaT)
         {
             if (mOwner == ETankOwner.Computer)
-                mIsShooting = true;
+                mIsUsingWeapon = true;
 
-            base.Shoot(iDeltaT);
+            base.ShootFromStandardGun(iDeltaT);
         }
 
         public override void Move(int iDeltaT)
@@ -84,7 +84,7 @@ namespace tanks.model
         {
             mOwner = ETankOwner.Player;
 
-            mIsShooting = false;
+            mIsUsingWeapon = false;
 
             mAbsoluteTimeAfterWhichComputerTakesControl = DateTime.Now + new TimeSpan(0, 0, TAKE_CONTROL_TIMEOUT);
         }

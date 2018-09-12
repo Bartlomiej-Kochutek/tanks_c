@@ -14,10 +14,9 @@ namespace tanks.controller
 
         void Move(int iDeltaT);
         void UseWeapon(int iDeltaT);
-        void MoveMissiles(float iDeltaT);
-        void CheckMissilesCollision();
+        void CalculateWeaponUsages(float iDeltaT);
 
-        void RedrawWithMissiles();
+        void RedrawWithWeaponUsageEffect(CBoardElement[][] iBoardElements);
 
         int GetPosX();
         int GetPosY();
@@ -27,6 +26,10 @@ namespace tanks.controller
         void SetMoveLeft(bool iMoveLeft);
         void SetMoveRight(bool iMoveRight);
         void SetMoveUp(bool iMoveUp);
-        void SetShooting(bool iShooting);
+
+        bool IsUsingWeapon();
+        void SetUsingWeapon(bool iUsingWeapon);
+
+        bool IsDefeated();
     }
 }

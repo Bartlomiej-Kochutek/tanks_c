@@ -51,6 +51,7 @@
     <Compile Include="controller\CGameWindow.cs" />
     <Compile Include="controller\CGameBoard.cs" />
     <Compile Include="controller\CHitPoints.cs" />
+    <Compile Include="controller\CLaserGunTank.cs" />
     <Compile Include="controller\CMainMenu.cs" />
     <Compile Include="controller\CMissile.cs" />
     <Compile Include="controller\CTankProxy.cs" />
@@ -64,6 +65,7 @@
     <Compile Include="model\MGameBoard.cs" />
     <Compile Include="model\MGameWindow.cs" />
     <Compile Include="model\MHitPoints.cs" />
+    <Compile Include="model\MLaserGunTank.cs" />
     <Compile Include="model\MMissile.cs" />
     <Compile Include="model\MProxyTank.cs" />
     <Compile Include="model\MTank.cs" />
