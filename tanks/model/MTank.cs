@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-
+using tanks.common;
 using tanks.controller;
 
 
@@ -180,7 +180,7 @@ namespace tanks.model
                 int xIndex = (int)mPosX + xDisplacement;
                 int yIndex = (int)mPosY + iYDisplacement;
 
-                if (CGameBoard.IndicesOutsideWindow(xIndex, yIndex))
+                if (Algorithm.IndicesOutsideWindow(xIndex, yIndex))
                     continue;
 
                 if (boardElements[xIndex][yIndex].IsFortressWall())
@@ -197,7 +197,7 @@ namespace tanks.model
                 int xIndex = (int)mPosX + iXDisplacement;
                 int yIndex = (int)mPosY + yDisplacement;
 
-                if (CGameBoard.IndicesOutsideWindow(xIndex, yIndex))
+                if (Algorithm.IndicesOutsideWindow(xIndex, yIndex))
                     continue;
 
                 if (boardElements[xIndex][yIndex].IsFortressWall())

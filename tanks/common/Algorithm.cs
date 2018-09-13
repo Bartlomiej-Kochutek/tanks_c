@@ -9,6 +9,15 @@ namespace tanks.common
 {
     public abstract class Algorithm
     {
+        public static bool IndicesOutsideWindow(
+               int iXIndex,
+               int iYIndex)
+        {
+            bool indicesOutsideWindow = (iXIndex < 0 || iXIndex >= Settings.GAME_BOARD_SIZE ||
+                                         iYIndex < 0 || iYIndex >= Settings.GAME_BOARD_SIZE);
+            return indicesOutsideWindow;
+        }
+
         public static bool CollisionWithOtherTanks(
             ICTank iTank,
             LinkedList<ICTank> oTanks,
@@ -17,7 +26,7 @@ namespace tanks.common
             int iDamage,
             bool iDoDamage)
         {
-            if (CGameBoard.IndicesOutsideWindow(iPosXInt, iPosYInt))
+            if (IndicesOutsideWindow(iPosXInt, iPosYInt))
                 return false;
 
             foreach (ICTank tank in oTanks)

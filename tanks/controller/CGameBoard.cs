@@ -60,15 +60,6 @@ namespace tanks.controller
                 iPartOfScreen);
         }
 
-        public static bool IndicesOutsideWindow(
-            int iXIndex,
-            int iYIndex)
-        {
-            return (iXIndex < 0 || iXIndex >= Settings.GAME_BOARD_SIZE ||
-                    iYIndex < 0 || iYIndex >= Settings.GAME_BOARD_SIZE);
-        }
-
-
 
 
         public CGameWindow ParentGameWindow { get => mParentGameWindow; set => mParentGameWindow = value; }

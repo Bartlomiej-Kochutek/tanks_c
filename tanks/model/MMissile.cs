@@ -79,7 +79,7 @@ namespace tanks.model
             int iPosXInt,
             int iPosYInt)
         { //keep functions sequence order
-            if (CGameBoard.IndicesOutsideWindow(iPosXInt, iPosYInt))
+            if (Algorithm.IndicesOutsideWindow(iPosXInt, iPosYInt))
                 return true;
 
             if (oBoardElements[iPosXInt][iPosYInt].IsFortressWall())

@@ -1,4 +1,5 @@
 ﻿
+using tanks.common;
 using tanks.controller;
 
 
@@ -30,11 +31,11 @@ namespace tanks.view
                 }
 
                 int yIndex = thisPosY;
-                if (!CGameBoard.IndicesOutsideWindow(xIndex, yIndex))
+                if (!Algorithm.IndicesOutsideWindow(xIndex, yIndex))
                     oElements[xIndex][yIndex].SetFortressWall(true);
 
                 yIndex = thisPosY + thisSize;
-                if (!CGameBoard.IndicesOutsideWindow(xIndex, yIndex))
+                if (!Algorithm.IndicesOutsideWindow(xIndex, yIndex))
                     oElements[xIndex][yIndex].SetFortressWall(true);
             }
             for (int yIndex = thisPosY; yIndex <= thisPosY + thisSize; yIndex++)
@@ -45,11 +46,11 @@ namespace tanks.view
                 }
 
                 int xIndex = thisPosX;
-                if (!CGameBoard.IndicesOutsideWindow(xIndex, yIndex))
+                if (!Algorithm.IndicesOutsideWindow(xIndex, yIndex))
                     oElements[xIndex][yIndex].SetFortressWall(true);
 
                 xIndex = mController.GetPosX() + thisSize;
-                if (!CGameBoard.IndicesOutsideWindow(xIndex, yIndex))
+                if (!Algorithm.IndicesOutsideWindow(xIndex, yIndex))
                     oElements[xIndex][yIndex].SetFortressWall(true);
             }
         }

@@ -1,5 +1,5 @@
 ﻿using System.Drawing;
-
+using tanks.common;
 using tanks.controller;
 
 
@@ -130,7 +130,7 @@ namespace tanks.view
                       currentWindowPartY <= iAmountOfWindowElementsY; currentWindowPartY++)
                 {
                     yIndex++;
-                    if (CGameBoard.IndicesOutsideWindow(xIndex, yIndex))
+                    if (Algorithm.IndicesOutsideWindow(xIndex, yIndex))
                         solidBrush = new SolidBrush(mFrameColor);
                     else
                     {
@@ -179,7 +179,7 @@ namespace tanks.view
                       currentWindowPartY <= iAmountOfWindowElementsY; currentWindowPartY++)
                 {
                     yIndex++;
-                    if (CGameBoard.IndicesOutsideWindow(xIndex, yIndex))
+                    if (Algorithm.IndicesOutsideWindow(xIndex, yIndex))
                         continue;
 
                     if (boardElements[xIndex][yIndex].IsTank())
@@ -226,7 +226,7 @@ namespace tanks.view
                       currentWindowPartY <= iAmountOfWindowElementsY; currentWindowPartY++)
                 {
                     yIndex++;
-                    if (CGameBoard.IndicesOutsideWindow(xIndex, yIndex))
+                    if (Algorithm.IndicesOutsideWindow(xIndex, yIndex))
                         continue;
 
                     if (boardElements[xIndex][yIndex].IsMissile())

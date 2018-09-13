@@ -1,5 +1,5 @@
 ﻿using System.Drawing;
-
+using tanks.common;
 using tanks.controller;
 
 
@@ -112,7 +112,7 @@ namespace tanks.view
         {
             foreach (CMissile cMissile in mController.Missiles)
             {
-                if (!CGameBoard.IndicesOutsideWindow(cMissile.GetPosX(), cMissile.GetPosY()))
+                if (!Algorithm.IndicesOutsideWindow(cMissile.GetPosX(), cMissile.GetPosY()))
                     oElements[cMissile.GetPosX()][cMissile.GetPosY()].SetMissile(true);
             }
         }
