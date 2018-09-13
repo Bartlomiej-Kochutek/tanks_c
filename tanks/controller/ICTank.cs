@@ -19,9 +19,13 @@ namespace tanks.controller
         CHitPoints HitPoints { get; set; }
         VTank View { get; set; }
 
+        int CanonPositionX();
+        int CanonPositionY();
+
         int GetPosX();
         int GetPosY();
         int GetSize();
+        EDirection GetDirection();
 
         void SetMoveDown(bool iMoveDown);
         void SetMoveLeft(bool iMoveLeft);

@@ -7,14 +7,14 @@ namespace tanks.controller
 {
     public class CMissile
     {
-        private CTank mParentTank;
+        private ICTank mParentTank;
 
         private MMissile mModel;
 
 
 
         public CMissile(
-            CTank iParentTank,
+            ICTank iParentTank,
             int iPosX,
             int iPosY,
             EDirection iDirection)
@@ -38,15 +38,17 @@ namespace tanks.controller
 
         public bool Collision(
             CBoardElement[][] oBoardElements,
-            LinkedList<ICTank> oTanks)
+            LinkedList<ICTank> oTanks,
+            bool iDoDamage = true)
         {
             return mModel.Collision(oBoardElements,
-                                    oTanks);
+                                    oTanks,
+                                    iDoDamage);
         }
         
 
 
-        public CTank ParentTank { get => mParentTank; set => mParentTank = value; }
+        public ICTank ParentTank { get => mParentTank; set => mParentTank = value; }
 
         public int GetPosX()
         {

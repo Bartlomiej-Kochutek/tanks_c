@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Drawing;
-
+using tanks.common;
 using tanks.model;
 using tanks.view;
 
@@ -62,11 +62,10 @@ namespace tanks.controller
 
         public static bool IndicesOutsideWindow(
             int iXIndex,
-            int iYIndex,
-            int iBoardSize)
+            int iYIndex)
         {
-            return (iXIndex < 0 || iXIndex >= iBoardSize ||
-                    iYIndex < 0 || iYIndex >= iBoardSize);
+            return (iXIndex < 0 || iXIndex >= Settings.GAME_BOARD_SIZE ||
+                    iYIndex < 0 || iYIndex >= Settings.GAME_BOARD_SIZE);
         }
 
 

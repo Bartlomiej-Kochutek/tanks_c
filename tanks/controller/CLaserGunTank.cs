@@ -7,13 +7,17 @@ namespace tanks.controller
     {
         private MLaserGunTank mModel;
 
+        private LinkedList<CMissile> mLaserBeamParts;
+
 
 
         public CLaserGunTank(ICTank iDecoratedTank)
             :
             base(iDecoratedTank)
         {
-            mModel = new MLaserGunTank();
+            mModel = new MLaserGunTank(this);
+
+            mLaserBeamParts = new LinkedList<CMissile>();
         }
 
 
@@ -39,6 +43,12 @@ namespace tanks.controller
         public override void RedrawWithWeaponUsageEffect(CBoardElement[][] oBoardElements)
         {
             base.RedrawWithWeaponUsageEffect(oBoardElements);
+
+            mModel.DrawLaserBeam(oBoardElements);
         }
+
+
+
+        public LinkedList<CMissile> LaserBeamParts { get => mLaserBeamParts; set => mLaserBeamParts = value; }
     }
 }

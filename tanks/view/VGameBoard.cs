@@ -59,15 +59,13 @@ namespace tanks.view
             int elementsFirstYIndex = tankPosY - (amountOfWindowElementsY / 2 - halfTankSize);
 
             CBoardElement[][] boardElements = mController.Elements;
-
-            int boardSize = boardElements.Length;
+            
             int boardElementSize = mController.ParentGameWindow.GetElementSize();
 
             RedrawFrameAndBasicMapElements(
                 formGraphics,
                 iTank,
                 boardElementSize,
-                boardSize,
                 elementsFirstXIndex,
                 elementsFirstYIndex,
                 firstWindowElementX,
@@ -78,7 +76,6 @@ namespace tanks.view
                 formGraphics,
                 iTank,
                 boardElementSize,
-                boardSize,
                 elementsFirstXIndex,
                 elementsFirstYIndex,
                 firstWindowElementX,
@@ -89,7 +86,6 @@ namespace tanks.view
                 formGraphics,
                 iTank,
                 boardElementSize,
-                boardSize,
                 elementsFirstXIndex,
                 elementsFirstYIndex,
                 firstWindowElementX,
@@ -116,7 +112,6 @@ namespace tanks.view
             Graphics iFormGraphics,
             ICTank iTank,
             int iBoardElementSize,
-            int iBoardSize,
             int iElemenstFirstXIndex,
             int iElemenstFirstYIndex,
             int iFirstWindowElementX,
@@ -135,7 +130,7 @@ namespace tanks.view
                       currentWindowPartY <= iAmountOfWindowElementsY; currentWindowPartY++)
                 {
                     yIndex++;
-                    if (CGameBoard.IndicesOutsideWindow(xIndex, yIndex, iBoardSize))
+                    if (CGameBoard.IndicesOutsideWindow(xIndex, yIndex))
                         solidBrush = new SolidBrush(mFrameColor);
                     else
                     {
@@ -167,7 +162,6 @@ namespace tanks.view
             Graphics iFormGraphics,
             ICTank iTank,
             int iBoardElementSize,
-            int iBoardSize,
             int iElemenstFirstXIndex,
             int iElemenstFirstYIndex,
             int iFirstWindowElementX,
@@ -185,7 +179,7 @@ namespace tanks.view
                       currentWindowPartY <= iAmountOfWindowElementsY; currentWindowPartY++)
                 {
                     yIndex++;
-                    if (CGameBoard.IndicesOutsideWindow(xIndex, yIndex, iBoardSize))
+                    if (CGameBoard.IndicesOutsideWindow(xIndex, yIndex))
                         continue;
 
                     if (boardElements[xIndex][yIndex].IsTank())
@@ -213,7 +207,6 @@ namespace tanks.view
             Graphics iFormGraphics,
             ICTank iTank,
             int iBoardElementSize,
-            int iBoardSize,
             int iElemenstFirstXIndex,
             int iElemenstFirstYIndex,
             int iFirstWindowElementX,
@@ -233,7 +226,7 @@ namespace tanks.view
                       currentWindowPartY <= iAmountOfWindowElementsY; currentWindowPartY++)
                 {
                     yIndex++;
-                    if (CGameBoard.IndicesOutsideWindow(xIndex, yIndex, iBoardSize))
+                    if (CGameBoard.IndicesOutsideWindow(xIndex, yIndex))
                         continue;
 
                     if (boardElements[xIndex][yIndex].IsMissile())

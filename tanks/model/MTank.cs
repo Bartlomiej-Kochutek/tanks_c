@@ -180,7 +180,7 @@ namespace tanks.model
                 int xIndex = (int)mPosX + xDisplacement;
                 int yIndex = (int)mPosY + iYDisplacement;
 
-                if (CGameBoard.IndicesOutsideWindow(xIndex, yIndex, boardElements.Length))
+                if (CGameBoard.IndicesOutsideWindow(xIndex, yIndex))
                     continue;
 
                 if (boardElements[xIndex][yIndex].IsFortressWall())
@@ -197,7 +197,7 @@ namespace tanks.model
                 int xIndex = (int)mPosX + iXDisplacement;
                 int yIndex = (int)mPosY + yDisplacement;
 
-                if (CGameBoard.IndicesOutsideWindow(xIndex, yIndex, boardElements.Length))
+                if (CGameBoard.IndicesOutsideWindow(xIndex, yIndex))
                     continue;
 
                 if (boardElements[xIndex][yIndex].IsFortressWall())
@@ -224,7 +224,7 @@ namespace tanks.model
         }
 
 
-        private int CanonPositionX()
+        public int CanonPositionX()
         {
             switch (mDirection)
             {
@@ -240,7 +240,7 @@ namespace tanks.model
                     return 0;
             }
         }
-        private int CanonPositionY()
+        public int CanonPositionY()
         {
             switch (mDirection)
             {

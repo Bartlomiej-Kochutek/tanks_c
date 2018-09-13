@@ -1,4 +1,5 @@
 ﻿
+using tanks.common;
 using tanks.controller;
 
 
@@ -14,7 +15,7 @@ namespace tanks.model
 
         public MGameBoard()
         {
-            mSize = 300;
+            mSize = Settings.GAME_BOARD_SIZE;
         }
 
 

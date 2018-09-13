@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-
+using tanks.common;
 using tanks.controller;
 
 
@@ -50,27 +50,25 @@ namespace tanks.model
 
         public bool Collision(
             CBoardElement[][] oBoardElements,
-            LinkedList<ICTank> oTanks)
+            LinkedList<ICTank> oTanks,
+            bool iDoDamage)
         {
-            int boardSize = mController.ParentTank.ParentGameWindow.ChildBoard.GetSize();
-
-            if (CGameBoard.IndicesOutsideWindow((int)mPosX, (int)mPosY, boardSize))
-                return true;
-
             int intPosX = (int)mPosX;
             int intPosY = (int)mPosY;
 
             if (CollisionWithBoardElements(
                     oBoardElements,
                     intPosX,
-                    intPosY,
-                    boardSize))
+                    intPosY))
                 return true;
 
-            if (CollisionWithOtherTanks(
+            if (Algorithm.CollisionWithOtherTanks(
+                    mController.ParentTank,
                     oTanks,
                     intPosX,
-                    intPosY))
+                    intPosY,
+                    mDamage,
+                    iDoDamage))
                 return true;
 
             return false;
@@ -79,9 +77,11 @@ namespace tanks.model
         private bool CollisionWithBoardElements(
             CBoardElement[][] oBoardElements,
             int iPosXInt,
-            int iPosYInt,
-            int iBoardSize)
+            int iPosYInt)
         { //keep functions sequence order
+            if (CGameBoard.IndicesOutsideWindow(iPosXInt, iPosYInt))
+                return true;
+
             if (oBoardElements[iPosXInt][iPosYInt].IsFortressWall())
                 return true;
 
@@ -96,7 +96,7 @@ namespace tanks.model
                     oBoardElements[neighbourIndex][iPosYInt].SetDestroyed(true);
 
                 neighbourIndex = iPosXInt + 1;
-                if (neighbourIndex < iBoardSize)
+                if (neighbourIndex < oBoardElements.Length)
                     oBoardElements[neighbourIndex][iPosYInt].SetDestroyed(true);
             }
             else
@@ -106,31 +106,10 @@ namespace tanks.model
                     oBoardElements[iPosXInt][neighbourIndex].SetDestroyed(true);
 
                 neighbourIndex = iPosYInt + 1;
-                if (neighbourIndex < iBoardSize)
+                if (neighbourIndex < oBoardElements.Length)
                     oBoardElements[iPosXInt][neighbourIndex].SetDestroyed(true);
             }
             return true;
-        }
-
-        private bool CollisionWithOtherTanks(
-            LinkedList<ICTank> oTanks,
-            int iPosXInt,
-            int iPosYInt)
-        {            
-            foreach (ICTank tank in oTanks)
-            {
-                if (tank == mController.ParentTank)
-                    continue;
-
-                if (tank.GetPosX() > iPosXInt || tank.GetPosX() + tank.GetSize() <= iPosXInt ||
-                    tank.GetPosY() > iPosYInt || tank.GetPosY() + tank.GetSize() <= iPosYInt)
-                    continue;
-
-                tank.HitPoints.TakeDamagedFromMissile(mDamage);
-
-                return true;
-            }
-            return false;
         }
         
 

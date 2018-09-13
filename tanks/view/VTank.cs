@@ -110,11 +110,9 @@ namespace tanks.view
 
         public void RedrawMissiles(CBoardElement[][] oElements)
         {
-            int boardSize = mController.ParentGameWindow.ChildBoard.GetSize();
-
             foreach (CMissile cMissile in mController.Missiles)
             {
-                if (!CGameBoard.IndicesOutsideWindow(cMissile.GetPosX(), cMissile.GetPosY(), boardSize))
+                if (!CGameBoard.IndicesOutsideWindow(cMissile.GetPosX(), cMissile.GetPosY()))
                     oElements[cMissile.GetPosX()][cMissile.GetPosY()].SetMissile(true);
             }
         }

@@ -42,6 +42,15 @@ namespace tanks.controller
             mDecoratedTank.RedrawWithWeaponUsageEffect(oBoardElements);
         }
 
+        public int CanonPositionX()
+        {
+            return mDecoratedTank.CanonPositionX();
+        }
+        public int CanonPositionY()
+        {
+            return mDecoratedTank.CanonPositionY();
+        }
+
         public virtual int GetPosX()
         {
             return mDecoratedTank.GetPosX();
@@ -53,6 +62,10 @@ namespace tanks.controller
         public virtual int GetSize()
         {
             return mDecoratedTank.GetSize();
+        }
+        public virtual EDirection GetDirection()
+        {
+            return mDecoratedTank.GetDirection();
         }
 
         public virtual void SetMoveDown(bool iMoveDown)

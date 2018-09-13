@@ -93,6 +93,15 @@ namespace tanks.controller
 
         public CHitPoints HitPoints { get => mHitPoints; set => mHitPoints = value; }
 
+        public int CanonPositionX()
+        {
+            return mModel.CanonPositionX();
+        }
+        public int CanonPositionY()
+        {
+            return mModel.CanonPositionY();
+        }
+
         public int GetPosX()
         {
             return mModel.GetPosX();
