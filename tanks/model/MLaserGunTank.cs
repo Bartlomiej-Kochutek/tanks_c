@@ -32,16 +32,21 @@ namespace tanks.model
             CBoardElement[][] oBoardElements,
             LinkedList<ICTank> oTanks)
         {
-            CreateLaserBeamParts(
-                oBoardElements,
-                oTanks);
+            mController.LaserBeamParts.Clear();
+
+            if (mController.IsUsingWeapon())
+                CreateLaserBeamParts(
+                    oBoardElements,
+                    oTanks);
 
             DamageOtherTankIfHit(oTanks);
         }
 
         public void DrawLaserBeam(CBoardElement[][] oBoardElements)
         {
-
+            Algorithm.RedrawMissiles(
+                oBoardElements,
+                mController.LaserBeamParts);
         }
 
 
@@ -98,15 +103,16 @@ namespace tanks.model
 
         private void DamageOtherTankIfHit(LinkedList<ICTank> oTanks)
         {
-            const int LASER_POWER = 50;
+            if (!mController.IsUsingWeapon())
+                return;
 
-            int laserDamage = mLaserLastShootingTime * LASER_POWER;
+            int laserDamage = (int)(mLaserLastShootingTime * Settings.LASER_POWER);
 
             Algorithm.CollisionWithOtherTanks(
                     mController,
                     oTanks,
                     mPosXOfLaserBeamCollision,
-                    mPosXOfLaserBeamCollision,
+                    mPosYOfLaserBeamCollision,
                     laserDamage,
                     true);
         }

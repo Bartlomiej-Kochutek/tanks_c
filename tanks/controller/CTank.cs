@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-
+using tanks.common;
 using tanks.model;
 using tanks.view;
 
@@ -74,7 +74,10 @@ namespace tanks.controller
         public void RedrawWithWeaponUsageEffect(CBoardElement[][] oBoardElements)
         {
             mView.Redraw(oBoardElements);
-            mView.RedrawMissiles(oBoardElements);
+
+            Algorithm.RedrawMissiles(
+                oBoardElements,
+                mMissiles);
         }
 
 

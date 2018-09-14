@@ -5,6 +5,8 @@ namespace tanks.controller
 {
     public interface ICTank
     {
+        void Prepare();
+
         void Move(int iDeltaT);
         void UseWeapon(int iDeltaT);
         void CalculateWeaponUsages(
@@ -16,6 +18,7 @@ namespace tanks.controller
 
 
 
+        CGameWindow ParentGameWindow { get ; set; }
         CHitPoints HitPoints { get; set; }
         VTank View { get; set; }
 

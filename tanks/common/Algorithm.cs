@@ -46,5 +46,16 @@ namespace tanks.common
             return false;
         }
 
+        public static void RedrawMissiles(
+            CBoardElement[][] oElements,
+            LinkedList<CMissile> iMissiles)
+        {
+            foreach (CMissile cMissile in iMissiles)
+            {
+                if (!IndicesOutsideWindow(cMissile.GetPosX(), cMissile.GetPosY()))
+                    oElements[cMissile.GetPosX()][cMissile.GetPosY()].SetMissile(true);
+            }
+        }
+
     }
 }

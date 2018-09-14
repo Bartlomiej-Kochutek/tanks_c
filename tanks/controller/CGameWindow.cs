@@ -205,14 +205,14 @@ namespace tanks.controller
 
         private void CreateTanks(ETankOwner iFirstTankOwner)
         {
-            mChildTanks.AddLast(new CTank(60, 25));
+            mChildTanks.AddLast(new CLaserGunTank(new CTank(60, 25)));
 
             mChildTanks.AddLast(new CTankProxy(25, 23, mChildTanks.First(), iFirstTankOwner));
         }
 
         private void PrepareTanks()
         {
-            foreach (CTank cTank in mChildTanks)
+            foreach (ICTank cTank in mChildTanks)
             {
                 cTank.ParentGameWindow = this;
                 cTank.Prepare();

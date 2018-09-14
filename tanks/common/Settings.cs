@@ -10,5 +10,6 @@ namespace tanks.common
     {
         public const int GAME_BOARD_SIZE = 160;
 
+        public const double LASER_POWER = 0.08;
     }
 }

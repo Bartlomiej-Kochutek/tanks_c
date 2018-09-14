@@ -16,6 +16,13 @@ namespace tanks.controller
 
 
 
+        public virtual void Prepare()
+        {
+            mDecoratedTank.Prepare();
+        }
+
+        public virtual CGameWindow ParentGameWindow
+            { get => mDecoratedTank.ParentGameWindow; set => mDecoratedTank.ParentGameWindow = value; }
         public virtual CHitPoints HitPoints { get => mDecoratedTank.HitPoints; set => mDecoratedTank.HitPoints = value; }
         public virtual VTank View { get => mDecoratedTank.View; set => mDecoratedTank.View = value; }
 

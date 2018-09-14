@@ -108,15 +108,6 @@ namespace tanks.view
             return false;
         }
 
-        public void RedrawMissiles(CBoardElement[][] oElements)
-        {
-            foreach (CMissile cMissile in mController.Missiles)
-            {
-                if (!Algorithm.IndicesOutsideWindow(cMissile.GetPosX(), cMissile.GetPosY()))
-                    oElements[cMissile.GetPosX()][cMissile.GetPosY()].SetMissile(true);
-            }
-        }
-
         
 
         public CTank Controller { get => mController; set => mController = value; }
