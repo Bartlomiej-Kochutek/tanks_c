@@ -9,7 +9,7 @@ namespace tanks.controller
 
 
 
-        public CBaseTankDecorator(ICTank iDecoratedTank)
+        protected CBaseTankDecorator(ICTank iDecoratedTank)
         {
             mDecoratedTank = iDecoratedTank;
         }

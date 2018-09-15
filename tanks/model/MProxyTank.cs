@@ -102,20 +102,20 @@ namespace tanks.model
             ICTank playerTank = mController.ParentGameWindow.GetPlayerTank();
 
             int playerTankSize = playerTank.GetSize();
-            if (mPosX > playerTank.GetPosX() + playerTankSize)
+            if (mPosition.GetPosX() > playerTank.GetPosX() + playerTankSize)
             {
                 base.SetMoveLeft(true);
             }
-            else if(mPosX < playerTank.GetPosX() - playerTankSize)
+            else if(mPosition.GetPosX() < playerTank.GetPosX() - playerTankSize)
             {
                 base.SetMoveRight(true);
             }
 
-            if (mPosY > playerTank.GetPosY() + playerTankSize)
+            if (mPosition.GetPosY() > playerTank.GetPosY() + playerTankSize)
             {
                 base.SetMoveUp(true);
             }
-            else if (mPosY < playerTank.GetPosY() - playerTankSize)
+            else if (mPosition.GetPosY() < playerTank.GetPosY() - playerTankSize)
             {
                 base.SetMoveDown(true);
             }

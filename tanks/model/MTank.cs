@@ -5,15 +5,14 @@ using tanks.controller;
 
 namespace tanks.model
 {
-    public class MTank
+    public class MTank : IPositionable
     {
         protected CTank mController;
 
         private const int DELTA_T_SCALE = 200;
         private const int SHOOTING_INTERVAL = 100;
-        
-        protected float mPosX;
-        protected float mPosY;
+
+        protected MPrecisePosition mPosition = new MPrecisePosition();
 
         private int mMaxPos;
 
@@ -43,8 +42,8 @@ namespace tanks.model
         {
             mSize = DEFAULT_SIZE;
 
-            mPosX = iPosX;
-            mPosY = iPosY;
+            mPosition.SetPosX(iPosX);
+            mPosition.SetPosY(iPosY);
             mSpeed = DEFAULT_SPEED;
 
             mDirection = EDirection.UP;
@@ -137,7 +136,7 @@ namespace tanks.model
             if (VerticalCollisionWithFortressWall(mController.GetSize()))
                 return;
 
-            mPosY += iDeltaPos;
+            mPosition.SetPrecisePosY(mPosition.GetPrecisePosY() + iDeltaPos);
             CorrectPosY();
         }
         private void MoveLeft(float iDeltaPos)
@@ -147,7 +146,7 @@ namespace tanks.model
             if (HorizontalCollisionWithFortressWall(-1))
                 return;
 
-            mPosX -= iDeltaPos;
+            mPosition.SetPrecisePosX(mPosition.GetPrecisePosX() - iDeltaPos);
             CorrectPosX();
         }
         private void MoveRight(float iDeltaPos)
@@ -157,7 +156,7 @@ namespace tanks.model
             if (HorizontalCollisionWithFortressWall(mController.GetSize()))
                 return;
 
-            mPosX += iDeltaPos;
+            mPosition.SetPrecisePosX(mPosition.GetPrecisePosX() + iDeltaPos);
             CorrectPosX();
         }
         private void MoveUp(float iDeltaPos)
@@ -167,7 +166,7 @@ namespace tanks.model
             if (VerticalCollisionWithFortressWall(-1))
                 return;
 
-            mPosY -= iDeltaPos;
+            mPosition.SetPrecisePosY(mPosition.GetPrecisePosY() - iDeltaPos);
             CorrectPosY();
         }
 
@@ -177,8 +176,8 @@ namespace tanks.model
 
             for (int xDisplacement = 0; xDisplacement < mController.GetSize(); xDisplacement++)
             {
-                int xIndex = (int)mPosX + xDisplacement;
-                int yIndex = (int)mPosY + iYDisplacement;
+                int xIndex = mPosition.GetPosX() + xDisplacement;
+                int yIndex = mPosition.GetPosY() + iYDisplacement;
 
                 if (Algorithm.IndicesOutsideWindow(xIndex, yIndex))
                     continue;
@@ -194,8 +193,8 @@ namespace tanks.model
 
             for (int yDisplacement = 0; yDisplacement < mController.GetSize(); yDisplacement++)
             {
-                int xIndex = (int)mPosX + iXDisplacement;
-                int yIndex = (int)mPosY + yDisplacement;
+                int xIndex = mPosition.GetPosX() + iXDisplacement;
+                int yIndex = mPosition.GetPosY() + yDisplacement;
 
                 if (Algorithm.IndicesOutsideWindow(xIndex, yIndex))
                     continue;
@@ -206,21 +205,21 @@ namespace tanks.model
             return false;
         }
 
-        private void CorrectPosY()
-        {
-            if (mPosY < 0)
-                mPosY = 0;
-
-            if (mPosY > mMaxPos)
-                mPosY = mMaxPos;
-        }
         private void CorrectPosX()
         {
-            if (mPosX < 0)
-                mPosX = 0;
+            if (mPosition.GetPosX() < 0)
+                mPosition.SetPosX(0);
 
-            if (mPosX > mMaxPos)
-                mPosX = mMaxPos;
+            if (mPosition.GetPosX() > mMaxPos)
+                mPosition.SetPosX(mMaxPos);
+        }
+        private void CorrectPosY()
+        {
+            if (mPosition.GetPosY() < 0)
+                mPosition.SetPosY(0);
+
+            if (mPosition.GetPosY() > mMaxPos)
+                mPosition.SetPosY(mMaxPos);
         }
 
 
@@ -229,13 +228,13 @@ namespace tanks.model
             switch (mDirection)
             {
                 case EDirection.DOWN:
-                    return (int)mPosX + mSize / 2;
+                    return mPosition.GetPosX() + mSize / 2;
                 case EDirection.LEFT:
-                    return (int)mPosX;
+                    return mPosition.GetPosX();
                 case EDirection.RIGHT:
-                    return (int)mPosX + mSize - 1;
+                    return mPosition.GetPosX() + mSize - 1;
                 case EDirection.UP:
-                    return (int)mPosX + mSize / 2;
+                    return mPosition.GetPosX() + mSize / 2;
                 default:
                     return 0;
             }
@@ -245,13 +244,13 @@ namespace tanks.model
             switch (mDirection)
             {
                 case EDirection.DOWN:
-                    return (int)mPosY + mSize - 1;
+                    return mPosition.GetPosY() + mSize - 1;
                 case EDirection.LEFT:
-                    return (int)mPosY + mSize / 2;
+                    return mPosition.GetPosY() + mSize / 2;
                 case EDirection.RIGHT:
-                    return (int)mPosY + mSize / 2;
+                    return mPosition.GetPosY() + mSize / 2;
                 case EDirection.UP:
-                    return (int)mPosY;
+                    return mPosition.GetPosY();
                 default:
                     return 0;
             }
@@ -270,11 +269,11 @@ namespace tanks.model
 
         public int GetPosX()
         {
-            return (int)mPosX;
+            return mPosition.GetPosX();
         }
         public void SetPosX(int iPosX)
         {
-            mPosX = iPosX;
+            mPosition.SetPosX(iPosX);
 
             CorrectPosX();
         }
@@ -282,11 +281,11 @@ namespace tanks.model
 
         public int GetPosY()
         {
-            return (int)mPosY;
+            return mPosition.GetPosY();
         }
         public void SetPosY(int iPosY)
         {
-            mPosY = iPosY;
+            mPosition.SetPosY(iPosY);
 
             CorrectPosY();
         }

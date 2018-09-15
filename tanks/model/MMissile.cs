@@ -5,15 +5,13 @@ using tanks.controller;
 
 namespace tanks.model
 {
-    class MMissile
+    class MMissile : IPositionable
     {
         private CMissile mController;
 
-        private float mPosX;
-        private float mPosY;
-
-        private float mPreviousPosX;
-        private float mPreviousPosY;
+        protected MPrecisePosition mPosition = new MPrecisePosition();
+        
+        protected MPrecisePosition mPreviousPosition = new MPrecisePosition();
 
         private EDirection direction;
 
@@ -34,16 +32,16 @@ namespace tanks.model
             switch (direction)
             {
                 case EDirection.DOWN:
-                    mPosY += iDeltaPos;
+                    mPosition.SetPrecisePosY(mPosition.GetPrecisePosY() + iDeltaPos);
                     break;
                 case EDirection.LEFT:
-                    mPosX -= iDeltaPos;
+                    mPosition.SetPrecisePosX(mPosition.GetPrecisePosX() - iDeltaPos);
                     break;
                 case EDirection.RIGHT:
-                    mPosX += iDeltaPos;
+                    mPosition.SetPrecisePosX(mPosition.GetPrecisePosX() + iDeltaPos);
                     break;
                 case EDirection.UP:
-                    mPosY -= iDeltaPos;
+                    mPosition.SetPrecisePosY(mPosition.GetPrecisePosY() - iDeltaPos);
                     break;
             }
         }
@@ -53,8 +51,8 @@ namespace tanks.model
             LinkedList<ICTank> oTanks,
             bool iDoDamage)
         {
-            int intPosX = (int)mPosX;
-            int intPosY = (int)mPosY;
+            int intPosX = mPosition.GetPosX();
+            int intPosY = mPosition.GetPosY();
 
             if (CollisionWithBoardElements(
                     oBoardElements,
@@ -118,20 +116,22 @@ namespace tanks.model
 
         public int GetPosX()
         {
-            return (int)mPosX;
+            return mPosition.GetPosX();
         }
         public void SetPosX(int iPosX)
         {
-            mPosX = mPreviousPosX = iPosX;
+            mPosition.SetPosX(iPosX);
+            mPreviousPosition.SetPosX(iPosX);
         }
 
         public int GetPosY()
         {
-            return (int)mPosY;
+            return mPosition.GetPosY();
         }
         public void SetPosY(int iPosY)
         {
-            mPosY = mPreviousPosY = iPosY;
+            mPosition.SetPosY(iPosY);
+            mPreviousPosition.SetPosY(iPosY);
         }
 
         public EDirection Direction { get => direction; set => direction = value; }

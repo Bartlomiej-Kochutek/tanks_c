@@ -1,15 +1,15 @@
 ﻿
+using tanks.common;
 using tanks.controller;
 
 
 namespace tanks.model
 {
-    class MFortress
+    class MFortress : IPositionable
     {
         private CFortress mController;
 
-        private int mPosX;
-        private int mPosY;
+        protected MPosition mPosition = new MPosition();
 
         private const int DEFAULT_SIZE = 16;
         private int mSize;
@@ -31,17 +31,13 @@ namespace tanks.model
             CTank parentTank = mController.ParentTank;
 
             int halfOfSizeDifference = mHalfOfSize - parentTank.GetSize() / 2;
-            mPosX = parentTank.GetPosX() - halfOfSizeDifference;
-            mPosY = parentTank.GetPosY() - halfOfSizeDifference;
+            mPosition.SetPosX(parentTank.GetPosX() - halfOfSizeDifference);
+            mPosition.SetPosY(parentTank.GetPosY() - halfOfSizeDifference);
         }
 
 
 
         public CFortress Controller { get => mController; set => mController = value; }
-
-        public int PosX { get => mPosX; set => mPosX = value; }
-
-        public int PosY { get => mPosY; set => mPosY = value; }
 
         public int GetSize()
         {
@@ -56,6 +52,24 @@ namespace tanks.model
         public int GetHalfOfSize()
         {
             return mHalfOfSize;
+        }
+
+        public int GetPosX()
+        {
+            return mPosition.GetPosX();
+        }
+        public void SetPosX(int iPosX)
+        {
+            mPosition.SetPosX(iPosX);
+        }
+
+        public int GetPosY()
+        {
+            return mPosition.GetPosY();
+        }
+        public void SetPosY(int iPosY)
+        {
+            mPosition.SetPosY(iPosY);
         }
     }
 }

@@ -1,11 +1,12 @@
 ﻿
+using tanks.common;
 using tanks.model;
 using tanks.view;
 
 
 namespace tanks.controller
 {
-    class CFortress
+    class CFortress : IPositionable
     {
         private CTank mParentTank;
 
@@ -42,17 +43,26 @@ namespace tanks.controller
 
         public int GetPosX()
         {
-            return mModel.PosX;
+            return mModel.GetPosX();
+        }
+        public void SetPosX(int iPosX)
+        {
+            mModel.SetPosX(iPosX);
         }
 
         public int GetPosY()
         {
-            return mModel.PosY;
+            return mModel.GetPosY();
+        }
+        public void SetPosY(int iPosY)
+        {
+            mModel.SetPosY(iPosY);
         }
 
         public int GetSize()
         {
             return mModel.GetSize();
         }
+        
     }
 }

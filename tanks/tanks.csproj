@@ -46,7 +46,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="common\Algorithm.cs" />
+    <Compile Include="common\IPositionable.cs" />
     <Compile Include="common\Settings.cs" />
+    <Compile Include="controller\CBaseBonus.cs" />
     <Compile Include="controller\CFortress.cs" />
     <Compile Include="controller\CBaseTankDecorator.cs" />
     <Compile Include="controller\CBoardElement.cs" />
@@ -62,6 +64,7 @@
     <Compile Include="controller\EPartOfScreen.cs" />
     <Compile Include="controller\ETankOwner.cs" />
     <Compile Include="controller\ICTank.cs" />
+    <Compile Include="model\MBaseBonus.cs" />
     <Compile Include="model\MFortress.cs" />
     <Compile Include="model\MBoardElement.cs" />
     <Compile Include="model\MGameBoard.cs" />
@@ -69,6 +72,8 @@
     <Compile Include="model\MHitPoints.cs" />
     <Compile Include="model\MLaserGunTank.cs" />
     <Compile Include="model\MMissile.cs" />
+    <Compile Include="model\MPosition.cs" />
+    <Compile Include="model\MPrecisePosition.cs" />
     <Compile Include="model\MProxyTank.cs" />
     <Compile Include="model\MTank.cs" />
     <Compile Include="view\EHitPointsColor.cs" />
