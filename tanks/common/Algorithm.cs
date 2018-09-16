@@ -19,9 +19,9 @@ namespace tanks.common
         }
         public static bool IndicesOutsideWindow(IPositionable iPositionable)
         {
-            bool indicesOutsideWindow = (iPositionable.GetPosX() < 0 || iPositionable.GetPosX() >= Settings.GAME_BOARD_SIZE ||
-                                         iPositionable.GetPosY() < 0 || iPositionable.GetPosY() >= Settings.GAME_BOARD_SIZE);
-            return indicesOutsideWindow;
+            return IndicesOutsideWindow(
+                iPositionable.GetPosX(),
+                iPositionable.GetPosY());
         }
 
         public static bool CollisionWithOtherTanks(

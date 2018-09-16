@@ -44,9 +44,9 @@ namespace tanks.controller
                                                  oTanks);
         }
 
-        public virtual void CheckBonuses(LinkedList<CBaseBonus> oBonuses)
+        public virtual int GetIndexOfPickedBonus(LinkedList<CBaseBonus> oBonuses)
         {
-            mDecoratedTank.CheckBonuses(oBonuses);
+            return mDecoratedTank.GetIndexOfPickedBonus(oBonuses);
         }
 
         public virtual void RedrawWithWeaponUsageEffect(CBoardElement[][] oBoardElements)

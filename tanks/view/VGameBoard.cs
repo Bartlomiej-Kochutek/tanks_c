@@ -14,16 +14,11 @@ namespace tanks.view
         private Color mHitPointsPositiveColor;
         private Color mHitPointsNegativeColor;
         private Color mFortressWallColor;
+        private Color mBonusColor;
 
 
 
         public VGameBoard()
-        {
-        }
-
-
-
-        public void Prepare()
         {
             mDestroyedMapColor = Color.FromArgb(255, 255, 255);
 
@@ -34,7 +29,11 @@ namespace tanks.view
             mHitPointsNegativeColor = Color.FromArgb(255, 0, 0);
 
             mFortressWallColor = Color.FromArgb(255, 255, 0);
+
+            mBonusColor = Color.FromArgb(160, 160, 160);
         }
+        
+        
 
         public void Redraw(
             ICTank iTank,
@@ -73,6 +72,16 @@ namespace tanks.view
                 amountOfWindowElementsY);
 
             RedrawTank(
+                formGraphics,
+                iTank,
+                boardElementSize,
+                elementsFirstXIndex,
+                elementsFirstYIndex,
+                firstWindowElementX,
+                amountOfWindowElementsX,
+                amountOfWindowElementsY);
+
+            RedrawBonuses(
                 formGraphics,
                 iTank,
                 boardElementSize,
@@ -135,7 +144,8 @@ namespace tanks.view
                     else
                     {
                         if (boardElements[xIndex][yIndex].IsTank() ||
-                            boardElements[xIndex][yIndex].IsMissile())
+                            boardElements[xIndex][yIndex].IsMissile() ||
+                            boardElements[xIndex][yIndex].IsBonus())
                             continue;
 
                         solidBrush = new SolidBrush(boardElements[xIndex][yIndex].View.Color);
@@ -238,6 +248,46 @@ namespace tanks.view
                             iBoardElementSize * currentWindowPartY,
                             iBoardElementSize,
                             iBoardElementSize));
+                    }
+                }
+                xIndex++;
+            }
+            solidBrush.Dispose();
+        }
+        private void RedrawBonuses(
+            Graphics iFormGraphics,
+            ICTank iTank,
+            int iBoardElementSize,
+            int iElemenstFirstXIndex,
+            int iElemenstFirstYIndex,
+            int iFirstWindowElementX,
+            int iAmountOfWindowElementsX,
+            int iAmountOfWindowElementsY)
+        {
+            SolidBrush solidBrush = new SolidBrush(mBonusColor);
+
+            CBoardElement[][] boardElements = mController.Elements;
+
+            int xIndex = iElemenstFirstXIndex;
+            for (int currentWindowPartX = 0; currentWindowPartX < iAmountOfWindowElementsX; currentWindowPartX++)
+            {
+                int yIndex = iElemenstFirstYIndex - 1;
+                for (int currentWindowPartY = iTank.HitPoints.GetBarHeight();
+                      currentWindowPartY <= iAmountOfWindowElementsY; currentWindowPartY++)
+                {
+                    yIndex++;
+                    if (Algorithm.IndicesOutsideWindow(xIndex, yIndex))
+                        continue;
+
+                    if (boardElements[xIndex][yIndex].IsBonus())
+                    {
+                        iFormGraphics.FillRectangle(
+                            solidBrush,
+                            new Rectangle(
+                                iBoardElementSize * (currentWindowPartX + iFirstWindowElementX),
+                                iBoardElementSize * currentWindowPartY,
+                                iBoardElementSize,
+                                iBoardElementSize));
                     }
                 }
                 xIndex++;

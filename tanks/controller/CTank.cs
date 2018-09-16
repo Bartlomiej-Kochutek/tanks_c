@@ -70,9 +70,9 @@ namespace tanks.controller
                                           oTanks);
         }
 
-        public void CheckBonuses(LinkedList<CBaseBonus> oBonuses)
+        public int GetIndexOfPickedBonus(LinkedList<CBaseBonus> oBonuses)
         {
-            mModel.CheckBonuses(oBonuses);
+            return mModel.GetIndexOfPickedBonus(oBonuses);
         }
 
         public void RedrawWithWeaponUsageEffect(CBoardElement[][] oBoardElements)

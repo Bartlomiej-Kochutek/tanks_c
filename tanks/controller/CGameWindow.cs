@@ -92,19 +92,33 @@ namespace tanks.controller
 
             int deltaT = mModel.MilisecsDeltaT();
 
-            foreach (ICTank cTank in mChildTanks)
+            foreach (ICTank tank in mChildTanks)
             {
-                cTank.Move(deltaT);
+                tank.Move(deltaT);
 
-                if (cTank.IsUsingWeapon())
-                    cTank.UseWeapon(deltaT);
+                if (tank.IsUsingWeapon())
+                    tank.UseWeapon(deltaT);
 
-                cTank.CalculateWeaponUsages(deltaT,
-                                            mChildBoard.Elements,
-                                            mChildTanks);
+                tank.CalculateWeaponUsages(deltaT,
+                                           mChildBoard.Elements,
+                                           mChildTanks);
 
-
+                CheckBonuses(tank);
             }
+        }
+        private void CheckBonuses(ICTank iTank)
+        {
+            int bonusIndex = iTank.GetIndexOfPickedBonus(mChildBonuses);
+
+            if (bonusIndex < 0)
+                return;
+
+            CBaseBonus bonus = mChildBonuses.ElementAt(bonusIndex);
+
+            if ((CLaserBonus)bonus != null)
+                mChildTanks.Find(iTank).Value = new CLaserGunTank(iTank);
+
+            mChildBonuses.Remove(bonus);
         }
 
         private void OnRedraw()
@@ -117,6 +131,10 @@ namespace tanks.controller
                     continue;
 
                 cTank.RedrawWithWeaponUsageEffect(mChildBoard.Elements);
+            }
+            foreach (CBaseBonus bonus in mChildBonuses)
+            {
+                bonus.Redraw(mChildBoard.Elements);
             }
 
             mChildBoard.Redraw(GetFirstTank(), EPartOfScreen.LEFT);
@@ -212,7 +230,7 @@ namespace tanks.controller
 
         private void CreateTanks(ETankOwner iFirstTankOwner)
         {
-            mChildTanks.AddLast(new CLaserGunTank(new CTank(60, 25)));
+            mChildTanks.AddLast(new CTank(60, 25));
 
             mChildTanks.AddLast(new CTankProxy(25, 23, mChildTanks.First(), iFirstTankOwner));
         }
@@ -220,7 +238,7 @@ namespace tanks.controller
         private void CreateBonuses()
         {
             mChildBonuses.AddLast(new CLaserBonus(15, 40));
-            mChildBonuses.AddLast(new CLaserBonus(35, 30));
+            mChildBonuses.AddLast(new CLaserBonus(45, 27));
         }
 
         private void PrepareTanks()

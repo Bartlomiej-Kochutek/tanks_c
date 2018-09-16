@@ -17,10 +17,10 @@ namespace tanks.model
             if (Algorithm.IndicesOutsideWindow(this))
                 return false;
 
-            if (iOtherObject.GetPosX() > this.GetPosX() + this.GetSize() ||
-                iOtherObject.GetPosX() + iOtherObject.GetSize() <= this.GetPosX() ||
-                iOtherObject.GetPosY() > this.GetPosY() + this.GetSize() ||
-                iOtherObject.GetPosY() + iOtherObject.GetSize() <= this.GetPosY())
+            if (iOtherObject.GetPosX() >= GetPosX() + GetSize() ||
+                iOtherObject.GetPosX() + iOtherObject.GetSize() <= GetPosX() ||
+                iOtherObject.GetPosY() >= GetPosY() + GetSize() ||
+                iOtherObject.GetPosY() + iOtherObject.GetSize() <= GetPosY())
                 return false;
 
             return true;

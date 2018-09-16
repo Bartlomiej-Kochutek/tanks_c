@@ -72,5 +72,14 @@ namespace tanks.controller
         {
             mModel.IsFortressWall = iIsFortressWall;
         }
+
+        public bool IsBonus()
+        {
+            return mModel.IsBonus;
+        }
+        public void SetBonus(bool iIsBonus)
+        {
+            mModel.IsBonus = iIsBonus;
+        }
     }
 }

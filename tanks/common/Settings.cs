@@ -12,6 +12,7 @@ namespace tanks.common
 
         public const int DEFAULT_BONUS_SIZE = 4;
         public const int DEFAULT_FORTRESS_SIZE = 16;
+        public const int DEFAULT_TANK_SIZE = 5;
 
         public const double LASER_POWER = 0.08;
     }

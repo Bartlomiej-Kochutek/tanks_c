@@ -31,6 +31,7 @@ namespace tanks.model
                     boardElements[i][j].SetTank(false);
                     boardElements[i][j].SetCanon(false);
                     boardElements[i][j].SetMissile(false);
+                    boardElements[i][j].SetBonus(false);
                 }
             }
         }

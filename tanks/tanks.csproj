@@ -80,6 +80,7 @@
     <Compile Include="model\MProxyTank.cs" />
     <Compile Include="model\MTank.cs" />
     <Compile Include="view\EHitPointsColor.cs" />
+    <Compile Include="view\VBaseBonus.cs" />
     <Compile Include="view\VGameWindow.cs">
       <SubType>Form</SubType>
     </Compile>

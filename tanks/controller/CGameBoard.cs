@@ -31,8 +31,6 @@ namespace tanks.controller
 
         public void Prepare()
         {
-            mView.Prepare();
-
             int thisSize = mModel.Size;
 
             Random random = new Random();

@@ -19,9 +19,6 @@ namespace tanks.model
         private const int DEFAULT_SPEED = 4;
         private int mSpeed;
 
-        private const int DEFAULT_SIZE = 5;
-        private int mSize;
-
         private EDirection mDirection;
 
         protected bool mMoveDown;
@@ -40,7 +37,7 @@ namespace tanks.model
             int iPosX,
             int iPosY)
         {
-            mSize = DEFAULT_SIZE;
+            mPosition.SetSize(Settings.DEFAULT_TANK_SIZE);
 
             mPosition.SetPosX(iPosX);
             mPosition.SetPosY(iPosY);
@@ -64,7 +61,7 @@ namespace tanks.model
 
         public void Prepare()
         {
-            mMaxPos = mController.ParentGameWindow.ChildBoard.GetSize() - mSize;
+            mMaxPos = mController.ParentGameWindow.ChildBoard.GetSize() - mPosition.GetSize();
         }
 
 
@@ -111,18 +108,19 @@ namespace tanks.model
             }
         }
 
-        public void CheckBonuses(LinkedList<CBaseBonus> oBonuses)
+        public int GetIndexOfPickedBonus(LinkedList<CBaseBonus> oBonuses)
         {
-            LinkedListNode<CBaseBonus> iterator = oBonuses.First;
-            while (iterator != null)
+            int index = 0;
+            foreach (CBaseBonus bonus in oBonuses)
             {
-                bool collisionOccured = mPosition.CollisionWithOtherPositinables(iterator.Value);
+                bool collisionOccured = mPosition.CollisionWithOtherPositinables(bonus);
                 if (collisionOccured)
                 {
-                    ;
+                    return index;
                 }
-                iterator = iterator.Next;
+                index++;
             }
+            return -1; // non bonus picked
         }
 
         public virtual void Move(int iDeltaT)
@@ -242,13 +240,13 @@ namespace tanks.model
             switch (mDirection)
             {
                 case EDirection.DOWN:
-                    return mPosition.GetPosX() + mSize / 2;
+                    return mPosition.GetPosX() + mPosition.GetSize() / 2;
                 case EDirection.LEFT:
                     return mPosition.GetPosX();
                 case EDirection.RIGHT:
-                    return mPosition.GetPosX() + mSize - 1;
+                    return mPosition.GetPosX() + mPosition.GetSize() - 1;
                 case EDirection.UP:
-                    return mPosition.GetPosX() + mSize / 2;
+                    return mPosition.GetPosX() + mPosition.GetSize() / 2;
                 default:
                     return 0;
             }
@@ -258,11 +256,11 @@ namespace tanks.model
             switch (mDirection)
             {
                 case EDirection.DOWN:
-                    return mPosition.GetPosY() + mSize - 1;
+                    return mPosition.GetPosY() + mPosition.GetSize() - 1;
                 case EDirection.LEFT:
-                    return mPosition.GetPosY() + mSize / 2;
+                    return mPosition.GetPosY() + mPosition.GetSize() / 2;
                 case EDirection.RIGHT:
-                    return mPosition.GetPosY() + mSize / 2;
+                    return mPosition.GetPosY() + mPosition.GetSize() / 2;
                 case EDirection.UP:
                     return mPosition.GetPosY();
                 default:
@@ -306,13 +304,13 @@ namespace tanks.model
 
         public int GetSize()
         {
-            return mSize;
+            return mPosition.GetSize();
         }
         public void SetSize(int iSize)
         {
-            mSize = iSize;
-            if (mSize <= 0)
-                mSize = DEFAULT_SIZE;
+            mPosition.SetSize(iSize);
+            if (iSize <= 0)
+                mPosition.SetSize(Settings.DEFAULT_TANK_SIZE);
         }
 
         public EDirection Direction { get => mDirection; set => mDirection = value; }

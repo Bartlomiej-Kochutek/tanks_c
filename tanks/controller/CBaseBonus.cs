@@ -1,20 +1,29 @@
 ﻿using tanks.common;
 using tanks.model;
+using tanks.view;
 
 namespace tanks.controller
 {
     public class CBaseBonus : IPositionable
     {
         protected MBaseBonus mModel;
+        protected VBaseBonus mView;
 
 
 
         protected CBaseBonus(MBaseBonus iModel)
         {
             mModel = iModel;
+
+            mView = new VBaseBonus(this);
         }
 
 
+
+        public void Redraw(CBoardElement[][] oBoardElements)
+        {
+            mView.Redraw(oBoardElements);
+        }
 
         public int GetPosX()
         {

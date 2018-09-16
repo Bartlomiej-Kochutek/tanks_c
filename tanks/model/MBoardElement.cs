@@ -13,6 +13,7 @@ namespace tanks.model
         private bool mIsCanon;
         private bool mIsMissile;
         private bool mIsFortressWall;
+        private bool mIsBonus;
 
 
 
@@ -23,6 +24,7 @@ namespace tanks.model
             mIsCanon = false;
             mIsMissile = false;
             mIsFortressWall = false;
+            mIsBonus = false;
         }
         
 
@@ -38,5 +40,7 @@ namespace tanks.model
         public bool IsMissile { get => this.mIsMissile; set => this.mIsMissile = value; }
 
         public bool IsFortressWall { get => this.mIsFortressWall; set => this.mIsFortressWall = value; }
+
+        public bool IsBonus { get => this.mIsBonus; set => this.mIsBonus = value; }
     }
 }
