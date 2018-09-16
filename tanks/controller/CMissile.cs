@@ -68,6 +68,15 @@ namespace tanks.controller
             mModel.SetPosY(iPosY);
         }
 
+        public int GetSize()
+        {
+            return mModel.GetSize();
+        }
+        public void SetSize(int iSize)
+        {
+            mModel.SetSize(iSize);
+        }
+
         public EDirection GetDirection()
         {
             return mModel.Direction;

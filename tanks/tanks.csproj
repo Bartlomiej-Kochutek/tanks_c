@@ -55,6 +55,7 @@
     <Compile Include="controller\CGameWindow.cs" />
     <Compile Include="controller\CGameBoard.cs" />
     <Compile Include="controller\CHitPoints.cs" />
+    <Compile Include="controller\CLaserBonus.cs" />
     <Compile Include="controller\CLaserGunTank.cs" />
     <Compile Include="controller\CMainMenu.cs" />
     <Compile Include="controller\CMissile.cs" />
@@ -65,11 +66,13 @@
     <Compile Include="controller\ETankOwner.cs" />
     <Compile Include="controller\ICTank.cs" />
     <Compile Include="model\MBaseBonus.cs" />
+    <Compile Include="model\MBasePositionable.cs" />
     <Compile Include="model\MFortress.cs" />
     <Compile Include="model\MBoardElement.cs" />
     <Compile Include="model\MGameBoard.cs" />
     <Compile Include="model\MGameWindow.cs" />
     <Compile Include="model\MHitPoints.cs" />
+    <Compile Include="model\MLaserBonus.cs" />
     <Compile Include="model\MLaserGunTank.cs" />
     <Compile Include="model\MMissile.cs" />
     <Compile Include="model\MPosition.cs" />

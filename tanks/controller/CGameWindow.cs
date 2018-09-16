@@ -14,6 +14,7 @@ namespace tanks.controller
 
         private CGameBoard mChildBoard;
         private LinkedList<ICTank> mChildTanks;
+        private LinkedList<CBaseBonus> mChildBonuses;
 
         private bool mGameStarted;
 
@@ -44,6 +45,8 @@ namespace tanks.controller
 
             mChildTanks = new LinkedList<ICTank>();
 
+            mChildBonuses = new LinkedList<CBaseBonus>();
+
             mGameStarted = false;
         }
 
@@ -52,6 +55,8 @@ namespace tanks.controller
         public void Start(ETankOwner iFirstTankOwner)
         {
             CreateTanks(iFirstTankOwner);
+
+            CreateBonuses();
 
             mChildBoard.Prepare();
 
@@ -97,6 +102,8 @@ namespace tanks.controller
                 cTank.CalculateWeaponUsages(deltaT,
                                             mChildBoard.Elements,
                                             mChildTanks);
+
+
             }
         }
 
@@ -208,6 +215,12 @@ namespace tanks.controller
             mChildTanks.AddLast(new CLaserGunTank(new CTank(60, 25)));
 
             mChildTanks.AddLast(new CTankProxy(25, 23, mChildTanks.First(), iFirstTankOwner));
+        }
+
+        private void CreateBonuses()
+        {
+            mChildBonuses.AddLast(new CLaserBonus(15, 40));
+            mChildBonuses.AddLast(new CLaserBonus(35, 30));
         }
 
         private void PrepareTanks()

@@ -7,27 +7,27 @@ using tanks.common;
 
 namespace tanks.model
 {
-    class MPosition : IPositionable
+    public class MPosition : MBasePositionable
     {
         int mPosX;
         int mPosY;
 
 
 
-        public int GetPosX()
+        public override int GetPosX()
         {
             return mPosX;
         }
-        public void SetPosX(int iPosX)
+        public override void SetPosX(int iPosX)
         {
             mPosX = iPosX;
         }
 
-        public int GetPosY()
+        public override int GetPosY()
         {
             return mPosY;
         }
-        public void SetPosY(int iPosY)
+        public override void SetPosY(int iPosY)
         {
             mPosY = iPosY;
         }

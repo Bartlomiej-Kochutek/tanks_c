@@ -2,27 +2,27 @@
 
 namespace tanks.model
 {
-    public class MPrecisePosition : IPositionable
+    public class MPrecisePosition : MBasePositionable
     {
         private double mPosX;
         private double mPosY;
 
 
 
-        public int GetPosX()
+        public override int GetPosX()
         {
             return (int)mPosX;
         }
-        public void SetPosX(int iPosX)
+        public override void SetPosX(int iPosX)
         {
             mPosX = iPosX;
         }
 
-        public int GetPosY()
+        public override int GetPosY()
         {
             return (int)mPosY;
         }
-        public void SetPosY(int iPosY)
+        public override void SetPosY(int iPosY)
         {
             mPosY = iPosY;
         }

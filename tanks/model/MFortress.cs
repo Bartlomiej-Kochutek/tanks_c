@@ -10,23 +10,21 @@ namespace tanks.model
         private CFortress mController;
 
         protected MPosition mPosition = new MPosition();
-
-        private const int DEFAULT_SIZE = 16;
-        private int mSize;
+        
         private int mHalfOfSize;
 
 
 
         public MFortress()
         {
-            mSize = DEFAULT_SIZE;
+            mPosition.SetSize(Settings.DEFAULT_FORTRESS_SIZE);
         }
 
 
 
         public void Prepare()
         {
-            mHalfOfSize = mSize / 2;
+            mHalfOfSize = mPosition.GetSize() / 2;
 
             CTank parentTank = mController.ParentTank;
 
@@ -41,12 +39,12 @@ namespace tanks.model
 
         public int GetSize()
         {
-            return mSize;
+            return mPosition.GetSize();
         }
         public void SetSize(int iSize)
         {
-            mSize = iSize;
-            mHalfOfSize = mSize / 2;
+            mPosition.SetSize(iSize);
+            mHalfOfSize = mPosition.GetSize() / 2;
         }
 
         public int GetHalfOfSize()

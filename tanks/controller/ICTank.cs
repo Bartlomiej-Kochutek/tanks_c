@@ -13,6 +13,7 @@ namespace tanks.controller
             float iDeltaT,
             CBoardElement[][] oBoardElements,
             LinkedList<ICTank> oTanks);
+        void CheckBonuses(LinkedList<CBaseBonus> oBonuses);
 
         void RedrawWithWeaponUsageEffect(CBoardElement[][] oBoardElements);
 

@@ -3,7 +3,7 @@ using tanks.model;
 
 namespace tanks.controller
 {
-    class CBaseBonus : IPositionable
+    public class CBaseBonus : IPositionable
     {
         protected MBaseBonus mModel;
 
@@ -32,6 +32,16 @@ namespace tanks.controller
         public void SetPosY(int iPosY)
         {
             mModel.SetPosY(iPosY);
+        }
+
+        public int GetSize()
+        {
+            return mModel.GetSize();
+        }
+
+        public void SetSize(int iSize)
+        {
+            mModel.SetSize(iSize);
         }
     }
 }

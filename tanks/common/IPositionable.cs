@@ -13,5 +13,8 @@ namespace tanks.common
 
         int GetPosY();
         void SetPosY(int iPosY);
+
+        int GetSize();
+        void SetSize(int iSize);
     }
 }

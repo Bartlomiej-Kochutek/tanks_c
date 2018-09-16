@@ -111,6 +111,20 @@ namespace tanks.model
             }
         }
 
+        public void CheckBonuses(LinkedList<CBaseBonus> oBonuses)
+        {
+            LinkedListNode<CBaseBonus> iterator = oBonuses.First;
+            while (iterator != null)
+            {
+                bool collisionOccured = mPosition.CollisionWithOtherPositinables(iterator.Value);
+                if (collisionOccured)
+                {
+                    ;
+                }
+                iterator = iterator.Next;
+            }
+        }
+
         public virtual void Move(int iDeltaT)
         {
             float deltaPos = (float)iDeltaT / DELTA_T_SCALE;

@@ -134,6 +134,15 @@ namespace tanks.model
             mPreviousPosition.SetPosY(iPosY);
         }
 
+        public int GetSize()
+        {
+            return mPosition.GetSize();
+        }
+        public void SetSize(int iSize)
+        {
+            mPosition.SetSize(iSize);
+        }
+
         public EDirection Direction { get => direction; set => direction = value; }
 
         public int GetDamage()

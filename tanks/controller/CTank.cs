@@ -70,6 +70,10 @@ namespace tanks.controller
                                           oTanks);
         }
 
+        public void CheckBonuses(LinkedList<CBaseBonus> oBonuses)
+        {
+            mModel.CheckBonuses(oBonuses);
+        }
 
         public void RedrawWithWeaponUsageEffect(CBoardElement[][] oBoardElements)
         {

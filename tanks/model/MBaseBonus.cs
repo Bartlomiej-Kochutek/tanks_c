@@ -2,7 +2,7 @@
 
 namespace tanks.model
 {
-    class MBaseBonus : IPositionable
+    public class MBaseBonus : IPositionable
     {
         protected MPosition mPosition = new MPosition();
 
@@ -10,7 +10,7 @@ namespace tanks.model
 
         protected MBaseBonus()
         {
-
+            mPosition.SetSize(Settings.DEFAULT_BONUS_SIZE);
         }
 
 
@@ -31,6 +31,16 @@ namespace tanks.model
         public void SetPosY(int iPosY)
         {
             mPosition.SetPosY(iPosY);
+        }
+
+        public int GetSize()
+        {
+            return mPosition.GetSize();
+        }
+
+        public void SetSize(int iSize)
+        {
+            mPosition.SetSize(iSize);
         }
     }
 }

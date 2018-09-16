@@ -63,6 +63,10 @@ namespace tanks.controller
         {
             return mModel.GetSize();
         }
+        public void SetSize(int iSize)
+        {
+            mModel.SetSize(iSize);
+        }
         
     }
 }
