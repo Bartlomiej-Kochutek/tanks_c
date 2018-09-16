@@ -9,15 +9,9 @@ namespace tanks.model
     {
         protected CTank mController;
 
-        private const int DELTA_T_SCALE = 200;
-        private const int SHOOTING_INTERVAL = 100;
-
         protected MPrecisePosition mPosition = new MPrecisePosition();
 
         private int mMaxPos;
-
-        private const int DEFAULT_SPEED = 4;
-        private int mSpeed;
 
         private EDirection mDirection;
 
@@ -41,7 +35,6 @@ namespace tanks.model
 
             mPosition.SetPosX(iPosX);
             mPosition.SetPosY(iPosY);
-            mSpeed = DEFAULT_SPEED;
 
             mDirection = EDirection.UP;
 
@@ -68,10 +61,10 @@ namespace tanks.model
         public virtual void ShootFromStandardGun(int iDeltaT)
         {
             mLastShootDelta += iDeltaT;
-            if (mLastShootDelta < SHOOTING_INTERVAL)
+            if (mLastShootDelta < Settings.MISSILES_SHOOTING_INTERVAL)
                 return;
 
-            mLastShootDelta %= SHOOTING_INTERVAL;
+            mLastShootDelta %= Settings.MISSILES_SHOOTING_INTERVAL;
 
             mController.Missiles.AddLast(new CMissile(
                 mController,
@@ -82,12 +75,11 @@ namespace tanks.model
 
         public void MoveMissiles(float iDeltaT)
         {
-            float deltaPos = iDeltaT / DELTA_T_SCALE;
-            const float FASTER_THAN_TANK = (float)1.5;
+            float deltaPos = iDeltaT / Settings.TANK_DELTA_T_SCALE;
 
             foreach (CMissile cMissile in mController.Missiles)
             {
-                cMissile.Move(FASTER_THAN_TANK * deltaPos);
+                cMissile.Move(Settings.MISSILES_FASTER_THAN_TANK * deltaPos);
             }
         }
 
@@ -125,7 +117,7 @@ namespace tanks.model
 
         public virtual void Move(int iDeltaT)
         {
-            float deltaPos = (float)iDeltaT / DELTA_T_SCALE;
+            float deltaPos = (float)iDeltaT / Settings.TANK_DELTA_T_SCALE;
             //System.Diagnostics.Debug.WriteLine(deltaPos);
 
             if (mMoveDown)
@@ -314,17 +306,6 @@ namespace tanks.model
         }
 
         public EDirection Direction { get => mDirection; set => mDirection = value; }
-
-        public int GetSpeed()
-        {
-            return mSpeed;
-        }
-        public void SetSpeed(int iSpeed)
-        {
-            mSpeed = iSpeed;
-            if (mSpeed <= 0)
-                mSpeed = DEFAULT_SPEED;
-        }
 
 
         public bool IsMoveDown()

@@ -11,6 +11,7 @@ namespace tanks.controller
         public CLaserBonus(): base(new MLaserBonus())
         {
             mModel = (MLaserBonus)base.mModel;
+            mModel.SetController(this);
         }
         public CLaserBonus(
             int iPosX,

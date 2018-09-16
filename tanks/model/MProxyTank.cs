@@ -1,4 +1,5 @@
 ﻿using System;
+using tanks.common;
 using tanks.controller;
 
 namespace tanks.model
@@ -8,14 +9,13 @@ namespace tanks.model
         ETankOwner mOwner;
         DateTime mAbsoluteTimeAfterWhichComputerTakesControl;
 
-        const int TAKE_CONTROL_TIMEOUT = 20;
-
 
 
         public MProxyTank(
             int iPosX,
             int iPosY,
-            ETankOwner iTankOwner) :
+            ETankOwner iTankOwner)
+            :
             base(iPosX, iPosY)
         {
             mOwner = ETankOwner.Player;
@@ -25,7 +25,7 @@ namespace tanks.model
             TimeSpan relativeTimeAfterWhichComputerTakesControl;
 
             if (iTankOwner == ETankOwner.Player)
-                relativeTimeAfterWhichComputerTakesControl = new TimeSpan(0, 0, TAKE_CONTROL_TIMEOUT);
+                relativeTimeAfterWhichComputerTakesControl = new TimeSpan(0, 0, Settings.PROXY_TANK_TAKE_CONTROL_TIMEOUT);
             else
                 relativeTimeAfterWhichComputerTakesControl = new TimeSpan(0, 0, 1);
 
@@ -84,7 +84,7 @@ namespace tanks.model
 
             mIsUsingWeapon = false;
 
-            mAbsoluteTimeAfterWhichComputerTakesControl = DateTime.Now + new TimeSpan(0, 0, TAKE_CONTROL_TIMEOUT);
+            mAbsoluteTimeAfterWhichComputerTakesControl = DateTime.Now + new TimeSpan(0, 0, Settings.PROXY_TANK_TAKE_CONTROL_TIMEOUT);
         }
 
 

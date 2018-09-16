@@ -15,14 +15,13 @@ namespace tanks.model
 
         private EDirection direction;
 
-        private const int DEFAULT_DAMAGE = 40;
         private int mDamage;
 
 
 
         public MMissile()
         {
-            mDamage = DEFAULT_DAMAGE;
+            mDamage = Settings.DEFAULT_MISSILE_DAMAGE;
         }
 
 
@@ -153,7 +152,7 @@ namespace tanks.model
         {
             mDamage = iDamage;
             if (mDamage <= 0)
-                mDamage = DEFAULT_DAMAGE;
+                mDamage = Settings.DEFAULT_MISSILE_DAMAGE;
         }
     }
 }

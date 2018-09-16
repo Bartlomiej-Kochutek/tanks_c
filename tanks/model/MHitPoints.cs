@@ -1,4 +1,5 @@
 ﻿
+using tanks.common;
 using tanks.controller;
 
 
@@ -8,18 +9,16 @@ namespace tanks.model
     {
         private CHitPoints mController;
 
-        private const int DEFAULT_BAR_HEIGHT = 3;
         private int mBarHeight;
 
-        private const int MAX_HIT_POINTS = 1000;
         private int mAmount;
 
 
 
         public MHitPoints()
         {
-            mBarHeight = DEFAULT_BAR_HEIGHT;
-            mAmount = MAX_HIT_POINTS;
+            mBarHeight = Settings.DEFAULT_HIT_POINTS_BAR_HEIGHT;
+            mAmount = Settings.MAX_HIT_POINTS;
         }
 
 
@@ -37,14 +36,12 @@ namespace tanks.model
 
         public double GetAmountAsPercentage()
         {
-            return (double)mAmount / (double)MAX_HIT_POINTS;
+            return (double)mAmount / (double)Settings.MAX_HIT_POINTS;
         }
 
 
 
         public CHitPoints Controller { get => mController; set => mController = value; }
-
-        public static int MaxHitPoints => MAX_HIT_POINTS;
 
         public int BarHeight => mBarHeight;
 

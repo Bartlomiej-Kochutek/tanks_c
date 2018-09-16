@@ -145,15 +145,6 @@ namespace tanks.controller
             mModel.Direction = iDirection;
         }
 
-        public int GetSpeed()
-        {
-            return mModel.GetSpeed();
-        }
-        public void SetSpeed(int iSpeed)
-        {
-            mModel.SetSpeed(iSpeed);
-        }
-
 
         public bool IsMoveDown()
         {
