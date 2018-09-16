@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
 using tanks.model;
@@ -108,6 +109,8 @@ namespace tanks.controller
         }
         private void CheckBonuses(ICTank iTank)
         {
+            CheckTankCurrentBonuses(iTank);
+
             int bonusIndex = iTank.GetIndexOfPickedBonus(mChildBonuses);
 
             if (bonusIndex < 0)
@@ -115,10 +118,23 @@ namespace tanks.controller
 
             CBaseBonus bonus = mChildBonuses.ElementAt(bonusIndex);
 
-            if ((CLaserBonus)bonus != null)
-                mChildTanks.Find(iTank).Value = new CLaserGunTank(iTank);
+            CLaserBonus laserBonus = bonus as CLaserBonus;
+            if (laserBonus != null)
+            {
+                mChildTanks.Find(iTank).Value = new CLaserGunTank(iTank,
+                                                                  laserBonus.GetDuration());
+            }
 
             mChildBonuses.Remove(bonus);
+        }
+        private void CheckTankCurrentBonuses(ICTank iTank)
+        {
+            CLaserGunTank laserTank = iTank as CLaserGunTank;
+            if (laserTank != null)
+            {
+                if (DateTime.Now > laserTank.GetDecorationEndTime())
+                    mChildTanks.Find(laserTank).Value = laserTank.GetDecoratedTank();
+            }
         }
 
         private void OnRedraw()

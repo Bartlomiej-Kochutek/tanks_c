@@ -1,4 +1,5 @@
-﻿using tanks.model;
+﻿using System;
+using tanks.model;
 
 namespace tanks.controller
 {
@@ -21,6 +22,11 @@ namespace tanks.controller
         {
             mModel.SetPosX(iPosX);
             mModel.SetPosY(iPosY);
+        }
+
+        public TimeSpan GetDuration()
+        {
+            return mModel.GetDuration();
         }
     }
 }

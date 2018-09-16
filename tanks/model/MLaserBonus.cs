@@ -1,4 +1,6 @@
-﻿using tanks.controller;
+﻿using System;
+using tanks.common;
+using tanks.controller;
 
 namespace tanks.model
 {
@@ -6,12 +8,13 @@ namespace tanks.model
     {
         private CLaserBonus mController;
 
-        //private ;
+        private TimeSpan mDuration;
 
 
 
         public MLaserBonus()
         {
+            mDuration = new TimeSpan(0, 0, Settings.DEFAULT_BONUS_DURATION_IN_SECONDS);
         }
 
 
@@ -19,6 +22,11 @@ namespace tanks.model
         public void SetController(CLaserBonus iController)
         {
             mController = iController;
+        }
+
+        public TimeSpan GetDuration()
+        {
+            return mDuration;
         }
     }
 }

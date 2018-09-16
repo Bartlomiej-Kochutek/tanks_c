@@ -8,6 +8,10 @@ namespace tanks.common
 {
     public abstract class Settings
     {
+        public const int GAME_WINDOW_WIDTH = 1600;
+        public const int GAME_WINDOW_HIGHT = 900;
+
+
         public const int GAME_BOARD_SIZE = 160;
 
         public const int DEFAULT_BONUS_SIZE = 4;
@@ -27,7 +31,10 @@ namespace tanks.common
         public const double LASER_POWER = 0.08;
 
 
-        public const int PROXY_TANK_TAKE_CONTROL_TIMEOUT = 20;
+        public const int DEFAULT_BONUS_DURATION_IN_SECONDS = 8;
+
+
+        public const int PROXY_TANK_TAKE_CONTROL_TIMEOUT_IN_SECONDS = 20;
 
 
         public const int TANK_DELTA_T_SCALE = 200;

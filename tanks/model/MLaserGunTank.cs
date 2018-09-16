@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using tanks.common;
 using tanks.controller;
 
@@ -10,14 +11,20 @@ namespace tanks.model
 
         private int mLaserLastShootingTime;
 
-        private int mPosXOfLaserBeamCollision;
-        private int mPosYOfLaserBeamCollision;
+        private MPosition mPosOfLaserBeamCollision;
+        private DateTime mDecorationEndTime;
 
 
 
-        public MLaserGunTank(CLaserGunTank iController)
+        public MLaserGunTank(
+            CLaserGunTank iController,
+            TimeSpan iDecorationDuration)
         {
             mController = iController;
+
+            mPosOfLaserBeamCollision = new MPosition();
+
+            mDecorationEndTime = DateTime.Now + iDecorationDuration;
         }
 
 
@@ -97,8 +104,8 @@ namespace tanks.model
                 }
             } while (createNextLaserBeamPart);
 
-            mPosXOfLaserBeamCollision = posXOfLaserBeamPart;
-            mPosYOfLaserBeamCollision = posYOfLaserBeamPart;
+            mPosOfLaserBeamCollision.SetPosX(posXOfLaserBeamPart);
+            mPosOfLaserBeamCollision.SetPosY(posYOfLaserBeamPart);
         }
 
         private void DamageOtherTankIfHit(LinkedList<ICTank> oTanks)
@@ -111,10 +118,15 @@ namespace tanks.model
             Algorithm.CollisionWithOtherTanks(
                     mController,
                     oTanks,
-                    mPosXOfLaserBeamCollision,
-                    mPosYOfLaserBeamCollision,
+                    mPosOfLaserBeamCollision.GetPosX(),
+                    mPosOfLaserBeamCollision.GetPosY(),
                     laserDamage,
                     true);
+        }
+
+        public DateTime GetDecorationEndTime()
+        {
+            return mDecorationEndTime;
         }
 
     }

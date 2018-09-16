@@ -16,6 +16,12 @@ namespace tanks.controller
 
 
 
+        public ICTank GetDecoratedTank()
+        {
+            return mDecoratedTank;
+        }
+
+
         public virtual void Prepare()
         {
             mDecoratedTank.Prepare();

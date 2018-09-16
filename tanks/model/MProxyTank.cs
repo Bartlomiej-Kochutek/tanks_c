@@ -25,7 +25,7 @@ namespace tanks.model
             TimeSpan relativeTimeAfterWhichComputerTakesControl;
 
             if (iTankOwner == ETankOwner.Player)
-                relativeTimeAfterWhichComputerTakesControl = new TimeSpan(0, 0, Settings.PROXY_TANK_TAKE_CONTROL_TIMEOUT);
+                relativeTimeAfterWhichComputerTakesControl = new TimeSpan(0, 0, Settings.PROXY_TANK_TAKE_CONTROL_TIMEOUT_IN_SECONDS);
             else
                 relativeTimeAfterWhichComputerTakesControl = new TimeSpan(0, 0, 1);
 
@@ -84,7 +84,7 @@ namespace tanks.model
 
             mIsUsingWeapon = false;
 
-            mAbsoluteTimeAfterWhichComputerTakesControl = DateTime.Now + new TimeSpan(0, 0, Settings.PROXY_TANK_TAKE_CONTROL_TIMEOUT);
+            mAbsoluteTimeAfterWhichComputerTakesControl = DateTime.Now + new TimeSpan(0, 0, Settings.PROXY_TANK_TAKE_CONTROL_TIMEOUT_IN_SECONDS);
         }
 
 

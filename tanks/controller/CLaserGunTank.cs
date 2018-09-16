@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using tanks.model;
 
 namespace tanks.controller
@@ -11,11 +12,14 @@ namespace tanks.controller
 
 
 
-        public CLaserGunTank(ICTank iDecoratedTank)
+        public CLaserGunTank(
+            ICTank iDecoratedTank,
+            TimeSpan iDecorationDuration)
             :
             base(iDecoratedTank)
         {
-            mModel = new MLaserGunTank(this);
+            mModel = new MLaserGunTank(this,
+                                       iDecorationDuration);
 
             mLaserBeamParts = new LinkedList<CMissile>();
         }
@@ -50,5 +54,10 @@ namespace tanks.controller
 
 
         public LinkedList<CMissile> LaserBeamParts { get => mLaserBeamParts; set => mLaserBeamParts = value; }
+
+        public DateTime GetDecorationEndTime()
+        {
+            return mModel.GetDecorationEndTime();
+        }
     }
 }

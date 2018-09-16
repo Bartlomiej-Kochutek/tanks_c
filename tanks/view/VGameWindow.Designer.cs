@@ -1,13 +1,11 @@
-﻿using tanks.controller;
+﻿using tanks.common;
+using tanks.controller;
 
 namespace tanks.view
 {
     public partial class VGameWindow
     {
         CGameWindow mController;
-
-        private const int WINDOW_WIDTH = 1600;
-        private const int WINDOW_HIGHT = 900;
 
 
         
@@ -17,8 +15,8 @@ namespace tanks.view
             SetBounds(
                 10,
                 10,
-                WINDOW_WIDTH,
-                WINDOW_HIGHT);
+                Settings.GAME_WINDOW_WIDTH,
+                Settings.GAME_WINDOW_HIGHT);
         }
         
 
