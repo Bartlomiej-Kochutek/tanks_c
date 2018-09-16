@@ -1,11 +1,11 @@
 ﻿using System.Collections.Generic;
-
+using tanks.common;
 using tanks.model;
 
 
 namespace tanks.controller
 {
-    public class CMissile
+    public class CMissile : IPositionable
     {
         private ICTank mParentTank;
 

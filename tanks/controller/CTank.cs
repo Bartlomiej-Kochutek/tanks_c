@@ -6,7 +6,7 @@ using tanks.view;
 
 namespace tanks.controller
 {
-    public class CTank : ICTank
+    public class CTank : ICTank, IPositionable
     {
         private CGameWindow mParentGameWindow;
 
